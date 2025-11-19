@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision Angels - Live Fire Map</title>
+    
+  
+    <link rel="icon" type="image/x-icon" href="/assets/logo-small.png">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="../styles/map.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    
+    <script type="module" src="../script/current-user.js"></script>
+    <script type="module" src="/script/role-redirect.js"></script>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo-nav">
+                <div class="logo-icon-nav"><img src="/assets/logo-small-bw.png" class="logo-icon"></div>
+                <div class="logo-text">Vision Angels</div>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/pages/fire-report.html">Report Fire</a></li>
+                <li><a href="#" class="active">Live Map</a></li>
+                <li><a href="/pages/firefighters-team.html">Our Teams</a></li>
+                <li><a href="/pages/report-history.html">Reports</a></li>
+                <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="/pages/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
+                <a href="/pages/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="theme-icon">🌙</span>
+            </button>
+
+            <button class="mobile-toggle">☰</button>
+        </div>
+    </nav>
+
+    <div class="map-container">
+        <div id="map"></div>
+        
+        <div class="map-overlay">
+            <h2>🔥 Live Fire Activity</h2>
+            <div class="fire-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Active Fires</span>
+                    <span class="stat-value" id="activeCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">High Priority</span>
+                    <span class="stat-value" id="highCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Updated: </span>
+                    <span class="stat-value" id="lastUpdate">--:--</span>
+                </div>
+            </div>
+            
+            <div class="legend">
+                <h3>Fire Severity</h3>
+                <div class="legend-item">
+                    <div class="legend-dot high"></div>
+                    <span>High Risk</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot medium"></div>
+                    <span>Medium Risk</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot low"></div>
+                    <span>Low Risk</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn all-btn active">All Fires</button>
+            <button class="control-btn high-btn">High Risk Only</button>
+            <button class="control-btn recent-btn">Last 24h</button>
+            <button class="control-btn refresh-btn">🔄 Refresh</button>
+        </div>
+
+    </div>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+    <script type="module" src="../script/map.js"></script>
+
+
+</body>
+</html>

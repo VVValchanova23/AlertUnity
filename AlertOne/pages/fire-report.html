@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision Angels - Report Fire</title>
+  
+    <link rel="icon" type="image/x-icon" href="/assets/logo-small.png">
+    <link rel="stylesheet" href="../styles/fire-report.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    
+    <script type="module" src="../script/current-user.js"></script>
+    <script type="module" src="/script/role-redirect.js"></script>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo-nav">
+                <div class="logo-icon-nav"><img src="/assets/logo-small-bw.png" class="logo-icon"></div>
+                <div class="logo-text">Vision Angels</div>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="#" class="active">Report Fire</a></li>
+                <li><a href="/pages/map.html">Live Map</a></li>
+                <li><a href="/pages/firefighters-team.html">Our Teams</a></li>
+                <li><a href="/pages/report-history.html">Reports</a></li>
+                <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="/pages/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
+                <a href="/pages/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="theme-icon">🌙</span>
+            </button>
+
+            <button class="mobile-toggle">☰</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">🚨 Report a Fire</h1>
+            <p class="page-subtitle">
+                Help keep your community safe by reporting fire incidents quickly and accurately. 
+                Your report will be immediately forwarded to local emergency services.
+            </p>
+        </div>
+
+        <div class="form-container">
+            <div class="form-section">
+                <h2>🔥 Fire Report Details</h2>
+                
+                <form id="fireReportForm">
+                    
+                    <div class="form-group">
+                        <label class="form-label required">Fire Severity</label>
+                        <div class="severity-options">
+                            <div class="severity-option high">
+                                <input type="radio" id="severityHigh" name="severity" value="high" required>
+                                <label for="severityHigh">🔴 High<br><br><small>Large flames, spreading rapidly</small></label>
+                            </div>
+                            <div class="severity-option medium">
+                                <input type="radio" id="severityMedium" name="severity" value="medium" required>
+                                <label for="severityMedium">🟡 Medium<br><br><small>Moderate flames, contained</small></label>
+                            </div>
+                            <div class="severity-option low">
+                                <input type="radio" id="severityLow" name="severity" value="low" required>
+                                <label for="severityLow">🟢 Low<br><br><small>Small flames,<br> smoldering</small></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-section">
+                        <label class="form-label required">Fire Location</label>
+                        <div class="location-inputs">
+                            <input type="text" id="latitude" class="form-input" placeholder="Latitude" readonly>
+                            <input type="text" id="longitude" class="form-input" placeholder="Longitude" readonly>
+                        </div>
+                        <button type="button" class="location-btn" id="getLocationBtn">📍 Get My Current Location</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label required" for="phone">Phone Number</label>
+                        <input type="text" id="phone" class="form-input" placeholder="+359 87 888 8888" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label required" for="address">Street Address or Description</label>
+                        <input type="text" id="address" class="form-input" placeholder="123 Main St, or nearest landmark" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label required" for="description">Fire Description</label>
+                        <textarea id="description" class="form-textarea" placeholder="Describe what you see: size of fire, what's burning, smoke color, wind direction, etc." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Upload Photos/Videos</label>
+                        <div class="file-upload" id="fileUpload">
+                            <input type="file" id="fileInput" multiple accept="image/*,video/*">
+                            <div class="file-upload-text">📸 Click to upload or drag files here</div>
+                            <div class="file-upload-subtext">Images and videos help emergency responders assess the situation</div>
+                        </div>
+                        <div class="uploaded-files" id="uploadedFiles"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="additionalInfo">Additional Information</label>
+                        <textarea id="additionalInfo" class="form-textarea" placeholder="Any other details that might be helpful (people nearby, vehicles involved, etc.)"></textarea>
+                    </div>
+
+                    <div class="submit-section">
+                        <button type="submit" class="submit-btn" id="submitBtn">🚨 Submit Fire Report</button>
+                        <button type="button" class="cancel-btn" onclick="clearForm()">Clear Form</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="info-panel">
+                <h3>📋 Reporting Guidelines</h3>
+                
+                <div class="info-item">
+                    <h4>🚨 Emergency Situations</h4>
+                    <p>If this is an active emergency with immediate danger to life or property, call 911 first, then submit this report.</p>
+                </div>
+
+                <div class="info-item">
+                    <h4>📍 Location Accuracy</h4>
+                    <p>Provide the most accurate location possible. Use landmarks if exact addresses aren't available.</p>
+                </div>
+
+                <div class="info-item">
+                    <h4>📸 Photo Guidelines</h4>
+                    <p>Take photos from a safe distance. Include wide shots showing the overall scene and close-ups of specific details.</p>
+                </div>
+
+                <div class="info-item">
+                    <h4>⏰ Report Timing</h4>
+                    <p>Submit reports as soon as it's safe to do so. Time-sensitive information helps emergency responders.</p>
+                </div>
+
+                <div class="contact-info">
+                    <h4>🆘 Emergency Contacts</h4>
+                    <p><strong>Fire Emergency:</strong> 911</p>
+                    <p><strong>Non-Emergency:</strong> (555) 123-4567</p>
+                    <p><strong>Report Status:</strong> support@firealert.com</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Fire Alert Portal</h3>
+                <p>Protecting communities through early fire detection and rapid response coordination. Together, we can save lives and preserve what matters most.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="/index.html">Home</a></p>
+                <p><a href="/pages/fire-report.html">Report a fire</a></p>
+                <p><a href="/pages/map.html">Live map</a></p>
+                <p><a href="/pages/firefighters-team.html">Our Teams</a></p>
+                <p><a href="/pages/admin-panel.html">Admin Panel</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <p><a href="/pages/tips.html">Fire Safety Tips</a></p>
+                <p><a href="/pages/contact.html">Contact</a></p>
+                <p><a href="/pages/features.html">Features</a></p>
+                <p><a href="/pages/about-us.html">About Us</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📧 support@codingburgas.com</p>
+                <p>📞 1-800-FIRE-911</p>
+                <p>🏢 Emergency Response Center</p>
+                <p>📍 Available 24/7 Worldwide</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="../script/fire-report.js"></script>
+</body>
+</html>
