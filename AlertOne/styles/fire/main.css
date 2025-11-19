@@ -44,7 +44,7 @@
     --gradient-text: linear-gradient(135deg, #fff 0%, #ff6347 50%, #ff4500 100%);
     --gradient-overlay: linear-gradient(45deg, rgba(255, 69, 0, 0.8), rgba(220, 20, 60, 0.6));
 
-    --team-bg-image: url('../assets/background-team-dark.jpg');
+    --team-bg-image: url('../../assets/background-team-dark.jpg');
 }
 
 [data-theme="light"] {
@@ -93,7 +93,7 @@
     --gradient-text: linear-gradient(135deg, #2c1414 0%, #e63946 50%, #ff4500 100%);
     --gradient-overlay: linear-gradient(45deg, rgba(255, 69, 0, 0.7), rgba(220, 20, 60, 0.7));
 
-    --team-bg-image: url('../assets/background-team-light.jpg');
+    --team-bg-image: url('../../assets/background-team-light.jpg');
 }
 
 .theme-toggle {

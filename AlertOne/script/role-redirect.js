@@ -5,13 +5,13 @@ import { doc, getDoc } from 'https://www.gstatic.com/firebasejs/11.8.0/firebase-
 const PAGE_CONFIG = {
   'admin-panel.html': {
     allowedRoles: ['admin'],
-    redirectTo: '../index.html',
+    redirectTo: '../fire.html',
     message: 'Access denied. Admins only.'
   },
   
   'report-history.html': {
     allowedRoles: ['admin', 'firefighter'],
-    redirectTo: '../index.html',
+    redirectTo: '../fire.html',
     message: 'Access denied. Authorized personnel only.'
   },
   
@@ -31,7 +31,7 @@ const PAGE_CONFIG = {
 function getCurrentPageName() {
   const path = window.location.pathname;
   const pageName = path.split('/').pop();
-  return pageName || 'index.html';
+  return pageName || 'fire.html';
 }
 
 function isRoleAllowed(userRole, allowedRoles) {
@@ -116,13 +116,13 @@ function redirectBasedOnRole(redirectMap) {
       }
 
       const userRole = userDoc.data().role || 'citizen';
-      const redirectUrl = redirectMap[userRole] || redirectMap.default || '../index.html';
+      const redirectUrl = redirectMap[userRole] || redirectMap.default || '../pages/fire.html';
       
       window.location.href = redirectUrl;
       
     } catch (error) {
       console.error('Error in role-based redirect:', error);
-      window.location.href = redirectMap.error || '../index.html';
+      window.location.href = redirectMap.error || '../pages/fire.html';
     }
   });
 }
@@ -151,5 +151,6 @@ function getCurrentUserRole() {
     });
   });
 }
+
 
 checkUserRole();

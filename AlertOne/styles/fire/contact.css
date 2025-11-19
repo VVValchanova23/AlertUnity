@@ -13,7 +13,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../assets/background-team-dark.jpg'); 
+  background-image: url('../../assets/background-team-dark.jpg'); 
   background-size: cover;
   background-position: center;
   filter: blur(5px) brightness(0.6);
