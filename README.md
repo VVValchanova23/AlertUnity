@@ -42,13 +42,14 @@ Using modern technologies such as HTML, CSS, JavaScript, and libraries like Char
 - Site👾
 <p align="left">
 <a href=""><img src="https://github.com/user-attachments/assets/c8b30458-f53a-451c-b167-9c6ac1a5cd7a" alt="JavaScript logo" width=40px/></a>
+<a><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/640px-Python-logo-notext.svg.png" heigh=48px width=48px/></a>
 <a href=""><img src="https://github.com/user-attachments/assets/ba721f8c-55db-415a-a124-b5e14b1bd4da" alt="HTML logo" width=65px/></a>
 <a href=""><img src="https://github.com/user-attachments/assets/9a8e0ca0-292f-4491-90e9-05ba562c9c06" alt="CSS logo" width=48px/></a>
 <a href="https://www.mapbox.com/"><img src="https://github.com/user-attachments/assets/bb69a34e-f1d2-43d8-8cd1-73a623970c7d" alt="Mapbox logo" width=48px/></a>
 <a href="https://firebase.google.com/"><img src="https://github.com/user-attachments/assets/e18bb8d4-4993-4c76-b9bd-4e905131c946" alt="Firebase logo" width=50px/></a>
 <a href="https://www.chartjs.org/"><img src="https://github.com/user-attachments/assets/b8417715-a140-4d50-a3aa-87e9409e0464" alt="Chart Js logo" width=48px/></a>
+<a><img src="https://www.okoone.com/wp-content/uploads/2024/06/React-native-2-logo.png" heigh=60px width=85px/></a>
 </p>
-
 - Used tools for our documentation, presentation & communication:
  
 <p align="left">
