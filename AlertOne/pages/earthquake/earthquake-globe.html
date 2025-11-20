@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlertOne - Earthquake Globe</title>
+  <link rel="stylesheet" href="../../styles/earthquake/earthquake-globe.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/dark/main.css">
+  <script src="https://js.arcgis.com/4.27/"></script>
+  
+</head>
+<body>
+    <div id="viewDiv"></div>
+    
+    <div class="search-panel">
+        <h2>Search</h2>
+        
+        <form id="searchForm">
+            <div class="form-group">
+                <label for="country">Country (optional)</label>
+                <input type="text" id="country" placeholder="e.g., Japan, Chile, USA">
+            </div>
+        
+            <div class="form-group">
+                <label for="minMagnitude">Minimum Magnitude</label>
+                <input type="number" id="minMagnitude" min="0" max="10" step="0.1" value="4.5">
+            </div>
+        
+            <div class="form-group">
+                <label for="days">Time Range (days)</label>
+                
+                <select id="days">
+                    <option value="1">Last 24 hours</option>
+                    <option value="7" selected>Last 7 days</option>
+                    <option value="30">Last 30 days</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <label for="limit">Max Results</label>
+                <input type="number" id="limit" min="10" max="1000" step="10" value="100">
+            </div>
+        
+            <button type="submit" class="btn">Search Earthquakes</button>
+        </form>
+    </div>
+
+    <div class="info-panel" id="infoPanel" style="display: none;">
+        <h3 id="infoTitle">Earthquake Details</h3>
+
+        <p id="infoMagnitude"></p>
+        <p id="infoLocation"></p>
+        <p id="infoTime"></p>
+        <p id="infoDepth"></p>
+    </div>
+
+    <div class="loading" id="loading">Loading earthquakes...</div>
+
+    <div class="biggest-earthquakes" id="biggestEarthquakes">
+        <h3>Biggest Earthquakes</h3>
+        <div id="earthquakeList"></div>
+    </div>
+
+  <script src="../../script/earthquake-globe.js"></script>
+</body>
+</html>
