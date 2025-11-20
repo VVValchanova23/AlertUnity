@@ -1,11 +1,168 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>AlertOne - Hurricane</title>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hurricane Alert</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: #0a1b2c;
+        color: #fff;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
 
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 27, 44, 0.85);
+        backdrop-filter: blur(10px);
+        padding: 1rem 2rem;
+        z-index: 1000;
+    }
+
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 1rem;
+        font-weight: 500;
+    }
+
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 5vw, 4rem);
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, #00f, #0ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: glow-text 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow-text {
+        0% { filter: drop-shadow(0 0 10px #0ff); }
+        100% { filter: drop-shadow(0 0 20px #00f); }
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+    }
+</style>
+</head>
 <body>
-  <h1>:(</h1>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Report Hurricane</a>
+    <a href="#">Live Map</a>
+    <a href="#">Teams</a>
+</nav>
+
+<section class="hero">
+    <h1>Hurricane Alert System</h1>
+    <p>Track hurricanes, get early warnings, and stay safe during severe storms.</p>
+</section>
+
+<canvas id="hurricaneCanvas"></canvas>
+
+<script>
+const canvas = document.getElementById('hurricaneCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// Частици за дъжд
+class Drop {
+    constructor() {
+        this.reset();
+    }
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.length = Math.random() * 20 + 10;
+        this.speedY = Math.random() * 4 + 4;
+        this.opacity = Math.random() * 0.5 + 0.3;
+    }
+    update() {
+        this.y += this.speedY;
+        if (this.y > canvas.height) this.reset();
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x, this.y + this.length);
+        ctx.strokeStyle = `rgba(173, 216, 230, ${this.opacity})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+}
+
+// Вятър/вихър (кръгове)
+class Cloud {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height / 2;
+        this.radius = Math.random() * 50 + 50;
+        this.speed = Math.random() * 0.5 + 0.2;
+    }
+    update() {
+        this.x += this.speed;
+        if (this.x - this.radius > canvas.width) this.x = -this.radius;
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(200, 200, 200, 0.05)';
+        ctx.fill();
+    }
+}
+
+const drops = [];
+for (let i = 0; i < 400; i++) drops.push(new Drop());
+
+const clouds = [];
+for (let i = 0; i < 10; i++) clouds.push(new Cloud());
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    clouds.forEach(c => { c.update(); c.draw(); });
+    drops.forEach(d => { d.update(); d.draw(); });
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
+
 </body>
 </html>

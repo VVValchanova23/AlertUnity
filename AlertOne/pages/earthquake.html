@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlertUnity</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+    <link rel="icon" type="image/x-icon" href="../assets/logo-small.png">
+    <link rel="stylesheet" href="../styles/fire/fire-main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
+    <script type="module" src="../script/current-user.js"></script>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earthquake Effect</title>
+    <link rel="stylesheet" href="../styles/earthquake/earthquake-main.css">
+    <script type="module" src="../script/role-redirect.js"></script>
+</head>
+<body>
+      <div class="earthquake-particles" id="earthquakeParticles"></div>
+   <canvas id="crackCanvas"></canvas>
+    <canvas id="dustCanvas"></canvas>
+    <script src="../script/earthquake.js"></script>
+    <div class="fire-particles" id="fireParticles"></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo-nav">
+                <div class="logo-icon-nav"><img src="../assets/logo-small-bw.png" class="logo-icon"></div>
+                <div class="logo-text">AlertUnity  </div>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="fire/fire-report.html">Report Fire</a></li>
+                <li><a href="fire/map.html">Live Map</a></li>
+                <li><a href="fire/firefighters-team.html">Our Teams</a></li>
+                <li><a href="fire/report-history.html">Reports</a></li>
+                <li><a href="fire/contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="fire/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
+                <a href="fire/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="theme-icon"><i class="fa-solid fa-moon"></i></span>
+            </button>
+
+            <button class="mobile-toggle">☰</button>
+        </div>
+    </nav>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1 class="hero-title">Protecting Communities Through Early Earthquake Alerts</h1>
+        <p class="hero-subtitle">Join thousands of emergency responders and citizens in the world's largest earthquake alert network. Receive alerts, report incidents, and stay safe together.</p>
+        <div class="hero-cta">
+            <a href="earthquake/report.html" class="btn-hero btn-hero-primary">
+                Report an Incident
+                <span><i class="fa-solid fa-rocket"></i></span>
+            </a>
+            <a href="earthquake/teams.html" class="btn-hero btn-hero-secondary">
+                Meet Our Teams
+                <span><i class="fa-solid fa-people-group"></i></span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="stats-container">
+        <div class="stat-item">
+            <div class="stat-number">500K+</div>
+            <div class="stat-label">Active Users</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label">Lives Saved</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">30sec</div>
+            <div class="stat-label">Average Alert Time</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">99.8%</div>
+            <div class="stat-label">System Uptime</div>
+        </div>
+    </div>
+</section>
+
+<section class="features" id="features">
+    <div class="features-container">
+        <h2 class="section-title">Powerful Features for Earthquake Safety</h2>
+        <p class="section-subtitle">Our platform helps you detect, report, and respond to earthquakes quickly and effectively.</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-bell"></i></div>
+                <h3 class="feature-title">Real-Time Alerts</h3>
+                <p class="feature-description">Receive instant notifications about earthquakes in your area with precise location and magnitude data.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <h3 class="feature-title">Mobile Reporting</h3>
+                <p class="feature-description">Report seismic activity instantly from your smartphone with location and observations.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <h3 class="feature-title">Interactive Maps</h3>
+                <p class="feature-description">View real-time earthquake incidents on maps with safe zones and evacuation routes.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-people-group"></i></div>
+                <h3 class="feature-title">Community Network</h3>
+                <p class="feature-description">Connect with local emergency responders, volunteers, and community members.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <h3 class="feature-title">AI Detection</h3>
+                <p class="feature-description">Advanced algorithms analyze seismic data to detect earthquakes early and send alerts.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-chart-column"></i></div>
+                <h3 class="feature-title">Analytics Dashboard</h3>
+                <p class="feature-description">Track earthquake trends, alert times, and community response with detailed analytics.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="gallery" id="gallery">
+    <div class="gallery-container">
+        <h2 class="section-title">Earthquake Response in Action</h2>
+        <p class="section-subtitle">See how our platform helps communities stay safe and respond quickly.</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-icon"><i class="fa-solid fa-house-crack"></i></div>
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Seismic Detection</h3>
+                    <p class="gallery-description">Early detection of earthquakes using seismic sensors and AI analysis.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="gallery-icon"><i class="fa-solid fa-truck-moving"></i></div>
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Emergency Response</h3>
+                    <p class="gallery-description">Coordinated rescue teams dispatched immediately after an earthquake.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="gallery-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Mobile Alerts</h3>
+                    <p class="gallery-description">Instant notifications sent to all users in affected areas.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="gallery-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Interactive Maps</h3>
+                    <p class="gallery-description">Real-time earthquake tracking with safe zones and evacuation guidance.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="gallery-icon"><i class="fa-solid fa-people-group"></i></div>
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Community Support</h3>
+                    <p class="gallery-description">Local communities working together to prepare for and respond to earthquakes.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="gallery-icon"><i class="fa-solid fa-trophy"></i></div>
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Success Stories</h3>
+                    <p class="gallery-description">Thousands of lives saved and communities protected worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-container">
+        <h2 class="cta-title">Stay Safe, Stay Prepared</h2>
+        <p class="cta-description">Join the Earthquake Alert Network today and help protect lives in your community. Early alerts save lives.</p>
+        <div class="hero-cta">
+            <a href="earthquake/sign-up.html" class="btn-hero btn-hero-primary">
+                Sign Up Now
+                <span><i class="fa-solid fa-rocket"></i></span>
+            </a>
+            <a href="earthquake/features.html" class="btn-hero btn-hero-secondary">
+                Learn More
+                <span><i class="fa-solid fa-book"></i></span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Fire Alert Portal</h3>
+                <p>Protecting communities through early fire detection and rapid response coordination. Together, we can save lives and preserve what matters most.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="#">Home</a></p>
+                <p><a href="fire/fire-report.html">Report a fire</a></p>
+                <p><a href="fire/map.html">Live map</a></p>
+                <p><a href="fire/firefighters-team.html">Our Teams</a></p>
+                <p><a href="fire/admin-panel.html">Admin Panel</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <p><a href="fire/tips.html">Fire Safety Tips</a></p>
+                <p><a href="fire/contact.html">Contact</a></p>
+                <p><a href="fire/features.html">Features</a></p>
+                <p><a href="fire/about-us.html">About Us</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fa-solid fa-envelope"></i>support@codingburgas.com</p>
+                <p><i class="fa-solid fa-phone"></i> 1-800-FIRE-911</p>
+                <p><i class="fa-solid fa-city"></i> Emergency Response Center</p>
+                <p><i class="fa-solid fa-map-pin"></i> Available 24/7 Worldwide</p>
+            </div>
+        </div>
+    </footer>
+
+</body>

@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("🚫 New password and confirm password do not match.");
       return;
     }
+    
 
     if (oldPassword.value === newPassword.value) {
       alert("⚠️ New password must be different from the old password.");
