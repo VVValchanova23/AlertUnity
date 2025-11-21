@@ -607,7 +607,7 @@ body::before {
     --table-primary: #00516a;
     --table-secondary: #000f49;
 
-    --placeholder: rgba(9, 61, 117, 0.7);
+    --placeholder: rgba(255, 255, 255, 0.7);
     
     --overlay-light: rgba(3, 0, 76, 0.05);
     --overlay-medium: rgba(139, 0, 0, 0.1);

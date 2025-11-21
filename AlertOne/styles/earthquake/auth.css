@@ -24,8 +24,8 @@ body::before {
     height: 100%;
     background-image: 
         radial-gradient(circle at 20% 80%, var(--glow-tertiary) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 140, 0, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(220, 20, 60, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(45, 25, 0, 0.959) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(68, 41, 5, 0.25) 0%, transparent 50%),
         radial-gradient(circle at 60% 70%, var(--glow-secondary) 0%, transparent 50%);
     animation: flicker 4s ease-in-out infinite alternate;
 }
@@ -245,7 +245,7 @@ body::before {
 }
 
 .password-toggle:hover {
-    color: rgba(4, 80, 101, 0.9);
+    color: rgba(255, 140, 0, 0.9);
 }
 
 .password-links {
@@ -297,7 +297,7 @@ body::before {
 .primary-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px var(--glow-tertiary);
-    background: linear-gradient(135deg, var(--accent-tomato) 0%, #083eb4 50%, var(--accent-quaternary) 100%);
+    background: linear-gradient(135deg, var(--accent-tomato) 0%, #ff1493 50%, var(--accent-quaternary) 100%);
 }
 
 .primary-btn:active {
@@ -383,16 +383,16 @@ body::before {
     height: 32px;
     border-radius: 50%;
     border: 2px solid var(--border-primary);
-    background: linear-gradient(135deg, #023a72, var(--accent-primary));
+    background: linear-gradient(135deg, #ff6b6b, var(--accent-primary));
     margin-left: -8px;
     transition: transform 0.3s ease;
 }
 
 .avatar:nth-child(1) { background: linear-gradient(135deg, var(--accent-tomato), var(--accent-crimson)); }
 .avatar:nth-child(2) { background: linear-gradient(135deg, var(--accent-primary), var(--accent-quaternary)); }
-.avatar:nth-child(3) { background: linear-gradient(135deg, #01173e, #011852); }
-.avatar:nth-child(4) { background: linear-gradient(135deg, #011a42, #2f5fc7); }
-.avatar:nth-child(5) { background: linear-gradient(135deg, #021e8d, #012c66); }
+.avatar:nth-child(3) { background: linear-gradient(135deg, #2f1c00, #211b00); }
+.avatar:nth-child(4) { background: linear-gradient(135deg, #593202, #a0522d); }
+.avatar:nth-child(5) { background: linear-gradient(135deg, #4f0000, #251d072b); }
 
 .avatar:hover {
     transform: translateY(-4px);
@@ -478,163 +478,62 @@ body::before {
     }
 }
 
-body {
-    background: linear-gradient(180deg, var(--ocean-mid), var(--ocean-deep));
-    background-attachment: fixed;
-    color: var(--ocean-white);
-    font-family: "Poppins", sans-serif;
-    position: relative;
-}
-
-/* Animated wave layer */
 body::before {
-    content: "";
+    content: '';
     position: fixed;
-    inset: 0;
-    background: url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">\
-<path fill="%23ffffff20" d="M0,64L80,90.7C160,117,320,171,480,181.3C640,192,800,160,960,165.3C1120,171,1280,213,1360,234.7L1440,256V0H1360C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0H0Z"></path>\
-</svg>');
-    opacity: 0.35;
-    animation: waveMove 20s infinite linear;
-    pointer-events: none;
-}
-
-@keyframes waveMove {
-    from { background-position-x: 0; }
-    to { background-position-x: 1500px; }
-}
-
-/* =========================================
-   🌊 GLASS PANELS  
-   ========================================= */
-.panel, .form-section, .info-panel {
-    background: var(--ocean-glass);
-    border: 1px solid var(--ocean-light);
-    backdrop-filter: var(--blur-strong);
-    border-radius: 16px;
-    padding: 2rem;
-    transition: 0.3s ease;
-}
-
-.panel:hover, .form-section:hover, .info-panel:hover {
-    background: var(--ocean-glass-strong);
-    box-shadow: 0 0 25px var(--ocean-glow);
-}
-
-/* =========================================
-   🌊 HEADERS & TITLES  
-   ========================================= */
-.page-title {
-    font-size: 3rem;
-    font-weight: 700;
-    background: linear-gradient(90deg, var(--ocean-light), var(--ocean-white));
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    animation: oceanGlow 4s ease-in-out infinite alternate;
-}
-
-@keyframes oceanGlow {
-    0% { text-shadow: 0 0 10px var(--ocean-light); }
-    100% { text-shadow: 0 0 25px var(--ocean-white); }
-}
-
-.page-subtitle {
-    color: var(--ocean-light);
-    opacity: 0.9;
-}
-
-/* =========================================
-   🌊 BUTTONS  
-   ========================================= */
-.btn {
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
-    background: linear-gradient(135deg, var(--ocean-light), var(--ocean-mid));
-    color: var(--ocean-deep);
-    transition: 0.3s ease;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px var(--ocean-glow);
-}
-
-/* Cancel */
-.btn-secondary {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid var(--ocean-light);
-    color: var(--ocean-white);
-}
-
-/* =========================================
-   🌊 INPUTS & FIELDS  
-   ========================================= */
-input, select, textarea {
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 0.9rem;
-    border-radius: 10px;
-    border: 1px solid var(--ocean-light);
-    background: rgba(255,255,255,0.15);
-    color: var(--ocean-white);
-    backdrop-filter: var(--blur-soft);
-    transition: 0.3s ease;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, var(--glow-primary) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 140, 0, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(220, 20, 60, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 60% 70%, rgba(255, 99, 71, 0.15) 0%, transparent 50%);
+    animation: flicker 6s ease-in-out infinite alternate;
+    z-index: -1;
 }
 
-input:focus, textarea:focus, select:focus {
-    border-color: var(--ocean-white);
-    box-shadow: 0 0 15px var(--ocean-glow);
-    outline: none;
+@keyframes flicker {
+    0% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.02); }
+    100% { opacity: 0.7; transform: scale(0.98); }
 }
 
-/* =========================================
-   🌊 FILE UPLOAD  
-   ========================================= */
-.file-upload {
-    border: 2px dashed var(--ocean-light);
-    padding: 2rem;
-    border-radius: 14px;
-    text-align: center;
-    background: rgba(255,255,255,0.1);
-    transition: 0.3s ease;
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: radial-gradient(circle, var(--particle-primary) 0%, var(--particle-secondary) 40%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: float-up linear infinite;
 }
 
-.file-upload:hover {
-    border-color: var(--ocean-white);
-    box-shadow: 0 0 20px var(--ocean-glow);
+@keyframes float-up {
+    0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+    10% { opacity: 1; transform: translateY(90vh) translateX(10px) scale(1); }
+    90% { opacity: 0.3; transform: translateY(10vh) translateX(-15px) scale(0.4); }
+    100% { transform: translateY(-10vh) translateX(20px) scale(0); opacity: 0; }
 }
 
-/* =========================================
-   🌊 ANIMATED SEVERITY BUTTONS  
-   ========================================= */
-.severity-option label {
-    background: rgba(255,255,255,0.15);
-    border: 2px solid var(--ocean-mid);
-    transition: 0.3s;
+
+@keyframes flame-pulse {
+    0% { transform: scale(1); box-shadow: 0 0 10px var(--glow-primary); }
+    100% { transform: scale(1.05); box-shadow: 0 0 20px var(--glow-secondary); }
 }
 
-.severity-option input[type="radio"]:checked + label {
-    background: var(--ocean-mid);
-    color: var(--ocean-deep);
-    border-color: var(--ocean-white);
-    box-shadow: 0 0 20px var(--ocean-glow);
+
+@keyframes glow-text {
+    0% { filter: drop-shadow(0 0 10px var(--glow-secondary)); }
+    100% { filter: drop-shadow(0 0 20px var(--glow-primary)); }
 }
 
-/* =========================================
-   🌊 EMERGENCY BANNER  
-   ========================================= */
-.emergency-banner {
-    background: var(--ocean-glass-strong);
-    border: 1px solid var(--ocean-light);
-    padding: 1.5rem;
-    border-radius: 16px;
-    animation: bannerPulse 3s infinite ease-in-out alternate;
+.hero-title {
+    animation: glow-text 3s ease-in-out infinite alternate;
 }
 
-@keyframes bannerPulse {
-    0% { box-shadow: 0 0 10px var(--ocean-light); }
-    100% { box-shadow: 0 0 30px var(--ocean-glow); }
+.logo-icon-nav {
+    animation: flame-pulse 2s ease-in-out infinite alternate;
 }

@@ -6,11 +6,18 @@
     <title>Vision Angels - Sign In</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
     <link rel="icon" type="image/x-icon" href="../../assets/logo-small.png">
-    <link rel="stylesheet" href="../../styles/flood/flood-main.css">
-    <link rel="stylesheet" href="../../styles/flood/sign-in.css">
+    <script type="module" src="../../script/earthquake.js"></script>
+    <link rel="stylesheet" href="../../styles/earthquake/auth.css">
+      <link rel="stylesheet" href="../../styles/earthquake/earthquake-main.css">
     <script type="module" src="../../script/current-user.js"></script>
 </head>
 <body>
+   
+<div class="earthquake-particles" id="earthquakeParticles"></div>
+   <canvas id="crackCanvas"></canvas>
+    <canvas id="dustCanvas"></canvas>
+    <script src="../script/earthquake.js"></script>
+
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
         <span class="theme-icon"><i class="fa-solid fa-moon"></i></span>
     </button>
