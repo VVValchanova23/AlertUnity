@@ -1,64 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AlertUnity - Hurricane Globe</title>
-  <link rel="stylesheet" href="../../styles/hurricane/hurricane-globe.css">
-  <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/dark/main.css">
-  <script src="https://js.arcgis.com/4.27/"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hurricane Tracker - ArcGIS</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/logo-small.png">
+    
+    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/dark/main.css">
+    <link rel="stylesheet" href="../../styles/hurricane/hurricane-global.css">
+    <link rel="stylesheet" href="../../styles/hurricane/hurricane-main.css">
+    <link rel="stylesheet" href="../../styles/hurricane/hurricane-globe.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.js"></script>
+    <script type="module" src="../../script/current-user.js"></script>
+    <script type="module" src="../../script/role-redirect.js"></script>
+
 </head>
 <body>
-    <div id="viewDiv"></div>
-    
-    <div class="search-panel">
-        <h2>Search Hurricanes</h2>
-        
-        <form id="searchForm">
-            <div class="form-group">
-                <label for="country">Country (optional)</label>
-                <input type="text" id="country" placeholder="e.g., USA, Mexico, Bahamas">
+    <div id="container">
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <div class="logo-nav">
+                    <div class="logo-icon-nav"><img src="../assets/logo-small-bw.png" class="logo-icon"></div>
+                    <div class="logo-text">AlertUnity</div>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="../hurricane.html">Home</a></li>
+                    <li><a href="#" class="active">History</a></li>
+                    <li><a href="#">Live Map</a></li>
+                    <li><a href="#">Our Teams</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+
+                <div class="nav-cta">
+                    <a href="#" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
+                    <a href="#" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon"><i class="fa-solid fa-moon"></i></span>
+                </button>
+
+                <button class="mobile-toggle">☰</button>
             </div>
+        </nav>
         
-            <div class="form-group">
-                <label for="minCategory">Minimum Category</label>
-                <input type="number" id="minCategory" min="1" max="5" step="1" value="1">
+        <div id="viewDiv">            
+            <div class="info-panel" id="infoPanel">
+                <h3>Hurricane Details</h3>
+                <div class="info-item">
+                    <div class="info-label">Name</div>
+                    <div class="info-value" id="hurricaneName">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Season</div>
+                    <div class="info-value" id="hurricaneSeason">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Max Wind Speed</div>
+                    <div class="info-value" id="hurricaneWind">-</div>
+                </div>
             </div>
-        
-            <div class="form-group">
-                <label for="years">Time Range (years)</label>
-                
-                <select id="years">
-                    <option value="1">Last 1 year</option>
-                    <option value="5">Last 5 years</option>
-                    <option value="30" selected>Last 30 years</option>
-                </select>
+
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="goToPacific()">Pacific</button>
+                <button class="nav-btn" onclick="goToAtlantic()">Atlantic</button>
+                <button class="nav-btn btn" id="exploreBtn" onclick="toggleExplore()" disabled>
+                    <span>🔍</span> Explore Hurricanes
+                </button>
             </div>
-        
-            <div class="form-group">
-                <label for="limit">Max Results</label>
-                <input type="number" id="limit" min="10" max="500" step="10" value="100">
-            </div>
-        
-            <button type="submit" class="btn">Search Hurricanes</button>
-        </form>
+        </div>
     </div>
 
-    <div class="info-panel" id="infoPanel" style="display: none;">
-        <h3 id="infoTitle">Hurricane Details</h3>
-        <p id="infoCategory"></p>
-        <p id="infoLocation"></p>
-        <p id="infoTime"></p>
-        <p id="infoWind"></p>
-    </div>
-
-    <div class="loading" id="loading">Loading hurricanes...</div>
-
-    <div class="biggest-hurricanes" id="biggestHurricanes">
-        <h3>Strongest Hurricanes</h3>
-        <div id="hurricaneList"></div>
-    </div>
-
-    <script type="module" src="../../script/hurricane-globe.js"></script>
+    <script src="https://js.arcgis.com/4.28/"></script>
+    <script src="../../script/hurricane-globe.js"></script>
 </body>
 </html>

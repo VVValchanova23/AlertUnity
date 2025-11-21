@@ -1,0 +1,97 @@
+:root {
+    
+    --bg-primary: #1da364a7;
+    --bg-secondary: #166b2e;
+    --bg-tertiary: #11582b;
+    --bg-quaternary: #0a3910;
+    --bg-quinary: #024b3c;
+    
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --text-tertiary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.6);
+    
+    --accent-primary: #0b0500;
+    --accent-secondary: #000000cc;
+    --accent-tertiary: #514040;
+    --accent-quaternary: #280d0d;
+    --accent-crimson: #423437;
+    --accent-tomato: #3f2722;
+
+    --table-primary: #015807;
+    --table-secondary: #055331;
+
+    --placeholder: rgba(14, 81, 42, 0.7);
+    
+    --overlay-light: rgba(139, 0, 0, 0.05);
+    --overlay-medium: rgba(139, 0, 0, 0.1);
+    --overlay-heavy: rgba(26, 15, 15, 0.95);
+    --overlay-blur: rgba(26, 15, 15, 0.98);
+    
+    --border-primary: rgba(255, 69, 0, 0.1);
+    --border-secondary: rgba(21, 137, 43, 0.2);
+    --border-tertiary: rgba(12, 92, 48, 0.3);
+    
+    --glow-primary: rgba(8, 116, 33, 0.3);
+    --glow-secondary: rgba(5, 90, 67, 0.5);
+    --glow-tertiary: rgba(9, 73, 41, 0.4);
+    
+    --particle-primary: #024119;
+    --particle-secondary: #02470e;
+    
+    --gradient-main: linear-gradient(135deg, #276916 0%, #015701 25%, #116c2d 50%, #205b14 75%, #09542e 100%);
+    --gradient-accent: linear-gradient(135deg, #023b0d 0%, #013e07 100%);
+    --gradient-text: linear-gradient(135deg, #fff 0%, #ffffff 50%, #ffffff 100%);
+    --gradient-overlay: linear-gradient(45deg, rgba(38, 126, 56, 0.8), rgba(13, 91, 26, 0.964));
+
+    --team-bg-image: url('../../assets/background-team-dark.jpg');
+}
+
+[data-theme="light"] {
+    
+    --bg-primary: #faf7f7;
+    --bg-secondary: #f0e8e8;
+    --bg-tertiary: #e8dfdf;
+    --bg-quaternary: #e99e8f;
+    --bg-quinary: #d2c9c9;
+    
+    --text-primary: #2c1414;
+    --text-secondary: rgba(44, 20, 20, 0.8);
+    --text-tertiary: rgba(44, 20, 20, 0.7);
+    --text-muted: rgba(44, 20, 20, 0.6);
+    
+    --accent-primary: #ff4500;
+    --accent-secondary: #e63946;
+    --accent-tertiary: #dc143c;
+    --accent-quaternary: #8b0000;
+    --accent-crimson: #dc143c;
+    --accent-tomato: #e63946;
+    
+    --table-primary: #e99e8f;
+    --table-secondary: #936066;
+
+    --placeholder: rgba(62, 38, 28, 0.7);
+    
+    --overlay-light: rgba(255, 69, 0, 0.08);
+    --overlay-medium: rgba(255, 69, 0, 0.12);
+    --overlay-heavy: rgba(250, 247, 247, 0.95);
+    --overlay-blur: rgba(250, 247, 247, 0.98);
+    
+    --border-primary: rgba(255, 69, 0, 0.15);
+    --border-secondary: rgba(255, 69, 0, 0.25);
+    --border-tertiary: rgba(255, 69, 0, 0.35);
+    
+    --glow-primary: rgba(255, 69, 0, 0.2);
+    --glow-secondary: rgba(230, 57, 70, 0.3);
+    --glow-tertiary: rgba(255, 69, 0, 0.25);
+    
+    --particle-primary: #ff4500;
+    --particle-secondary: #e63946;
+    
+    --gradient-main: linear-gradient(135deg, #046c44 0%, #f0e8e8 25%, #e8dfdf 50%, #ddd4d4 75%, #d2c9c9 100%);
+    --gradient-accent: linear-gradient(135deg, #ffccb9 0%, #ff8aa2 100%);
+    --gradient-text: linear-gradient(135deg, #2c1414 0%, #e63946 50%, #ff4500 100%);
+    --gradient-overlay: linear-gradient(45deg, rgba(255, 69, 0, 0.7), rgba(220, 20, 60, 0.7));
+
+    --team-bg-image: url('../../assets/background-team-light.jpg');
+}
