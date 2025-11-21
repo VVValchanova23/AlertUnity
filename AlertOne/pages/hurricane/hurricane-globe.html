@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlertUnity - Hurricane Globe</title>
+  <link rel="stylesheet" href="../../styles/hurricane/hurricane-globe.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/dark/main.css">
+  <script src="https://js.arcgis.com/4.27/"></script>
+</head>
+<body>
+    <div id="viewDiv"></div>
+    
+    <div class="search-panel">
+        <h2>Search Hurricanes</h2>
+        
+        <form id="searchForm">
+            <div class="form-group">
+                <label for="country">Country (optional)</label>
+                <input type="text" id="country" placeholder="e.g., USA, Mexico, Bahamas">
+            </div>
+        
+            <div class="form-group">
+                <label for="minCategory">Minimum Category</label>
+                <input type="number" id="minCategory" min="1" max="5" step="1" value="1">
+            </div>
+        
+            <div class="form-group">
+                <label for="years">Time Range (years)</label>
+                
+                <select id="years">
+                    <option value="1">Last 1 year</option>
+                    <option value="5">Last 5 years</option>
+                    <option value="30" selected>Last 30 years</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <label for="limit">Max Results</label>
+                <input type="number" id="limit" min="10" max="500" step="10" value="100">
+            </div>
+        
+            <button type="submit" class="btn">Search Hurricanes</button>
+        </form>
+    </div>
+
+    <div class="info-panel" id="infoPanel" style="display: none;">
+        <h3 id="infoTitle">Hurricane Details</h3>
+        <p id="infoCategory"></p>
+        <p id="infoLocation"></p>
+        <p id="infoTime"></p>
+        <p id="infoWind"></p>
+    </div>
+
+    <div class="loading" id="loading">Loading hurricanes...</div>
+
+    <div class="biggest-hurricanes" id="biggestHurricanes">
+        <h3>Strongest Hurricanes</h3>
+        <div id="hurricaneList"></div>
+    </div>
+
+    <script type="module" src="../../script/hurricane-globe.js"></script>
+</body>
+</html>
