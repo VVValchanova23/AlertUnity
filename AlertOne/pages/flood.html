@@ -6,13 +6,25 @@
     <title>AlertUnity</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
     <link rel="icon" type="image/x-icon" href="../assets/logo-small-bw.png">
+    
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="../styles/landing.css">
     <link rel="stylesheet" href="../styles/flood/flood-main.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
     <script type="module" src="../script/current-user.js"></script>
     <script type="module" src="../script/role-redirect.js"></script>
+    <script src="../script/flood/flood.js"></script>
+
 </head>
-<body>
-    <div class="fire-particles" id="fireParticles"></div>
+<body>    
+    
+    <div class="wave-background">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo-nav">
@@ -21,17 +33,17 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="fire/fire-report.html">Report Flood</a></li>
-                <li><a href="fire/map.html">Live Map</a></li>
-                <li><a href="fire/firefighters-team.html">Our Teams</a></li>
-                <li><a href="fire/report-history.html">Reports</a></li>
-                <li><a href="fire/contact.html">Contact</a></li>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="flood/flood-report.html">Report Flood</a></li>
+                <li><a href="flood/map.html">Live Map</a></li>
+                <li><a href="flood/teams.html">Our Teams</a></li>
+                <li><a href="flood/report-history.html">Reports</a></li>
+                <li><a href="disasters/contact.html">Contact</a></li>
             </ul>
 
             <div class="nav-cta">
-                <a href="fire/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-                <a href="fire/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                <a href="disasters/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
+                <a href="disasters/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <span class="theme-icon"><i class="fa-solid fa-moon"></i></span>
@@ -47,11 +59,11 @@
             <h1 class="hero-title">Protecting Communities Through Early Flood Detection</h1>
             <p class="hero-subtitle">Join over 2 million emergency responders and citizens in the world’s largest flood alert network. Report incidents, receive alerts, and help keep communities safe.</p>
             <div class="hero-cta">
-                <a href="fire/fire-report.html" class="btn-hero btn-hero-primary">
+                <a href="flood/flood-report.html" class="btn-hero btn-hero-primary">
                     Get Started Free
                     <span><i class="fa-solid fa-rocket"></i></span>
                 </a>
-                <a href="fire/firefighters-team.html" class="btn-hero btn-hero-secondary">
+                <a href="flood/teams.html" class="btn-hero btn-hero-secondary">
                     Meet our teams
                     <span><i class="fa-solid fa-people-group"></i></span>
                 </a>
@@ -187,11 +199,11 @@
             <h2 class="cta-title">Ready to Help Protect Communities?</h2>
             <p class="cta-description">Join the Flood Alert Portal community today and help safeguard lives and property. Every second matters during floods.</p>
             <div class="hero-cta">
-                <a href="fire/sign-up.html" class="btn-hero btn-hero-primary">
+                <a href="disasters/sign-up.html" class="btn-hero btn-hero-primary">
                     Sign Up Now
                     <span><i class="fa-solid fa-rocket"></i></span>
                 </a>
-                <a href="fire/features.html" class="btn-hero btn-hero-secondary">
+                <a href="disasters/features.html" class="btn-hero btn-hero-secondary">
                     Learn More
                     <span><i class="fa-solid fa-book"></i></span>
                 </a>
@@ -209,18 +221,17 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <p><a href="#">Home</a></p>
-                <p><a href="fire/fire-report.html">Report a flood</a></p>
-                <p><a href="fire/map.html">Live map</a></p>
-                <p><a href="fire/firefighters-team.html">Our Teams</a></p>
-                <p><a href="fire/admin-panel.html">Admin Panel</a></p>
+                <p><a href="flood/flood-report.html">Report a flood</a></p>
+                <p><a href="flood/map.html">Live map</a></p>
+                <p><a href="flood/teams.html">Our Teams</a></p>
+                <p><a href="disasters/admin-panel.html">Admin Panel</a></p>
             </div>
             
             <div class="footer-section">
                 <h3>Resources</h3>
-                <p><a href="fire/tips.html">Flood Safety Tips</a></p>
-                <p><a href="fire/contact.html">Contact</a></p>
-                <p><a href="fire/features.html">Features</a></p>
-                <p><a href="fire/about-us.html">About Us</a></p>
+                <p><a href="disasters/tips.html">Flood Safety Tips</a></p>
+                <p><a href="disasters/contact.html">Contact</a></p>
+                <p><a href="disasters/features.html">Features</a></p>
             </div>
             
             <div class="footer-section">

@@ -6,19 +6,17 @@
     <title>AlertUnity</title>
     <link rel="icon" type="image/x-icon" href="../assets/logo-small.png">
     
-    <link rel="stylesheet" href="../styles/hurricane/hurricane-global.css">
-    <link rel="stylesheet" href="../styles/hurricane/hurricane-main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
     
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/landing.css">
+    
     <script type="module" src="../script/current-user.js"></script>
     <script type="module" src="../script/role-redirect.js"></script>
+    <script src="../script/hurricane/hurricane.js"></script>    
 </head>
 <body>
-     
-  <canvas id="hurricaneCanvas"></canvas>
-
-    <script src="../script/hurricane.js"></script>
     <div class="fire-particles" id="fireParticles"></div>
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -28,16 +26,17 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="hurricane/hurricane-globe.html">History</a></li>
-                <li><a href="#">Live Map</a></li>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="hurricane/hurricane-history.html">History</a></li>
+                <li><a href="hurricane/live-map.html">Live Map</a></li>
+                <li><a href="hurricane/ocean-map.html">Ocean Winds</a></li>
                 <li><a href="#">Our Teams</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="disasters/contact.html">Contact</a></li>
             </ul>
 
             <div class="nav-cta">
-                <a href="#" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-                <a href="#" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                <a href="disasters/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
+                <a href="disasters/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <span class="theme-icon"><i class="fa-solid fa-moon"></i></span>
@@ -52,12 +51,12 @@
         <h1 class="hero-title">Protecting Communities Through Early Hurricane Warnings</h1>
         <p class="hero-subtitle">Join thousands of responders and citizens in the world's most advanced hurricane alert network. Track storms, receive warnings, and stay safe.</p>
         <div class="hero-cta">
-            <a href="#" class="btn-hero btn-hero-primary">
+            <a href="hurricane/live-map.html" class="btn-hero btn-hero-primary">
                 Current hurricane status  
                 <span><i class="fa-solid fa-wind"></i></span>
             </a>
-            <a href="hurricane/teams.html" class="btn-hero btn-hero-secondary">
-                Meet Our Teams
+            <a href="hurricane/ocean-map.html" class="btn-hero btn-hero-secondary">
+                Ocean winds
                 <span><i class="fa-solid fa-people-group"></i></span>
             </a>
         </div>
@@ -196,7 +195,7 @@
                 Sign Up Now
                 <span><i class="fa-solid fa-rocket"></i></span>
             </a>
-            <a href="hurricane/features.html" class="btn-hero btn-hero-secondary">
+            <a href="disasters/features.html" class="btn-hero btn-hero-secondary">
                 Learn More
                 <span><i class="fa-solid fa-book"></i></span>
             </a>
@@ -214,16 +213,17 @@
         <div class="footer-section">
             <h3>Quick Links</h3>
             <p><a href="#">Home</a></p>
-            <p><a href="hurricane/hurricane-globe.html">Hurricane history</a></p>
-            <p><a href="hurricane/map.html">Live map</a></p>
-            <p><a href="hurricane/admin-panel.html">Admin Panel</a></p> 
+            <p><a href="hurricane/hurricane-history.html">Hurricane history</a></p>
+            <p><a href="hurricane/live-map.html">Live map</a></p>
+            <p><a href="hurricane/ocean-map.html">Ocean map</a></p>
+            <p><a href="disasters/admin-panel.html">Admin Panel</a></p> 
         </div>
         
         <div class="footer-section">
             <h3>Resources</h3>
-            <p><a href="hurricane/tips.html">Hurricane Safety Tips</a></p>
-            <p><a href="hurricane/contact.html">Contact</a></p>
-            <p><a href="hurricane/hurricane-team.html">Our Teams</a></p>
+            <p><a href="disasters/tips.html">Hurricane Safety Tips</a></p>
+            <p><a href="disasters/contact.html">Contact</a></p>
+            <p><a href="hurricane/team.html">Our Teams</a></p>
         </div>
         
         <div class="footer-section">

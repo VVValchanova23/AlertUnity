@@ -1,3 +1,4 @@
+
 import { auth } from "../data/firebase-config.js";
 
 function animateText(element, text, delay = 60) {
@@ -70,31 +71,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         else {
             navCta.innerHTML = `
-                <a href="/pages/sign-in.html" class="btn-nav btn-secondary">Sign In</a>
-                <a href="/pages/sign-up.html" class="btn-nav btn-primary">Join Now</a>
+                <a href="/pages/disasters/sign-in.html" class="btn-nav btn-secondary">Sign In</a>
+                <a href="/pages/disasters/sign-up.html" class="btn-nav btn-primary">Join Now</a>
             `;
         }
     });
 });
 
 const themeToggle = document.getElementById('themeToggle');
-const themeIcon = themeToggle.querySelector('.theme-icon');
-let currentTheme = localStorage.getItem('theme') || 'light';
+const themeIcon = themeToggle?.querySelector('.theme-icon');
+
+let currentTheme = localStorage.getItem('disasterTheme') || 'fire';
 
 function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    themeIcon.textContent = theme === 'dark' ? '🔆' : '🌙';
+    
+    // Update icon based on light/dark variant
+    if (themeIcon) {
+        themeIcon.textContent = theme.includes('-light') ? '🌙' : '🔆';
+    }
+    
     currentTheme = theme;
-    localStorage.setItem('theme', theme);
+    localStorage.setItem('disasterTheme', theme);
 }
 
 function switchTheme() {
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    const base = currentTheme.replace('-light', '');
+    const newTheme = currentTheme.includes('-light') ? base : `${base}-light`;
     setTheme(newTheme);
 }
 
+function setDisasterTheme(disasterType, isLight = false) {
+    const theme = isLight ? `${disasterType}-light` : disasterType;
+    setTheme(theme);
+}
+
+function applyPageDisasterTheme(disasterType) {
+    const savedTheme = localStorage.getItem('disasterTheme') || 'fire';
+    const isLight = savedTheme.includes('-light');
+
+    setDisasterTheme(disasterType, isLight);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    setTheme(currentTheme);
-    
-    themeToggle.addEventListener('click', switchTheme);
+
+    if (!window.__pageThemeAlreadySet) {
+        setTheme(currentTheme);
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', switchTheme);
+    }
 });
+
+if (typeof window !== 'undefined') {
+    window.setDisasterTheme = setDisasterTheme;
+    window.applyPageDisasterTheme = applyPageDisasterTheme;
+    window.setTheme = setTheme;
+}

@@ -1,101 +1,3 @@
-:root {
-    /* Dark Theme (Default) */
-    --bg-primary: #1a0f0f;
-    --bg-secondary: #2d1b1b;
-    --bg-tertiary: #3d1a1a;
-    --bg-quaternary: #4a1c1c;
-    --bg-quinary: #5c1f1f;
-    
-    --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.8);
-    --text-tertiary: rgba(255, 255, 255, 0.7);
-    --text-muted: rgba(255, 255, 255, 0.6);
-    
-    --accent-primary: #ff4500;
-    --accent-secondary: #ff6347;
-    --accent-tertiary: #dc143c;
-    --accent-quaternary: #8b0000;
-    --accent-crimson: #dc143c;
-    --accent-tomato: #ff6347;
-
-    --table-primary: #be4a32;
-    --table-secondary: #8a303b;
-
-    --placeholder: rgba(255, 160, 122, 0.7);
-    
-    --overlay-light: rgba(139, 0, 0, 0.05);
-    --overlay-medium: rgba(139, 0, 0, 0.1);
-    --overlay-heavy: rgba(26, 15, 15, 0.95);
-    --overlay-blur: rgba(26, 15, 15, 0.98);
-    
-    --border-primary: rgba(255, 69, 0, 0.1);
-    --border-secondary: rgba(255, 69, 0, 0.2);
-    --border-tertiary: rgba(255, 69, 0, 0.3);
-    
-    --glow-primary: rgba(255, 69, 0, 0.3);
-    --glow-secondary: rgba(255, 99, 71, 0.5);
-    --glow-tertiary: rgba(255, 69, 0, 0.4);
-    
-    --particle-primary: #ff4500;
-    --particle-secondary: #ff6347;
-    
-    --gradient-main: linear-gradient(135deg, #1a0f0f 0%, #2d1b1b 25%, #3d1a1a 50%, #4a1c1c 75%, #5c1f1f 100%);
-    --gradient-accent: linear-gradient(135deg, #ff4500 0%, #dc143c 100%);
-    --gradient-text: linear-gradient(135deg, #fff 0%, #ff6347 50%, #ff4500 100%);
-    --gradient-overlay: linear-gradient(45deg, rgba(255, 69, 0, 0.8), rgba(220, 20, 60, 0.6));
-
-    --team-bg-image: url('../../assets/background-team-dark.jpg');
-}
-
-[data-theme="light"] {
-    /* Light Theme */
-    --bg-primary: #faf7f7;
-    --bg-secondary: #f0e8e8;
-    --bg-tertiary: #e8dfdf;
-    --bg-quaternary: #e99e8f;
-    --bg-quinary: #d2c9c9;
-    
-    --text-primary: #2c1414;
-    --text-secondary: rgba(44, 20, 20, 0.8);
-    --text-tertiary: rgba(44, 20, 20, 0.7);
-    --text-muted: rgba(44, 20, 20, 0.6);
-    
-    --accent-primary: #ff4500;
-    --accent-secondary: #e63946;
-    --accent-tertiary: #dc143c;
-    --accent-quaternary: #8b0000;
-    --accent-crimson: #dc143c;
-    --accent-tomato: #e63946;
-    
-    --table-primary: #e99e8f;
-    --table-secondary: #936066;
-
-    --placeholder: rgba(62, 38, 28, 0.7);
-    
-    --overlay-light: rgba(255, 69, 0, 0.08);
-    --overlay-medium: rgba(255, 69, 0, 0.12);
-    --overlay-heavy: rgba(250, 247, 247, 0.95);
-    --overlay-blur: rgba(250, 247, 247, 0.98);
-    
-    --border-primary: rgba(255, 69, 0, 0.15);
-    --border-secondary: rgba(255, 69, 0, 0.25);
-    --border-tertiary: rgba(255, 69, 0, 0.35);
-    
-    --glow-primary: rgba(255, 69, 0, 0.2);
-    --glow-secondary: rgba(230, 57, 70, 0.3);
-    --glow-tertiary: rgba(255, 69, 0, 0.25);
-    
-    --particle-primary: #ff4500;
-    --particle-secondary: #e63946;
-    
-    --gradient-main: linear-gradient(135deg, #faf7f7 0%, #f0e8e8 25%, #e8dfdf 50%, #ddd4d4 75%, #d2c9c9 100%);
-    --gradient-accent: linear-gradient(135deg, #ffccb9 0%, #ff8aa2 100%);
-    --gradient-text: linear-gradient(135deg, #2c1414 0%, #e63946 50%, #ff4500 100%);
-    --gradient-overlay: linear-gradient(45deg, rgba(255, 69, 0, 0.7), rgba(220, 20, 60, 0.7));
-
-    --team-bg-image: url('../../assets/background-team-light.jpg');
-}
-
 .theme-toggle {
     background: none;
     border: 2px solid var(--border-color, #dee2e6);
@@ -139,9 +41,9 @@ body::before {
     height: 100%;
     background-image: 
         radial-gradient(circle at 20% 80%, var(--glow-primary) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 140, 0, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(220, 20, 60, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 60% 70%, rgba(255, 99, 71, 0.15) 0%, transparent 50%);
+        radial-gradient(circle at 80% 20%, var(--glow-secondary) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, var(--glow-tertiary) 0%, transparent 50%),
+        radial-gradient(circle at 60% 70%, var(--glow-secondary) 0%, transparent 50%);
     animation: flicker 6s ease-in-out infinite alternate;
     z-index: -1;
 }
