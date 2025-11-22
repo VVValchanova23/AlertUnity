@@ -12,7 +12,7 @@
 
 .map-overlay {
     position: absolute;
-    top: 20px;
+    top: 50px;
     left: 20px;
     z-index: 1000;
     background: var(--overlay-heavy);
@@ -92,7 +92,7 @@
 
 .controls {
     position: absolute;
-    top: 20px;
+    top: 50px;
     right: 20px;
     z-index: 1000;
     display: flex;

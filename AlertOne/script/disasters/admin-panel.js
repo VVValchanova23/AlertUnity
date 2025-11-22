@@ -1,4 +1,4 @@
-import { auth, db } from '../data/firebase-config.js';
+import { auth, db } from '../../data/firebase-config.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.8.0/firebase-auth.js';
 import { doc, getDoc, collection, getDocs, deleteDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/11.8.0/firebase-firestore.js';
 

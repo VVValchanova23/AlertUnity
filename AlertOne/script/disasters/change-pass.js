@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword, updatePassword, EmailAuthProvider, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { auth } from "../data/firebase-config.js";
+import { auth } from "../../data/firebase-config.js";
 import { initUIEffects } from "./auth.js";
 
 document.addEventListener("DOMContentLoaded", () => {

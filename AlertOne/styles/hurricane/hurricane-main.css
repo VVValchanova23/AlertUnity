@@ -692,7 +692,7 @@ body::before {
         font-size: 12px;
     }
 }
-/* Hurricane Canvas */
+
 #hurricaneCanvas {
     position: fixed;
     top: 0;

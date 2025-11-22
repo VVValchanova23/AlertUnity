@@ -1,9 +1,4 @@
-/* ============================================
-   FIRE THEME
-   ============================================ */
-
 :root[data-theme="fire"] {
-    /* Dark Theme (Default) */
     --bg-primary: #1a0f0f;
     --bg-secondary: #2d1b1b;
     --bg-tertiary: #3d1a1a;
@@ -52,7 +47,6 @@
 }
 
 [data-theme="fire-light"] {
-    /* Light Theme */
     --bg-primary: #faf7f7;
     --bg-secondary: #f0e8e8;
     --bg-tertiary: #e8dfdf;
@@ -100,12 +94,8 @@
     --team-bg-image: url('../../assets/background-team-light.jpg');
 }
 
-/* ============================================
-   EARTHQUAKE THEME
-   ============================================ */
 
 :root[data-theme="earthquake"] {
-    /* Earthquake Dark Theme */
     --bg-primary: #070400a7;
     --bg-secondary: #511919;
     --bg-tertiary: #484324;
@@ -154,7 +144,6 @@
 }
 
 :root[data-theme="earthquake-light"] {
-    /* Earthquake Light Theme */
     --bg-primary: #faf7f7;
     --bg-secondary: #f0e8e8;
     --bg-tertiary: #e8dfdf;
@@ -202,12 +191,8 @@
     --team-bg-image: url('../../assets/background-earthquake-light.jpg');
 }
 
-/* ============================================
-   HURRICANE THEME
-   ============================================ */
    
 :root[data-theme="hurricane"] {
-    /* Hurricane Dark Theme - Green */
     --bg-primary: #0a1412;
     --bg-secondary: #0f1f1a;
     --bg-tertiary: #1a2e25;
@@ -256,7 +241,6 @@
 }
 
 :root[data-theme="hurricane-light"] {
-    /* Hurricane Light Theme - Green */
     --bg-primary: #e8f8f5;
     --bg-secondary: #d5f4e6;
     --bg-tertiary: #a9dfbf;
@@ -304,12 +288,8 @@
     --team-bg-image: url('../../assets/background-hurricane-light.jpg');
 }
 
-/* ============================================
-   FLOOD THEME
-   ============================================ */
 
 :root[data-theme="flood"] {
-    /* Flood Dark Theme */
     --bg-primary: #0a1628;
     --bg-secondary: #0e2439;
     --bg-tertiary: #12314b;
@@ -358,7 +338,6 @@
 }
 
 :root[data-theme="flood-light"] {
-    /* Flood Light Theme */
     --bg-primary: #e3f2fd;
     --bg-secondary: #bbdefb;
     --bg-tertiary: #90caf9;

@@ -17,7 +17,7 @@ function animateText(element, text, delay = 60) {
         span.style.filter = 'blur(2px)';
         
         if (letter !== ' ') {
-            span.style.textShadow = '0 0 10px rgba(255, 69, 0, 0.8)';
+            span.style.textShadow = '0 0 10px var(--placeholder)';
         }
         
         element.appendChild(span);
