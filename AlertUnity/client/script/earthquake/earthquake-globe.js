@@ -72,7 +72,6 @@ require([
             const response = await fetch(url);
             const data = await response.json();
             
-            // Filter by country
             const country = document.getElementById('country').value.trim();
             let filteredFeatures = data.features;
             
@@ -174,7 +173,6 @@ require([
             return;
         }
     
-        // Sort by magnitude and get top 10
         const biggestEarthquakes = features
             .sort((a, b) => b.properties.mag - a.properties.mag)
             .slice(0, 10);
@@ -230,7 +228,6 @@ require([
                     location: targetGraphic.geometry
                     });
                     
-                    // Zoom to the location
                     view.goTo({
                     target: targetGraphic.geometry,
                     zoom: 6

@@ -1,13 +1,9 @@
-/* Dashboard Styles */
-
-/* Main Content */
 main {
     padding: 1.5rem;
     max-width: 1400px;
     margin: 7rem auto auto auto;
 }
 
-/* Stats Grid */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -91,7 +87,6 @@ main {
     opacity: 0.9;
 }
 
-/* Charts Grid */
 .charts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
@@ -149,7 +144,6 @@ main {
     color: var(--text-secondary);
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
     .charts-grid {
         grid-template-columns: 1fr;

@@ -2,7 +2,6 @@ import { db } from "../../data/firebase-config.js";
 import { collection, onSnapshot, getDocs, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.8.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.8.0/firebase-auth.js";
 
-// Configuration for different disaster types
 const DISASTER_MAP_CONFIGS = {
   fire: {
     collection: "fires",
@@ -46,7 +45,6 @@ const DISASTER_MAP_CONFIGS = {
   }
 };
 
-// Initialize disaster map
 function initDisasterMap(disasterType, mapboxToken, initialCenter = [25.4858, 42.7339], initialZoom = 6) {
   const config = DISASTER_MAP_CONFIGS[disasterType];
   
@@ -71,7 +69,6 @@ function initDisasterMap(disasterType, mapboxToken, initialCenter = [25.4858, 42
 
   const auth = getAuth();
 
-  // Auth state listener
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       try {
@@ -91,7 +88,6 @@ function initDisasterMap(disasterType, mapboxToken, initialCenter = [25.4858, 42
     }
   });
 
-  // Create popup content
   function createPopupContent(disaster) {
     const isResponder = currentUserInfo?.role === "firefighter" || currentUserInfo?.role.includes("rescuer");
 
@@ -110,12 +106,10 @@ function initDisasterMap(disasterType, mapboxToken, initialCenter = [25.4858, 42
     `;
   }
 
-  // Get color by severity
   function getColorBySeverity(severity) {
     return config.markerColors[severity] || 'gray';
   }
 
-  // Render markers
   function renderMarkers(disasters) {
     disasters = disasters.filter(disaster => disaster.status === 'active');
 
@@ -139,21 +133,18 @@ function initDisasterMap(disasterType, mapboxToken, initialCenter = [25.4858, 42
       markers.push(marker);
     });
 
-    // Update stats
     document.getElementById('activeCount').textContent = disasters.length;
     const highSeverityCount = disasters.filter(d => d.severity === 'high').length;
     document.getElementById('highCount').textContent = highSeverityCount;
     document.getElementById('lastUpdate').textContent = new Date().toTimeString().slice(0, 9);
   }
 
-  // Fetch latest disasters
   async function fetchLatestDisasters() {
     const disastersCollection = collection(db, config.collection);
     const snapshot = await getDocs(disastersCollection);
     return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   }
 
-  // Toggle layer
   async function toggleLayer(type) {
     disasterData = await fetchLatestDisasters();
 
@@ -183,7 +174,6 @@ function initDisasterMap(disasterType, mapboxToken, initialCenter = [25.4858, 42
     }
   }
 
-  // Refresh data
   function refreshData() {
     toggleLayer('all');
     const refreshBtn = document.querySelector('.control-btn:last-child');
@@ -191,7 +181,6 @@ function initDisasterMap(disasterType, mapboxToken, initialCenter = [25.4858, 42
     setTimeout(() => refreshBtn.classList.remove('active'), 500);
   }
 
-  // Setup controls
   function setupControls() {
     document.querySelector('.all-btn')?.addEventListener('click', () => toggleLayer('all'));
     document.querySelector('.high-btn')?.addEventListener('click', () => toggleLayer('high'));
@@ -199,7 +188,6 @@ function initDisasterMap(disasterType, mapboxToken, initialCenter = [25.4858, 42
     document.querySelector('.refresh-btn')?.addEventListener('click', () => refreshData());
   }
 
-  // Show route to disaster
   async function showRouteToDisaster(disasterCoords) {
     if (!navigator.geolocation) {
       alert("Geolocation is not supported by your browser.");
@@ -263,7 +251,6 @@ function initDisasterMap(disasterType, mapboxToken, initialCenter = [25.4858, 42
     });
   }
 
-  // Event listeners for popup buttons
   document.body.addEventListener('click', async (event) => {
     if (event.target.classList.contains('get-route-btn')) {
       event.target.disabled = true;
@@ -305,7 +292,6 @@ function initDisasterMap(disasterType, mapboxToken, initialCenter = [25.4858, 42
     }
   });
 
-  // User location marker
   const pulsingDot = document.createElement('div');
   pulsingDot.style.width = '20px';
   pulsingDot.style.height = '20px';
@@ -333,7 +319,6 @@ function initDisasterMap(disasterType, mapboxToken, initialCenter = [25.4858, 42
   `;
   document.head.appendChild(style);
 
-  // Show user location
   function showUserLocation() {
     if (!navigator.geolocation) {
       alert("Geolocation is not supported by your browser.");
@@ -363,7 +348,6 @@ function initDisasterMap(disasterType, mapboxToken, initialCenter = [25.4858, 42
     });
   }
 
-  // Start disaster listener
   function startDisasterListener() {
     const disastersCollection = collection(db, config.collection);
     onSnapshot(disastersCollection, snapshot => {
@@ -374,10 +358,8 @@ function initDisasterMap(disasterType, mapboxToken, initialCenter = [25.4858, 42
     setupControls();
     showUserLocation();
 
-    // Update user location every 30 seconds
     setInterval(showUserLocation, 30000);
   }
 }
 
-// Export for use in different pages
 export { initDisasterMap, DISASTER_MAP_CONFIGS };

@@ -2,6 +2,7 @@ import { auth, db } from '../../data/firebase-config.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.8.0/firebase-auth.js';
 import { doc, collection, getDocs, deleteDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/11.8.0/firebase-firestore.js';
 
+const API_BASE_URL = 'http://localhost:5000';
 let currentUpdateReportId = null;
 let currentDeleteReportId = null;
 let allReports = [];
@@ -113,193 +114,82 @@ function filterReports() {
   });
 }
 
-function prepareDataForAI() {
-  const reportData = allReports.map(({ data }) => {
-    const date = data.timestamp?.toDate?.() || new Date(data.timestamp) || new Date();
-    return {
-      date: date.toISOString().split('T')[0],
-      location: data.location || data.address || 'Unknown',
-      severity: data.severity || 'low',
-      status: data.status || 'active',
-      description: data.description || 'No description',
-      month: date.getMonth() + 1,
-      year: date.getFullYear(),
-      dayOfWeek: date.getDay()
-    };
-  });
-
-  const totalReports = reportData.length;
-  const severityCounts = reportData.reduce((acc, report) => {
-    acc[report.severity] = (acc[report.severity] || 0) + 1;
-    return acc;
-  }, {});
-
-  const statusCounts = reportData.reduce((acc, report) => {
-    acc[report.status] = (acc[report.status] || 0) + 1;
-    return acc;
-  }, {});
-
-  const locationCounts = reportData.reduce((acc, report) => {
-    acc[report.location] = (acc[report.location] || 0) + 1;
-    return acc;
-  }, {});
-
-  const monthCounts = reportData.reduce((acc, report) => {
-    acc[report.month] = (acc[report.month] || 0) + 1;
-    return acc;
-  }, {});
-
-  return {
-    totalReports,
-    severityCounts,
-    statusCounts,
-    locationCounts,
-    monthCounts,
-    recentReports: reportData.slice(0, 10)
-  };
-}
-
 async function getFeedbackFromAI() {
-  const data = prepareDataForAI();
-  
-  if (data.totalReports === 0) {
+  if (allReports.length === 0) {
     alert("No fire reports available for analysis.");
     return;
   }
-
-  const prompt = `As a fire prediction and safety expert, analyze this fire report data and provide actionable insights for future fire prevention and prediction:
-
-Total Reports: ${data.totalReports}
-Severity Distribution: ${JSON.stringify(data.severityCounts)}
-Status Distribution: ${JSON.stringify(data.statusCounts)}
-Top Locations: ${JSON.stringify(Object.entries(data.locationCounts).sort((a, b) => b[1] - a[1]).slice(0, 5))}
-Monthly Distribution: ${JSON.stringify(data.monthCounts)}
-
-Recent Reports Sample:
-${data.recentReports.map(r => `- ${r.date}: ${r.location} (${r.severity} severity) - ${r.description.substring(0, 100)}`).join('\n')}
-
-Please provide:
-1. **Fire Pattern Analysis**: Identify trends in timing, locations, and severity
-2. **Risk Predictions**: Predict high-risk periods, locations, or conditions
-3. **Prevention Recommendations**: Specific actions to prevent future fires
-4. **Resource Allocation**: Suggestions for optimal firefighting resource deployment
-5. **Early Warning Indicators**: Key signs that might predict future fire incidents
-
-Keep the response concise but actionable, focusing on practical insights for fire prevention and emergency response planning.
- Use this format:
-
-  🔥 Fire Pattern Analysis
-  [Concise analysis with 1-2 emojis per line]
-
-  🔮 Risk Predictions
-  [Predictions with relevant emojis]
-
-  💡 Prevention Tips
-  [Actionable tips with emojis]
-
-  🚒 Resource Planning
-  [Resource suggestions with emojis]
-
-  ⚠️ Early Warnings
-  [Warning signs with emojis]`;
 
   try {
     feedbackBtn.textContent = "Getting AI Analysis...";
     feedbackBtn.disabled = true;
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const reportsData = allReports.map(({ data }) => {
+      let timestamp;
+      if (data.timestamp?.toDate) {
+        timestamp = data.timestamp.toDate().toISOString();
+      } else if (data.timestamp instanceof Date) {
+        timestamp = data.timestamp.toISOString();
+      } else if (data.timestamp) {
+        timestamp = new Date(data.timestamp).toISOString();
+      } else {
+        timestamp = new Date().toISOString();
+      }
+
+      return {
+        timestamp: timestamp,
+        location: data.location || data.address || 'Unknown',
+        severity: data.severity || 'low',
+        status: data.status || 'active',
+        description: data.description || 'No description',
+        coords: data.coords || [null, null],
+        phone: data.phone || data.reporterPhone || 'Anonymous'
+      };
+    });
+
+    const response = await fetch(`${API_BASE_URL}/api/ai/analyze-fires`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer sk-proj-_b0-eAi1n5Yjgkq7RlocDPQPPsJtsmHvYEieTbssbLL3X7X9Q2QWMT0XIWOde4JfSXEMc3Ajn-T3BlbkFJPUe910SVhDleMNJvrl' // Replace with api key
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: [
-          {
-            role: 'system',
-            content: 'You are an expert fire safety analyst and prediction specialist. Provide clear, actionable insights based on fire report data.'
-          },
-          {
-            role: 'user',
-            content: prompt
-          }
-        ],
-        max_tokens: 1500,
-        temperature: 0.7
+        reports: reportsData
       })
     });
 
     if (!response.ok) {
-      throw new Error(`API request failed: ${response.status}`);
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || `API request failed: ${response.status}`);
     }
 
     const result = await response.json();
-    const feedback = result.choices[0].message.content;
+    
+    if (!result.success) {
+      throw new Error(result.error || 'Unknown error occurred');
+    }
 
+    const feedback = result.feedback;
     document.getElementById("feedbackContent").innerHTML = feedback.replace(/\n/g, '<br>');
+    
+    if (result.fallback) {
+      const notice = '<p style="margin-top: 20px; padding: 10px; background: #fff3cd; border-radius: 5px; font-size: 0.9em;">⚠️ <strong>Note:</strong> AI service is currently unavailable. Showing basic analysis.</p>';
+      document.getElementById("feedbackContent").innerHTML += notice;
+    }
+    
     openModal("feedbackModal");
 
   } catch (error) {
     console.error("Error getting AI feedback:", error);
     
-    const fallbackFeedback = generateFallbackFeedback(data);
+    const fallbackFeedback = generateLocalFallbackFeedback();
     document.getElementById("feedbackContent").innerHTML = fallbackFeedback;
     openModal("feedbackModal");
     
-    alert("AI service unavailable. Showing basic analysis instead.");
+    alert(`Error: ${error.message}. Showing basic analysis instead.`);
   } finally {
     feedbackBtn.textContent = "🤖 Get AI Feedback";
     feedbackBtn.disabled = false;
   }
-}
-
-function generateFallbackFeedback(data) {
-  const highRiskMonths = Object.entries(data.monthCounts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
-    .map(([month, count]) => {
-      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      return `${monthNames[month - 1]} (${count} reports)`;
-    });
-
-  const topLocations = Object.entries(data.locationCounts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
-    .map(([location, count]) => `${location} (${count} incidents)`);
-
-  const highSeverityRate = ((data.severityCounts.high || 0) / data.totalReports * 100).toFixed(1);
-
-  return `
-    <h3>🔥 Fire Report Analysis</h3>
-    
-    <h4>📊 Key Statistics:</h4>
-    <ul>
-      <li>Total Reports Analyzed: ${data.totalReports}</li>
-      <li>High Severity Rate: ${highSeverityRate}%</li>
-      <li>Active Cases: ${data.statusCounts.active || 0}</li>
-    </ul>
-
-    <h4>📅 High-Risk Periods:</h4>
-    <ul>
-      ${highRiskMonths.map(month => `<li>${month}</li>`).join('')}
-    </ul>
-
-    <h4>📍 Frequent Fire Locations:</h4>
-    <ul>
-      ${topLocations.map(location => `<li>${location}</li>`).join('')}
-    </ul>
-
-    <h4>💡 Recommendations:</h4>
-    <ul>
-      <li>Increase preventive measures during high-risk months</li>
-      <li>Deploy additional resources to frequently affected areas</li>
-      <li>Implement early warning systems in high-risk locations</li>
-      <li>Regular safety inspections in areas with recurring incidents</li>
-    </ul>
-
-    <p><em>Note: This is a basic analysis. For advanced AI insights, please configure the OpenAI API key.</em></p>
-  `;
 }
 
 onAuthStateChanged(auth, async () => {
@@ -336,15 +226,24 @@ feedbackBtn.addEventListener("click", getFeedbackFromAI);
 exportBtn.addEventListener("click", () => {
   try {
     const doc = new window.jspdf.jsPDF();
+    
     const visibleRows = Array.from(table.querySelectorAll("tbody tr"))
       .filter(row => row.style.display !== "none")
-      .map(tr => Array.from(tr.children).slice(0, -1).map(td => td.innerText));
+      .map(tr => {
+        const cells = Array.from(tr.children).slice(0, -1);
+        return cells.map((td, index) => {
+          let text = td.innerText || td.textContent;
+          // Remove all emojis from text
+          text = text.replace(/[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F7E2}]|[\u{1F7E1}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]|[\u{1F900}-\u{1F9FF}]|[\u{1FA70}-\u{1FAFF}]|[\u{FE00}-\u{FE0F}]|[\u{1F000}-\u{1F02F}]|[\u{1F0A0}-\u{1F0FF}]|[\u{1F100}-\u{1F64F}]|[\u{1F910}-\u{1F96B}]|[\u{1F980}-\u{1F9E0}]/gu, '').trim();
+          return text.trim();
+        });
+      });
     
     const headers = Array.from(table.querySelectorAll("thead th"))
       .slice(0, -1).map(th => th.innerText);
     
     doc.setFontSize(18);
-    doc.text('Vision Angels - Fire Reports History', 14, 15);
+    doc.text('AlertUnity - Fire Reports History', 14, 15);
     
     doc.setFontSize(10);
     doc.text(`Generated on: ${new Date().toLocaleString()}`, 14, 25);
@@ -368,16 +267,16 @@ exportBtn.addEventListener("click", () => {
         fillColor: [245, 245, 245]
       },
       columnStyles: {
-        0: { cellWidth: 25 }, // Date/Time
-        1: { cellWidth: 30 }, // Location
-        2: { cellWidth: 25 }, // Reporter
-        3: { cellWidth: 20 }, // Severity
-        4: { cellWidth: 20 }, // Status
-        5: { cellWidth: 40 }  // Description
+        0: { cellWidth: 25 },
+        1: { cellWidth: 30 },
+        2: { cellWidth: 25 },
+        3: { cellWidth: 20 },
+        4: { cellWidth: 20 },
+        5: { cellWidth: 40 }
       }
     });
     
-    doc.save(`vision-angels-fire-reports-${new Date().toISOString().split('T')[0]}.pdf`);
+    doc.save(`alertunity-fire-reports-${new Date().toISOString().split('T')[0]}.pdf`);
   } catch (error) {
     console.error("Error exporting PDF:", error);
     alert("Error exporting PDF. Please try again.");

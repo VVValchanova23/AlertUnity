@@ -72,7 +72,6 @@ function initDisasterReport(disasterType) {
       }
 
       try {
-        // Save to the appropriate collection
         const docRef = await addDoc(collection(db, config.collection), {
           userId: auth.currentUser?.uid || "anonymous",
           disasterType: disasterType,

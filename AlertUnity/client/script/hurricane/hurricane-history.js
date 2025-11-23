@@ -19,10 +19,9 @@ require([
     let dragHandle = null;
     let searchGraphic = null;
     let highlight = null;
-    let currentSerialNum = null; // Track current highlighted hurricane
-    let queryCounter = 0; // Track query sequence
+    let currentSerialNum = null;
+    let queryCounter = 0;
 
-    // Initialize map with South Pole Stereographic projection
     map = new Map({
         basemap: {
             portalItem: {
@@ -40,10 +39,8 @@ require([
         }
     });
 
-    // Remove default UI
     view.ui.empty("top-left");
 
-    // Add custom controls
     const zoom = new Zoom({
         view: view,
         layout: "horizontal"
@@ -56,10 +53,8 @@ require([
     view.ui.add(zoom, "bottom-left");
     view.ui.add(home, "bottom-left");
 
-    // Auto-load CSV data on initialization
     loadCSVLayer();
 
-    // Create renderer for hurricane categories using picture markers
     function createRenderer() {
         return new UniqueValueRenderer({
             field: "Category",
@@ -113,7 +108,6 @@ require([
         });
     }
 
-    // Load CSV layer from static file
     function loadCSVLayer() {
         layer = new CSVLayer({
             url: "../../assets/hurricane/hurricanes.csv",
@@ -126,13 +120,11 @@ require([
 
         map.add(layer);
         
-        // Enable explore button once layer is loaded
         layer.when(function() {
             document.getElementById('exploreBtn').disabled = false;
         });
     }
 
-    // Toggle explore mode
     window.toggleExplore = function() {
         exploreMode = !exploreMode;
         const btn = document.getElementById('exploreBtn');
@@ -150,7 +142,6 @@ require([
     };
 
     function enableDragSearch() {
-        // Get the layer view first
         view.whenLayerView(layer).then(function(lv) {
             layerView = lv;
             
@@ -158,7 +149,6 @@ require([
                 event.stopPropagation();
                 view.graphics.removeAll();
 
-                // Increment counter for this query
                 queryCounter++;
                 const thisQueryId = queryCounter;
 
@@ -182,14 +172,12 @@ require([
 
                 view.graphics.add(searchGraphic);
 
-                // Query features in the circle
                 layer.queryFeatures({
                     geometry: searchArea,
                     spatialRelationship: "intersects",
                     returnGeometry: false,
                     outFields: ["Name", "Season", "wmo_wind", "Serial_Num"]
                 }).then(function(results) {
-                    // Ignore if this is not the latest query
                     if (thisQueryId !== queryCounter) {
                         return;
                     }
@@ -207,9 +195,7 @@ require([
                         });
 
                         if (strongest) {
-                            // Only update highlight if it's a different hurricane
                             if (currentSerialNum !== strongest.attributes.Serial_Num) {
-                                // Remove previous highlight
                                 if (highlight) {
                                     highlight.remove();
                                     highlight = null;
@@ -221,7 +207,6 @@ require([
                                 document.getElementById('hurricaneSeason').textContent = strongest.attributes.Season;
                                 document.getElementById('hurricaneWind').textContent = maxWind.toFixed(0) + ' kt';
 
-                                // Query all features with the same Serial_Num to highlight entire hurricane track
                                 layer.queryObjectIds({
                                     where: "Serial_Num = '" + strongest.attributes.Serial_Num + "'"
                                 }).then(function(objectIds) {
@@ -232,7 +217,6 @@ require([
                             }
                         }
                     } else {
-                        // Clear highlight when no hurricanes in range
                         if (highlight) {
                             highlight.remove();
                             highlight = null;
@@ -261,7 +245,6 @@ require([
         view.graphics.removeAll();
     }
 
-    // Navigation functions
     window.goToPacific = function() {
         view.goTo({
             center: [-140, 20],

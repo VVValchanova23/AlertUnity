@@ -442,7 +442,7 @@ tr:hover td {
 }
 
 .feedback-content {
-  overflow-y: hidden;
+  overflow-y: auto;
   line-height: 1.6;
 }
 
@@ -669,6 +669,24 @@ tr:hover td {
   top: 0;
   z-index: 10;
   margin-bottom: 10px;
+}
+
+.feedback-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.feedback-content::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+.feedback-content::-webkit-scrollbar-thumb {
+  background: var(--accent-secondary);
+  border-radius: 4px;
+}
+
+.feedback-content::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
 }
 
 @media (max-width: 768px) {

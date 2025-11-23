@@ -8,13 +8,11 @@ require([
   "esri/widgets/Compass"
 ], function(Map, SceneView, FeatureLayer, Legend, Expand, Home, Compass) {
   
-  // Create the 3D map
   const map = new Map({
     basemap: "dark-gray-vector",
     ground: "world-elevation"
   });
   
-  // Create the 3D scene view - global view
   const view = new SceneView({
     container: "viewDiv",
     map: map,
@@ -38,7 +36,6 @@ require([
     }
   });
   
-  // Global fire data using NASA FIRMS (last 7 days of active fires)
   const globalFiresLayer = new FeatureLayer({
     url: "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/MODIS_Thermal_v1/FeatureServer/0",
     title: "Global Active Fires (MODIS)",
@@ -99,7 +96,6 @@ require([
   
   map.add(globalFiresLayer);
   
-  // Region presets
   const regions = {
     global: { x: 0, y: 20, z: 30000000, tilt: 0 },
     northAmerica: { x: -100, y: 40, z: 3000000, tilt: 45 },
@@ -112,7 +108,6 @@ require([
     middleEast: { x: 50, y: 30, z: 2500000, tilt: 45 }
   };
   
-  // Region selector
   document.getElementById('region-select').addEventListener('change', (e) => {
     const region = regions[e.target.value];
     view.goTo({
@@ -123,7 +118,6 @@ require([
     });
   });
   
-  // Time range selector
   document.getElementById('time-range').addEventListener('change', (e) => {
     const days = parseInt(e.target.value);
     const now = new Date();
@@ -140,19 +134,16 @@ require([
     updateFireStats();
   });
   
-  // Add Home widget
   const homeBtn = new Home({
     view: view
   });
   view.ui.add(homeBtn, "top-left");
   
-  // Add Compass widget
   const compass = new Compass({
     view: view
   });
   view.ui.add(compass, "top-left");
   
-  // Add Legend
   const legend = new Legend({
     view: view,
     style: "card"
@@ -165,7 +156,6 @@ require([
   });
   view.ui.add(legendExpand, "bottom-left");
   
-  // Update fire statistics
   function updateFireStats() {
     const query = globalFiresLayer.createQuery();
     query.where = globalFiresLayer.definitionExpression || "1=1";
@@ -193,7 +183,6 @@ require([
     });
   }
         
-  // Initialize
   view.when(() => {
     document.getElementById('loading').style.display = 'none';
     updateFireStats();

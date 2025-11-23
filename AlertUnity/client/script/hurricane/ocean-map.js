@@ -5,7 +5,6 @@ const [Map, ImageryTileLayer] = await $arcgis.import([
       
 const viewElement = document.querySelector("arcgis-map");
 
-// Using a global ocean currents dataset - covers Bulgaria/Black Sea
 const layer = new ImageryTileLayer({
     url: "https://tiledimageservices.arcgis.com/jIL9msH9OI208GCb/arcgis/rest/services/Spilhaus_UV_ocean_currents/ImageServer",
     title: "Flow Visualization - Bulgaria Region",
@@ -44,7 +43,6 @@ const map = new Map({
       
 viewElement.map = map;
 
-// Wire up controls
 const sliderProps = ["trailWidth", "density", "maxPathLength", "flowSpeed", "trailLength"];
     sliderProps.forEach((prop) => {
     document.getElementById(prop).addEventListener("calciteSliderChange", updateRenderer);

@@ -9,11 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const roleSelect = document.getElementById("role");
     const regionGroup = document.getElementById("regionGroup");
 
-    // 🔥🌊🌪🌎 Determine disaster from theme
     const theme = document.documentElement.getAttribute("data-theme");
     const disaster = theme.replace("-light", "").replace("-dark", "");
 
-    // 🔥🌊🌪🌎 Role map based on disaster
     const DISASTER_ROLE_MAP = {
         fire: [
             { value: "citizen", label: "Citizen Reporter" },
@@ -33,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
     };
 
-    // ✔ Load roles dynamically
     roleSelect.innerHTML = `<option value="">Select Your Role</option>`;
     DISASTER_ROLE_MAP[disaster].forEach(role => {
         const opt = document.createElement("option");
@@ -42,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
         roleSelect.appendChild(opt);
     });
 
-    // ✔ Only fire has regions
     roleSelect.addEventListener("change", () => {
         if (roleSelect.value === "firefighter") {
             regionGroup.style.display = "block";
@@ -53,9 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ==========================
-    // SAVE USER ON SIGN UP
-    // ==========================
     const signUpForm = document.getElementById("signUpForm");
     if (signUpForm) {
         signUpForm.addEventListener("submit", async (e) => {
@@ -70,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const role = roleSelect.value;
             const password = document.getElementById("password").value;
 
-            // region only for firefighters
             let region = null;
             if (role === "firefighter") {
                 region = document.getElementById("region").value;
@@ -85,9 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     lastName,
                     email: user.email,
                     phone,
-                    role,              // <-- dynamic role from disaster
+                    role,
                     region,
-                    disaster,          // <-- save page disaster (optional)
+                    disaster,
                     createdAt: new Date().toISOString(),
                 });
 

@@ -1,14 +1,17 @@
 from flask import Flask
 from flask_cors import CORS
-from config.firebase import initialize_firebase
-from routes import register_routes
 import logging
 import sys
+from dotenv import load_dotenv
+
+load_dotenv()
+
+from config.firebase import initialize_firebase
+from routes import register_routes
 
 def create_app():
     app = Flask(__name__)
 
-    # Disable all Flask/Werkzeug logs except errors
     logging.getLogger('werkzeug').setLevel(logging.ERROR)
     
     app.config.from_object('config.settings.Config')
@@ -33,7 +36,6 @@ if __name__ == '__main__':
     host = app.config['HOST']
     port = app.config['PORT']
     
-    # Print clean startup info
     print("Flask app running on:")
     print(f" - Local:   http://{host}:{port}")
 

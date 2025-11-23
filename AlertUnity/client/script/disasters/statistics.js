@@ -136,7 +136,6 @@ function createCharts(initialDisaster) {
   const lowColor = '#4CAF50';
   const accentPrimary = getCSSVar('--accent-primary') || '#2196F3';
 
-  // Pie Chart: Severity Distribution
   const pieCtx = DOM.pieCanvas.getContext('2d');
   const severityDist = data.severity_distribution || { high: 0, medium: 0, low: 0 };
   charts.pie = new Chart(pieCtx, {
@@ -174,7 +173,6 @@ function createCharts(initialDisaster) {
     }
   });
 
-  // Line Chart: Severity Trend Over Time
   const lineCtx = DOM.lineCanvas.getContext('2d');
   const severityTrend = data.severity_trend || { labels: [], high: [], medium: [], low: [] };
   charts.line = new Chart(lineCtx, {
@@ -237,7 +235,6 @@ function createCharts(initialDisaster) {
     }
   });
 
-  // Area Chart: Cumulative Reports Over Time
   const areaCtx = DOM.areaCanvas.getContext('2d');
   const cumulativeData = data.cumulative_reports || { labels: [], cumulative: [] };
   charts.area = new Chart(areaCtx, {
@@ -280,7 +277,6 @@ function createCharts(initialDisaster) {
     }
   });
 
-  // Bar Chart: Incidents Per Hour of the Day
   const barCtx = DOM.barCanvas.getContext('2d');
   const hourlyData = data.hourly_distribution || { labels: [], counts: [] };
   charts.bar = new Chart(barCtx, {
@@ -327,12 +323,10 @@ function updateCharts(disaster) {
   const lowColor = '#4CAF50';
   const accentPrimary = getCSSVar('--accent-primary') || '#2196F3';
 
-  // Update Pie Chart
   const severityDist = data.severity_distribution || { high: 0, medium: 0, low: 0 };
   charts.pie.data.datasets[0].data = [severityDist.high, severityDist.medium, severityDist.low];
   charts.pie.update();
 
-  // Update Line Chart
   const severityTrend = data.severity_trend || { labels: [], high: [], medium: [], low: [] };
   charts.line.data.labels = severityTrend.labels;
   charts.line.data.datasets[0].data = severityTrend.high;
@@ -340,7 +334,6 @@ function updateCharts(disaster) {
   charts.line.data.datasets[2].data = severityTrend.low;
   charts.line.update();
 
-  // Update Area Chart
   const cumulativeData = data.cumulative_reports || { labels: [], cumulative: [] };
   charts.area.data.labels = cumulativeData.labels;
   charts.area.data.datasets[0].data = cumulativeData.cumulative;
@@ -348,7 +341,6 @@ function updateCharts(disaster) {
   charts.area.data.datasets[0].backgroundColor = `${accentPrimary}4d`;
   charts.area.update();
 
-  // Update Bar Chart
   const hourlyData = data.hourly_distribution || { labels: [], counts: [] };
   charts.bar.data.labels = hourlyData.labels;
   charts.bar.data.datasets[0].data = hourlyData.counts;
@@ -375,7 +367,6 @@ function applyChartColorsIfNeeded() {
   Object.values(charts).forEach(chart => {
     if (!chart) return;
 
-    // Legend labels
     if (chart.options.plugins?.legend?.labels) {
       chart.options.plugins.legend.labels.color = textColor;
     }
@@ -388,7 +379,6 @@ function applyChartColorsIfNeeded() {
       });
     }
 
-    // Update area and bar chart colors
     chart.data.datasets.forEach(ds => {
       if (!ds) return;
       if (ds.label === 'Cumulative Reports' || ds.label === 'Incidents') {

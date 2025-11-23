@@ -60,7 +60,6 @@ class DisasterService:
             all_data[disaster_type] = self.process_disaster_data(disaster_type)
             all_incidents.extend(self.get_incidents_from_firestore(disaster_type))
         
-        # Add aggregated charts for all disasters
         all_data['aggregated_charts'] = {
             'severity_distribution': get_severity_distribution(all_incidents),
             'severity_trend': get_severity_trend(all_incidents),

@@ -3,7 +3,6 @@ import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.8.0/fi
 import { doc, getDoc } from 'https://www.gstatic.com/firebasejs/11.8.0/firebase-firestore.js';
 
 const PAGE_CONFIG = {
-  // Admin Panel
   'disasters/admin-panel.html': {
     allowedRoles: [
         'admin-fire',
@@ -15,7 +14,6 @@ const PAGE_CONFIG = {
     message: 'Access denied. Admins only.'
   },
 
-  // ========== FIRE FOLDER ==========
   'fire/fire-report.html': {
     allowedRoles: ['citizen', 'firefighter', 'admin-fire'],
     requireAuth: true,
@@ -34,7 +32,6 @@ const PAGE_CONFIG = {
   },
 
 
-  // ========== FLOOD FOLDER ==========
   'flood/flood-report.html': {
     allowedRoles: ['citizen', 'flood-rescuer', 'admin-flood'],
     requireAuth: true,
@@ -53,7 +50,6 @@ const PAGE_CONFIG = {
   },
 
 
-  // ========== HURRICANE FOLDER ==========
   'hurricane/hurricane-report.html': {
     allowedRoles: ['citizen', 'hurricane-rescuer', 'admin-hurricane'],
     requireAuth: true,
@@ -72,7 +68,6 @@ const PAGE_CONFIG = {
   },
 
 
-  // ========== EARTHQUAKE FOLDER ==========
   'earthquake/earthquake-report.html': {
     allowedRoles: ['citizen', 'earthquake-rescuer', 'admin-earthquake'],
     requireAuth: true,
@@ -94,15 +89,12 @@ const PAGE_CONFIG = {
 
 function getCurrentPagePath() {
   const path = window.location.pathname;
-  // Extract the relative path from the root (e.g., "fire/map.html" or "flood/report-history.html")
   const parts = path.split('/');
   
-  // Get the last two parts (folder/filename.html)
   if (parts.length >= 2) {
     return `${parts[parts.length - 2]}/${parts[parts.length - 1]}`;
   }
   
-  // If only filename (root level page)
   return parts[parts.length - 1] || 'index.html';
 }
 
@@ -123,7 +115,6 @@ function checkUserRole() {
 
   onAuthStateChanged(auth, async (user) => {
     try {
-      // 🔹 NOT LOGGED IN but page requires auth
       if (!user) {
         if (pageConfig.requireAuth || pageConfig.allowedRoles) {
           localStorage.setItem('redirectAfterLogin', window.location.href);
@@ -135,7 +126,6 @@ function checkUserRole() {
         return;
       }
 
-      // 🔹 LOGGED IN — load user role
       const userDoc = await getDoc(doc(db, "users", user.uid));
       if (!userDoc.exists()) {
         alert('User profile not found.');
@@ -145,18 +135,15 @@ function checkUserRole() {
 
       const userRole = userDoc.data().role || 'citizen';
 
-      // 🔹 LOGGED IN but NOT ALLOWED (wrong role)
       if (!isRoleAllowed(userRole, pageConfig.allowedRoles)) {
 
         if (pageConfig.message) alert(pageConfig.message);
 
-        // ⬅️ Go back to previous page instead of fixed redirect
         const previousPage = document.referrer;
 
         if (previousPage && previousPage !== window.location.href) {
           window.location.href = previousPage;
         } else {
-          // fallback to homepage
           window.location.href = '../../index.html';
         }
 

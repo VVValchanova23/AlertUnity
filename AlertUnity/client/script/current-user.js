@@ -86,7 +86,6 @@ let currentTheme = localStorage.getItem('disasterTheme') || 'fire';
 function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     
-    // Update icon based on light/dark variant
     if (themeIcon) {
         themeIcon.textContent = theme.includes('-light') ? '🌙' : '🔆';
     }

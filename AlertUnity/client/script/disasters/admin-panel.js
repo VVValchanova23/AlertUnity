@@ -30,7 +30,7 @@ onAuthStateChanged(auth, async () => {
   try {
     const usersSnapshot = await getDocs(collection(db, "users"));
     const tbody = table.querySelector('tbody');
-    tbody.innerHTML = ''; // Clear existing rows
+    tbody.innerHTML = '';
     
     usersSnapshot.forEach(docSnap => {
       const row = createTableRow(docSnap.id, docSnap.data());
@@ -57,7 +57,7 @@ exportBtn.addEventListener("click", () => {
   try {
     const doc = new window.jspdf.jsPDF();
     const rows = Array.from(table.querySelectorAll("tr")).map(tr => 
-      Array.from(tr.children).slice(0, -1).map(td => td.innerText) // Exclude actions column
+      Array.from(tr.children).slice(0, -1).map(td => td.innerText)
     );
     
     doc.setFontSize(18);
@@ -147,7 +147,6 @@ document.getElementById("editForm").addEventListener("submit", async (e) => {
     return;
   }
 
-  // Email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(formData.email)) {
     alert("Please enter a valid email address.");
@@ -176,7 +175,6 @@ document.getElementById("editForm").addEventListener("submit", async (e) => {
   }
 });
 
-// Delete confirmation
 window.confirmDelete = async function() {
   if (!currentDeleteUserId) {
     alert("Error: No user selected for deletion.");
@@ -188,7 +186,6 @@ window.confirmDelete = async function() {
     deleteBtn.textContent = "Deleting...";
     deleteBtn.disabled = true;
 
-    // Delete user document
     await deleteDoc(doc(db, "users", currentDeleteUserId));
     
     alert("User deleted successfully!");
@@ -207,7 +204,6 @@ window.confirmDelete = async function() {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Close modal when clicking outside
   window.addEventListener("click", (event) => {
     if (event.target.classList.contains("modal")) {
       closeModal("editModal");
@@ -215,7 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Close modal with Escape key
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeModal("editModal");
