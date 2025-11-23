@@ -145,6 +145,11 @@ body::before {
     box-shadow: 0 4px 15px var(--glow-primary);
 }
 
+.logo-icon-auth img {
+    width: 100%;
+    height: 100%;
+}
+
 .logo-icon-auth::before {
     font-size: 24px;
     animation: flame-dance 2s ease-in-out infinite alternate;
@@ -356,7 +361,7 @@ body::before {
 .auth-footer {
     position: absolute;
     bottom: 10px;
-    left: 50%;
+    left: 52%;
     transform: translateX(-50%);
     text-align: center;
     color: var(--text-muted);

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlertUnity - Live Fire Map</title>
+    <title>AlertUnity - Live Flood Map</title>
     
     <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
@@ -16,6 +16,13 @@
     <script type="module" src="../../script/role-redirect.js"></script>
 </head>
 <body>
+    
+    <div class="wave-background">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo-nav">
@@ -24,17 +31,15 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="../fire.html">Home</a></li>
-                <li><a href="fire-report.html">Report Fire</a></li>
+                <li><a href="../flood.html">Home</a></li>
+                <li><a href="flood-report.html">Report Flood</a></li>
                 <li><a href="#" class="active">Live Map</a></li>
-                <li><a href="fire-history.html">History</a></li>
-                <li><a href="report-history.html">Reports</a></li>
                 <li><a href="../disasters/contact.html">Contact</a></li>
             </ul>
 
             <div class="nav-cta">
-                <a href="../disasters/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-                <a href="../disasters/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                <a href="sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
+                <a href="sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <span class="theme-icon">🌙</span>
@@ -48,10 +53,10 @@
         <div id="map"></div>
         
         <div class="map-overlay">
-            <h2>🔥 Live Fire Activity</h2>
+            <h2>🌊 Live Flood Activity</h2>
             <div class="fire-stats">
                 <div class="stat-item">
-                    <span class="stat-label">Active Fires</span>
+                    <span class="stat-label">Active Floods</span>
                     <span class="stat-value" id="activeCount">0</span>
                 </div>
                 <div class="stat-item">
@@ -65,7 +70,7 @@
             </div>
             
             <div class="legend">
-                <h3>Fire Severity</h3>
+                <h3>Flood Severity</h3>
                 <div class="legend-item">
                     <div class="legend-dot high"></div>
                     <span>High Risk</span>
@@ -82,7 +87,7 @@
         </div>
 
         <div class="controls">
-            <button class="control-btn all-btn active">All Fires</button>
+            <button class="control-btn all-btn active">All Floods</button>
             <button class="control-btn high-btn">High Risk Only</button>
             <button class="control-btn recent-btn">Last 24h</button>
             <button class="control-btn refresh-btn">🔄 Refresh</button>
@@ -90,8 +95,8 @@
 
     </div>
 
-    <script type="module" src="../../script/fire/fire-map.js"></script>
-    <script src="../../script/fire/fire.js"></script>
+    <script type="module" src="../../script/flood/flood-map.js"></script>
+    <script src="../../script/flood/flood.js"></script>
 
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
 

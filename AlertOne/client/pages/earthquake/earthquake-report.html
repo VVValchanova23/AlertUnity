@@ -3,26 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlertUnity - Report Flood</title>
+    <title>AlertUnity - Report Earthquake</title>
     <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
 
-    <link rel="stylesheet" href="../../styles/flood/flood-report.css">
-    
     <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="../../styles/flood/flood-report.css">
     <link rel="stylesheet" href="../../styles/landing.css">
-    <link rel="stylesheet" href="../../styles/flood/flood-main.css">
 
     <script type="module" src="../../script/current-user.js"></script>
     <script type="module" src="../../script/role-redirect.js"></script>
 </head>
 <body>
-
-    <div class="wave-background">
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-    </div>
 
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -32,18 +24,19 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="../flood.html">Home</a></li>
-                <li><a href="#" class="active">Report Flood</a></li>
+                <li><a href="../earthquake.html">Home</a></li>
+                <li><a href="#" class="active">Report an Earthquake</a></li>
                 <li><a href="map.html">Live Map</a></li>
+                <li><a href="earthquake-globe.html">History</a></li>
                 <li><a href="../disasters/contact.html">Contact</a></li>
             </ul>
 
             <div class="nav-cta">
-                <a href="sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-                <a href="sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                <a href="../disasters/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
+                <a href="../disasters/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <span class="theme-icon">🌙</span>
+                <span class="theme-icon"><i class="fa-solid fa-moon"></i></span>
             </button>
 
             <button class="mobile-toggle">☰</button>
@@ -52,39 +45,39 @@
 
     <main class="main-content">
         <div class="page-header">
-            <h1 class="hero-title"> Report a Flood</h1>
+            <h1 class="hero-title"> Report an Earthquake</h1>
             <p class="page-subtitle">
-                Help keep your community safe by reporting flood incidents quickly and accurately. 
+                Help keep your community safe by reporting earthquake incidents quickly and accurately. 
                 Your report will be immediately forwarded to local emergency services.
             </p>
         </div>
 
         <div class="form-container">
             <div class="form-section">
-                <h2><i class="fa-solid fa-water"></i> Flood Report Details</h2>
+                <h2><i class="fa-solid fa-house-crack"></i> Earthquake Report Details</h2>
                 
                 <form id="disasterReportForm">
                     
                     <div class="form-group">
-                        <label class="form-label required">Flood Severity</label>
+                        <label class="form-label required">Earthquake Severity</label>
                         <div class="severity-options">
                             <div class="severity-option high">
                                 <input type="radio" id="severityHigh" name="severity" value="high" required>
-                                <label for="severityHigh">🔴 High<br><br><small>Severe flooding, strong currents</small></label>
+                                <label for="severityHigh">🔴 High<br><br><small>Severe shaking, building damage</small></label>
                             </div>
                             <div class="severity-option medium">
                                 <input type="radio" id="severityMedium" name="severity" value="medium" required>
-                                <label for="severityMedium">🟡 Medium<br><br><small>Roads flooded, moderate depth</small></label>
+                                <label for="severityMedium">🟡 Medium<br><br><small>Strong shaking, items falling</small></label>
                             </div>
                             <div class="severity-option low">
                                 <input type="radio" id="severityLow" name="severity" value="low" required>
-                                <label for="severityLow">🟢 Low<br><br><small>Light water accumulation in streets and yards</small></label>
+                                <label for="severityLow">🟢 Low<br><br><small>Light shaking, minimal damage</small></label>
                             </div>
                         </div>
                     </div>
 
                     <div class="location-section">
-                        <label class="form-label required">Flood Location</label>
+                        <label class="form-label required">Earthquake Location</label>
                         <div class="location-inputs">
                             <input type="text" id="latitude" class="form-input" placeholder="Latitude" readonly>
                             <input type="text" id="longitude" class="form-input" placeholder="Longitude" readonly>
@@ -103,8 +96,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label required" for="description">Flood Description</label>
-                        <textarea id="description" class="form-textarea" placeholder="Water depth, flow speed, blocked roads, trapped people, property damage, etc." required></textarea>
+                        <label class="form-label required" for="description">Earthquake Description</label>
+                        <textarea id="description" class="form-textarea" placeholder="Duration of shaking, building damage, structural cracks, trapped people, gas leaks, etc." required></textarea>
                     </div>
 
                     <div class="form-group">
@@ -112,51 +105,51 @@
                         <div class="file-upload" id="fileUpload">
                             <input type="file" id="fileInput" multiple accept="image/*,video/*">
                             <div class="file-upload-text"><i class="fa-regular fa-camera"></i> Click to upload or drag files here</div>
-                            <div class="file-upload-subtext">Images and videos help emergency responders assess the situation</div>
+                            <div class="file-upload-subtext">Images and videos help emergency responders assess the damage</div>
                         </div>
                         <div class="uploaded-files" id="uploadedFiles"></div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="additionalInfo">Additional Information</label>
-                        <textarea id="additionalInfo" class="form-textarea" placeholder="Any other details that might be helpful (people nearby, vehicles involved, etc.)"></textarea>
+                        <textarea id="additionalInfo" class="form-textarea" placeholder="Any other details that might be helpful (aftershocks felt, injuries, structural damage, etc.)"></textarea>
                     </div>
 
                     <div class="submit-section">
-                        <button type="submit" class="submit-btn" id="submitBtn"> Submit Flood Report</button>
+                        <button type="submit" class="submit-btn" id="submitBtn"> Submit Earthquake Report</button>
                         <button type="button" class="cancel-btn" onclick="clearForm()">Clear Form</button>
                     </div>
                 </form>
             </div>
 
             <div class="info-panel">
-                <h3><i class="fa-solid fa-shield-halved"></i> Flood Safety Tips</h3>
+                <h3><i class="fa-solid fa-shield-halved"></i> Earthquake Safety Tips</h3>
                 
                 <div class="info-item">
-                    <h4><i class="fa-solid fa-person-running"></i> Evacuation</h4>
-                    <p>Move to higher ground immediately if water levels rise quickly. Follow official evacuation instructions.</p>
+                    <h4><i class="fa-solid fa-person-shelter"></i> During Shaking</h4>
+                    <p>Drop, Cover, and Hold On. Get under a sturdy desk or table and protect your head and neck.</p>
                 </div>
 
                 <div class="info-item">
-                    <h4><i class="fa-solid fa-road"></i> Road Safety</h4>
-                    <p>Do not attempt to drive through flooded roads. Even shallow water can sweep a vehicle away.</p>
+                    <h4><i class="fa-solid fa-door-open"></i> After the Quake</h4>
+                    <p>Exit the building carefully and move to an open area away from structures. Be prepared for aftershocks.</p>
                 </div>
 
                 <div class="info-item">
-                    <h4><i class="fa-solid fa-house"></i> Home Safety</h4>
-                    <p>Turn off electricity and gas if safe to do so. Avoid walking or wading through floodwater indoors.</p>
+                    <h4><i class="fa-solid fa-house-chimney-crack"></i> Building Safety</h4>
+                    <p>Check for structural damage, gas leaks, and electrical issues. Do not enter damaged buildings.</p>
                 </div>
 
                 <div class="info-item">
-                    <h4><i class="fa-solid fa-triangle-exclamation"></i> Health & Hygiene</h4>
-                    <p>Floodwater may be contaminated. Avoid contact and clean wounds immediately if exposed.</p>
+                    <h4><i class="fa-solid fa-triangle-exclamation"></i> Avoid Hazards</h4>
+                    <p>Stay away from windows, heavy furniture, and exterior walls. Watch for falling debris and damaged power lines.</p>
                 </div>
 
                 <div class="contact-info">
                     <h4><i class="fa-solid fa-phone-volume"></i> Emergency Contacts</h4>
-                    <p><strong>Flood Emergency:</strong> 112</p>
+                    <p><strong>Earthquake Emergency:</strong> 112</p>
                     <p><strong>Non-Emergency:</strong> +359 2 123 4567</p>
-                    <p><strong>Report Status:</strong> support@floodalert.com</p>
+                    <p><strong>Report Status:</strong> support@earthquakealert.com</p>
                 </div>
             </div>
         </div>
@@ -165,14 +158,14 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
-                <h3>Flood Alert Portal</h3>
-                <p>Keeping communities safe through early flood detection and fast emergency response.</p>
+                <h3>Earthquake Alert Portal</h3>
+                <p>Keeping communities safe through early earthquake detection and fast emergency response.</p>
             </div>
             
             <div class="footer-section">
                 <h3>Quick Links</h3>
-                <p><a href="../flood.html">Home</a></p>
-                <p><a href="map.html">Live map</a></p>
+                <p><a href="../earthquake.html">Home</a></p>
+                <p><a href="earthquake-globe.html">Live map</a></p>
                 <p><a href="../disasters/admin-panel.html">Admin Panel</a></p>
             </div>
             
@@ -186,14 +179,14 @@
             <div class="footer-section">
                 <h3>Contact Info</h3>
                 <p><i class="fa-solid fa-envelope"></i> support@codingburgas.com</p>
-                <p><i class="fa-solid fa-phone"></i> 1-800-FLOOD-911</p>
+                <p><i class="fa-solid fa-phone"></i> 1-800-QUAKE-911</p>
                 <p><i class="fa-solid fa-city"></i> Emergency Response Center</p>
                 <p><i class="fa-solid fa-map-pin"></i> Available 24/7 Worldwide</p>
             </div>
         </div>
     </footer>
 
-    <script type="module" src="../../script/flood/flood-report.js"></script>
-    <script src="../../script/flood/flood.js"></script>
+    <script type="module" src="../../script/earthquake/earthquake-report.js"></script>
+    <script src="../../script/earthquake/earthquake.js"></script>
 </body>
 </html>

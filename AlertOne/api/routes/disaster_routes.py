@@ -27,7 +27,7 @@ def get_flood_data():
 @disaster_bp.route('/hurricane', methods=['GET'])
 def get_hurricane_data():
     try:
-        data = disaster_service.process_disaster_data('hurricane')
+        data = disaster_service.process_disaster_data('hurricanes')
         return jsonify(data), 200
     except Exception as e:
         logger.error(f"Error in get_hurricane_data: {str(e)}")
@@ -36,7 +36,7 @@ def get_hurricane_data():
 @disaster_bp.route('/earthquake', methods=['GET'])
 def get_earthquake_data():
     try:
-        data = disaster_service.process_disaster_data('earthquake')
+        data = disaster_service.process_disaster_data('earthquakes')
         return jsonify(data), 200
     except Exception as e:
         logger.error(f"Error in get_earthquake_data: {str(e)}")

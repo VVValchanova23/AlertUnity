@@ -3,8 +3,8 @@ import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.8.0/fi
 import { doc, getDoc } from 'https://www.gstatic.com/firebasejs/11.8.0/firebase-firestore.js';
 
 const PAGE_CONFIG = {
-    // Admins
-  'admin-panel.html': {
+  // Admin Panel
+  'disasters/admin-panel.html': {
     allowedRoles: [
         'admin-fire',
         'admin-flood',
@@ -12,90 +12,98 @@ const PAGE_CONFIG = {
         'admin-earthquake',
         'super-admin'
     ],
-    message: 'Access denied. Fire admins only.'
+    message: 'Access denied. Admins only.'
   },
 
-  // Fire
-  'fire-report.html': {
+  // ========== FIRE FOLDER ==========
+  'fire/fire-report.html': {
     allowedRoles: ['citizen', 'firefighter', 'admin-fire'],
     requireAuth: true,
     message: 'Please sign in to report a fire.'
   },
 
-  'report-history.html': {
+  'fire/report-history.html': {
     allowedRoles: ['admin-fire', 'firefighter'],
     message: 'Access denied. Authorized fire personnel only.'
   },
 
-  'map.html': {
+  'fire/map.html': {
     allowedRoles: ['citizen', 'firefighter', 'admin-fire'],
     requireAuth: true,
-    message: 'Please sign in to view the fire map.'
+    message: 'Access denied. Authorized fire personnel only.'
   },
 
 
-  // Flood
-  'flood-report.html': {
+  // ========== FLOOD FOLDER ==========
+  'flood/flood-report.html': {
     allowedRoles: ['citizen', 'flood-rescuer', 'admin-flood'],
     requireAuth: true,
     message: 'Please sign in to report a flood.'
   },
 
-  'flood-report-history.html': {
+  'flood/report-history.html': {
     allowedRoles: ['flood-rescuer', 'admin-flood'],
     message: 'Access denied. Authorized flood personnel only.'
   },
 
-  'flood-map.html': {
+  'flood/map.html': {
     allowedRoles: ['citizen', 'flood-rescuer', 'admin-flood'],
     requireAuth: true,
-    message: 'Please sign in to view the flood map.'
+    message: 'Access denied. Authorized fire personnel only.'
   },
 
 
-  // Hurricane
-  'hurricane-report.html': {
+  // ========== HURRICANE FOLDER ==========
+  'hurricane/hurricane-report.html': {
     allowedRoles: ['citizen', 'hurricane-rescuer', 'admin-hurricane'],
     requireAuth: true,
     message: 'Please sign in to report a hurricane.'
   },
 
-  'hurricane-report-history.html': {
+  'hurricane/report-history.html': {
     allowedRoles: ['hurricane-rescuer', 'admin-hurricane'],
     message: 'Access denied. Authorized hurricane personnel only.'
   },
 
-  'hurricane-map.html': {
+  'hurricane/map.html': {
     allowedRoles: ['citizen', 'hurricane-rescuer', 'admin-hurricane'],
     requireAuth: true,
-    message: 'Please sign in to view the hurricane map.'
+    message: 'Access denied. Authorized fire personnel only.'
   },
 
 
-  // Earthquake
-  'earthquake-report.html': {
+  // ========== EARTHQUAKE FOLDER ==========
+  'earthquake/earthquake-report.html': {
     allowedRoles: ['citizen', 'earthquake-rescuer', 'admin-earthquake'],
     requireAuth: true,
     message: 'Please sign in to report an earthquake.'
   },
 
-  'earthquake-report-history.html': {
+  'earthquake/report-history.html': {
     allowedRoles: ['earthquake-rescuer', 'admin-earthquake'],
     message: 'Access denied. Authorized earthquake personnel only.'
   },
 
-  'earthquake-map.html': {
+  'earthquake/map.html': {
     allowedRoles: ['citizen', 'earthquake-rescuer', 'admin-earthquake'],
     requireAuth: true,
-    message: 'Please sign in to view the earthquake map.'
+    message: 'Access denied. Authorized fire personnel only.'
   }
 };
 
 
-function getCurrentPageName() {
+function getCurrentPagePath() {
   const path = window.location.pathname;
-  const pageName = path.split('/').pop();
-  return pageName || 'index.html';
+  // Extract the relative path from the root (e.g., "fire/map.html" or "flood/report-history.html")
+  const parts = path.split('/');
+  
+  // Get the last two parts (folder/filename.html)
+  if (parts.length >= 2) {
+    return `${parts[parts.length - 2]}/${parts[parts.length - 1]}`;
+  }
+  
+  // If only filename (root level page)
+  return parts[parts.length - 1] || 'index.html';
 }
 
 function isRoleAllowed(userRole, allowedRoles) {
@@ -105,11 +113,11 @@ function isRoleAllowed(userRole, allowedRoles) {
 }
 
 function checkUserRole() {
-  const currentPage = getCurrentPageName();
-  const pageConfig = PAGE_CONFIG[currentPage];
+  const currentPagePath = getCurrentPagePath();
+  const pageConfig = PAGE_CONFIG[currentPagePath];
 
   if (!pageConfig) {
-    console.log(`Page ${currentPage} is public`);
+    console.log(`Page ${currentPagePath} is public or not configured`);
     return;
   }
 
@@ -142,23 +150,25 @@ function checkUserRole() {
 
         if (pageConfig.message) alert(pageConfig.message);
 
-        // ⬅️ Go back to previous page instead of fire.html
+        // ⬅️ Go back to previous page instead of fixed redirect
         const previousPage = document.referrer;
 
-        if (previousPage) {
+        if (previousPage && previousPage !== window.location.href) {
           window.location.href = previousPage;
         } else {
-          // fallback if no referrer
-          window.location.href = 'index.html';
+          // fallback to homepage
+          window.location.href = '../../index.html';
         }
 
         return;
       }
 
+      console.log(`✅ Access granted to ${currentPagePath} for role: ${userRole}`);
+
     } catch (error) {
       console.error("Role check error:", error);
       alert('Error verifying permissions.');
-      window.location.href = 'index.html';
+      window.location.href = '../../index.html';
     }
   });
 }

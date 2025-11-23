@@ -1,21 +1,27 @@
 from config.firebase import get_db
-from config.settings import Config
-from services.data_processor import DataProcessor
+from utils.time_utils import (
+    group_by_month,
+    get_severity_distribution,
+    get_severity_trend,
+    get_cumulative_reports,
+    get_hourly_distribution
+)
 import logging
 
 logger = logging.getLogger(__name__)
 
 class DisasterService:
-    
     def __init__(self):
         self.db = get_db()
-        self.processor = DataProcessor()
+        self._cache = {}
     
-    def get_incidents(self, collection_name):
+    def get_incidents_from_firestore(self, collection_name):
+        """Fetch incidents from Firestore collection"""
         try:
-            docs = self.db.collection(collection_name).stream()
-            incidents = []
+            collection_ref = self.db.collection(collection_name)
+            docs = collection_ref.stream()
             
+            incidents = []
             for doc in docs:
                 data = doc.to_dict()
                 data['id'] = doc.id
@@ -24,90 +30,69 @@ class DisasterService:
             return incidents
         
         except Exception as e:
-            logger.error(f"Error fetching incidents from {collection_name}: {str(e)}")
-            raise
+            logger.error(f"Error fetching from {collection_name}: {str(e)}")
+            return []
     
-    def process_disaster_data(self, collection_name):
-        try:
-            incidents = self.get_incidents(collection_name)
-            
-            severity_counts = self.processor.count_by_severity(incidents)
-            
-            active_incidents = self.processor.count_by_status(incidents, 'active')
-            
-            pie_data, pie_labels = self.processor.get_regional_distribution(incidents)
-            
-            regional_data, region_names = self.processor.get_regional_data(incidents)
-            
-            area_data = self.processor.get_status_over_time(incidents)
-            
-            weekly_data = self.processor.get_weekly_data(incidents)
-            
-            false_alarms = self.processor.count_by_status(incidents, 'false alarm')
-            resolved = self.processor.count_by_status(incidents, 'inactive')
-            
-            return {
-                'activeIncidents': active_incidents,
-                'totalIncidents': len(incidents),
-                'pie': pie_data,
-                'pieLabels': pie_labels,
-                'line': regional_data,
-                'regionNames': region_names,
-                'area': area_data,
-                'bar': weekly_data,
-                'severityCounts': severity_counts,
-                'falseAlarms': false_alarms,
-                'resolved': resolved
-            }
+    def process_disaster_data(self, disaster_type):
+        """Process disaster data for a specific type with chart data"""
+        incidents = self.get_incidents_from_firestore(disaster_type)
         
-        except Exception as e:
-            logger.error(f"Error processing {collection_name}: {str(e)}")
-            return self._get_empty_response(str(e))
+        return {
+            'type': disaster_type,
+            'total_incidents': len(incidents),
+            'monthly_trend': group_by_month(incidents),
+            'incidents': incidents,
+            'charts': {
+                'severity_distribution': get_severity_distribution(incidents),
+                'severity_trend': get_severity_trend(incidents),
+                'cumulative_reports': get_cumulative_reports(incidents),
+                'hourly_distribution': get_hourly_distribution(incidents)
+            }
+        }
     
     def get_all_disasters_data(self):
-        return {
-            'fire': self.process_disaster_data('fires'),
-            'flood': self.process_disaster_data('floods'),
-            'hurricane': self.process_disaster_data('hurricane'),
-            'earthquake': self.process_disaster_data('earthquake')
+        """Get data for all disaster types with aggregated charts"""
+        disaster_types = ['fires', 'floods', 'hurricanes', 'earthquakes']
+        all_data = {}
+        all_incidents = []
+        
+        for disaster_type in disaster_types:
+            all_data[disaster_type] = self.process_disaster_data(disaster_type)
+            all_incidents.extend(self.get_incidents_from_firestore(disaster_type))
+        
+        # Add aggregated charts for all disasters
+        all_data['aggregated_charts'] = {
+            'severity_distribution': get_severity_distribution(all_incidents),
+            'severity_trend': get_severity_trend(all_incidents),
+            'cumulative_reports': get_cumulative_reports(all_incidents),
+            'hourly_distribution': get_hourly_distribution(all_incidents)
         }
+        
+        return all_data
     
     def get_overall_stats(self):
-        fire_data = self.process_disaster_data('fires')
-        flood_data = self.process_disaster_data('floods')
-        hurricane_data = self.process_disaster_data('hurricane')
-        earthquake_data = self.process_disaster_data('earthquake')
+        """Get overall statistics across all disaster types with aggregated charts"""
+        disaster_types = ['fires', 'floods', 'hurricanes', 'earthquakes']
+        total_incidents = 0
+        stats_by_type = {}
+        all_incidents = []
+        
+        for disaster_type in disaster_types:
+            incidents = self.get_incidents_from_firestore(disaster_type)
+            count = len(incidents)
+            total_incidents += count
+            stats_by_type[disaster_type] = count
+            all_incidents.extend(incidents)
         
         return {
-            'fire': fire_data['activeIncidents'],
-            'flood': flood_data['activeIncidents'],
-            'hurricane': hurricane_data['activeIncidents'],
-            'earthquake': earthquake_data['activeIncidents'],
-            'totalActive': (
-                fire_data['activeIncidents'] +
-                flood_data['activeIncidents'] +
-                hurricane_data['activeIncidents'] +
-                earthquake_data['activeIncidents']
-            )
-        }
-    
-    @staticmethod
-    def _get_empty_response(error_message=""):
-        region_count = len(Config.REGIONS)
-        
-        return {
-            'error': error_message,
-            'activeIncidents': 0,
-            'totalIncidents': 0,
-            'pie': [0] * region_count,
-            'pieLabels': Config.REGIONS,
-            'line': [[0] * Config.DEFAULT_MONTHS] * region_count,
-            'regionNames': Config.REGIONS,
-            'area': [0] * Config.DEFAULT_AREA_MONTHS,
-            'bar': [0] * Config.DEFAULT_WEEKS,
-            'severityCounts': {'high': 0, 'medium': 0, 'low': 0},
-            'falseAlarms': 0,
-            'resolved': 0
+            'total_incidents': total_incidents,
+            'by_type': stats_by_type,
+            'charts': {
+                'severity_distribution': get_severity_distribution(all_incidents),
+                'severity_trend': get_severity_trend(all_incidents),
+                'cumulative_reports': get_cumulative_reports(all_incidents),
+                'hourly_distribution': get_hourly_distribution(all_incidents)
+            }
         }
 
 disaster_service = DisasterService()

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - AlertUnity</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
     <link rel="stylesheet" href="../../styles/global.css" />
     <link rel="stylesheet" href="../../styles/landing.css" />
@@ -14,12 +15,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- Header -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo-nav">
-                <div class="logo-icon-nav"><img src="../../assets/logo-small-bw.png" class="logo-icon"></div>
-                <div class="logo-text">Vision Angels</div>
+                <div class="logo-icon-nav"><img src="../../assets/logo-small-white.png" class="logo-icon"></div>
+                <div class="logo-text">AlertUnity</div>
             </div>
 
             <ul class="nav-links">
@@ -51,7 +51,7 @@
                 <div class="stat-content">
                     <div class="stat-icon">🔥</div>
                     <p class="stat-title">Fire</p>
-                    <p class="stat-value" id="fireValue">245</p>
+                    <p class="stat-value" id="fireValue">0</p>
                     <p class="stat-subtitle">Active Incidents</p>
                 </div>
                 <svg class="stat-bg" width="100" height="60" viewBox="0 0 100 60">
@@ -63,7 +63,7 @@
                 <div class="stat-content">
                     <div class="stat-icon">🌊</div>
                     <p class="stat-title">Flood</p>
-                    <p class="stat-value" id="floodValue">128</p>
+                    <p class="stat-value" id="floodValue">0</p>
                     <p class="stat-subtitle">Active Incidents</p>
                 </div>
                 <svg class="stat-bg" width="100" height="60" viewBox="0 0 100 60">
@@ -75,7 +75,7 @@
                 <div class="stat-content">
                     <div class="stat-icon">🌀</div>
                     <p class="stat-title">Hurricane</p>
-                    <p class="stat-value" id="hurricaneValue">67</p>
+                    <p class="stat-value" id="hurricaneValue">0</p>
                     <p class="stat-subtitle">Active Incidents</p>
                 </div>
                 <svg class="stat-bg" width="100" height="60" viewBox="0 0 100 60">
@@ -87,7 +87,7 @@
                 <div class="stat-content">
                     <div class="stat-icon">⚠️</div>
                     <p class="stat-title">Earthquake</p>
-                    <p class="stat-value" id="earthquakeValue">89</p>
+                    <p class="stat-value" id="earthquakeValue">0</p>
                     <p class="stat-subtitle">Active Incidents</p>
                 </div>
                 <svg class="stat-bg" width="100" height="60" viewBox="0 0 100 60">
@@ -104,25 +104,12 @@
                 <div class="chart-container">
                     <canvas id="pieChart"></canvas>
                 </div>
-                <div class="chart-legend" id="pieLegend">
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: var(--accent-primary);"></div>
-                        <span class="legend-text">January</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: var(--accent-secondary);"></div>
-                        <span class="legend-text">February</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: var(--accent-tertiary);"></div>
-                        <span class="legend-text">March</span>
-                    </div>
-                </div>
+                
             </div>
 
             <!-- Line Chart -->
             <div class="chart-card">
-                <h2 class="chart-title" id="lineChartTitle">Monthly Incident Trends</h2>
+                <h2 class="chart-title" id="lineChartTitle">Monthly Incidents By Severity</h2>
                 <div class="chart-container">
                     <canvas id="lineChart"></canvas>
                 </div>
@@ -133,7 +120,7 @@
         <div class="charts-grid">
             <!-- Area Chart -->
             <div class="chart-card">
-                <h2 class="chart-title" id="areaChartTitle">Response Efficiency</h2>
+                <h2 class="chart-title" id="areaChartTitle">Total Reports</h2>
                 <div class="chart-container" style="height: 250px;">
                     <canvas id="areaChart"></canvas>
                 </div>
@@ -141,7 +128,7 @@
 
             <!-- Bar Chart -->
             <div class="chart-card">
-                <h2 class="chart-title" id="barChartTitle">Weekly Incidents</h2>
+                <h2 class="chart-title" id="barChartTitle">Hourly Incidents</h2>
                 <div class="chart-container" style="height: 250px;">
                     <canvas id="barChart"></canvas>
                 </div>

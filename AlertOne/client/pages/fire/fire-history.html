@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html data-theme="fire">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>AlertUnity - Fire History</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/dark/main.css">
+    
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="../../styles/landing.css">
+    <link rel="stylesheet" href="../../styles/fire/fire-history.css">
+
+    <script type="module" src="../../script/current-user.js"></script>
+    <script type="module" src="../../script/role-redirect.js"></script>
+    
+    <script src="https://js.arcgis.com/4.28/"></script>
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo-nav">
+                <div class="logo-icon-nav"><img src="../../assets/logo-small-white.png" class="logo-icon"></div>
+                <div class="logo-text">AlertUnity</div>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="../fire.html">Home</a></li>
+                <li><a href="fire-report.html">Report Fire</a></li>
+                <li><a href="map.html">Live Map</a></li>
+                <li><a href="#" class="active">History</a></li>
+                <li><a href="report-history.html">Reports</a></li>
+                <li><a href="../disasters/contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="../disasters/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
+                <a href="../disasters/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="theme-icon">🌙</span>
+            </button>
+
+            <button class="mobile-toggle">☰</button>
+        </div>
+    </nav>
+
+    <div id="viewDiv"></div>
+    <div id="control-panel">
+    <h2>🌍 Global Wildfire Map</h2>
+
+    <div class="region-select">
+        <label>Select Region:</label>
+        <select id="region-select">
+        <option value="global">Global View</option>
+        <option value="northAmerica">North America</option>
+        <option value="southAmerica">South America</option>
+        <option value="europe">Europe</option>
+        <option value="africa">Africa</option>
+        <option value="asia">Asia</option>
+        <option value="australia">Australia</option>
+        <option value="russia">Russia</option>
+        <option value="middleEast">Middle East</option>
+        </select>
+    </div>
+
+    <div class="time-range">
+        <label>Time Range:</label>
+        <select id="time-range">
+        <option value="1">Last 24 Hours</option>
+        <option value="3">Last 3 Days</option>
+        <option value="7" selected>Last 7 Days</option>
+        <option value="14">Last 14 Days</option>
+        <option value="30">Last 30 Days</option>
+        </select>
+    </div>
+
+    <div class="stat-box">
+        <strong id="fire-count">---</strong>
+        <span>Active Fire Detections</span>
+    </div>
+
+    <div class="stat-box">
+        <strong id="avg-intensity">---</strong>
+        <span>Average Fire Power (MW)</span>
+    </div>
+
+    <div class="legend">
+        <strong>Fire Intensity</strong>
+        <div class="legend-item">
+        <div class="legend-bar low-confidence"></div>
+        <span>Low Intensity</span>
+        </div>
+        <div class="legend-item">
+        <div class="legend-bar medium-confidence"></div>
+        <span>Medium Intensity</span>
+        </div>
+        <div class="legend-item">
+        <div class="legend-bar high-confidence"></div>
+        <span>High Intensity</span>
+        </div>
+    </div>
+
+    <p class="data-source">
+        Data from NASA FIRMS (MODIS)<br>Height = Fire Radiative Power
+    </p>
+    </div>
+
+    <div id="loading">🌍 Loading Global Fire Data...</div>
+
+    <script src="../../script/fire/fire-history.js"></script>
+    <script src="../../script/fire/fire.js"></script>
+</body>
+</html>

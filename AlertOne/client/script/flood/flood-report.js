@@ -1,2 +1,2 @@
 import { initDisasterReport } from '../disasters/disaster-report.js';
-initDisasterReport('fire');
+initDisasterReport('flood');
