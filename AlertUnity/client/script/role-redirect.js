@@ -89,13 +89,16 @@ const PAGE_CONFIG = {
 
 function getCurrentPagePath() {
   const path = window.location.pathname;
-  const parts = path.split('/');
-  
-  if (parts.length >= 2) {
-    return `${parts[parts.length - 2]}/${parts[parts.length - 1]}`;
+  const parts = path.split('/').filter(Boolean);
+
+  const folder = parts[parts.length - 2];
+  let page = parts[parts.length - 1];
+
+  if (!page.endsWith('.html')) {
+    page += '.html';
   }
-  
-  return parts[parts.length - 1] || 'index.html';
+
+  return `${folder}/${page}`;
 }
 
 function isRoleAllowed(userRole, allowedRoles) {

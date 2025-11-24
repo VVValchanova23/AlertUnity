@@ -1,5 +1,5 @@
 const API_CONFIG = {
-  baseUrl: 'http://localhost:5000/api',
+  baseUrl: 'https://alertunity.onrender.com/api',
   fire: '/fire',
   flood: '/flood',
   hurricane: '/hurricane',

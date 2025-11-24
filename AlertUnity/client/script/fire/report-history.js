@@ -2,7 +2,7 @@ import { auth, db } from '../../data/firebase-config.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.8.0/firebase-auth.js';
 import { doc, collection, getDocs, deleteDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/11.8.0/firebase-firestore.js';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'https://alertunity.onrender.com';
 let currentUpdateReportId = null;
 let currentDeleteReportId = null;
 let allReports = [];
