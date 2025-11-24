@@ -1,14 +1,13 @@
-<h1 align="center">👩‍🚒🔥AlertOne👩‍🚒💧</h1>
+<h1 align="center">👩‍🚒🔥AlertUnity👩‍🚒💧</h1>
 
 <div align="center">
     <p align="center">
-  <img src="Mazeon/assets/logo.png" width="500">
+  <img src="AlertUnity/client/assets/logo.png" width="500">
 </p>
 </div>
 <p align="center">
-  <img src="https://img.shields.io/badge/issues-20-%23d97706?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/commits-50-%233b82f6?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/lines%20of%20code-18k-%23065f46?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/commits-25-%233b82f6?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/lines%20of%20code-110k-%23065f46?style=for-the-badge" />
 </p>
 
 ## About Our Site 💧🔥
@@ -55,7 +54,6 @@ Using modern technologies such as HTML, CSS, JavaScript, and libraries like Char
 <p align="left">
 <a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="https://img.icons8.com/color/344/ms-word.png" alt="MS Word logo" width=48px /></a>
 <a href="https://www.microsoft.com/en-ww/microsoft-365/powerpoint"><img src="https://img.icons8.com/color/344/ms-powerpoint.png" alt="MS PowerPoint logo" width=48px /></a>
-<a href="https://www.microsoft.com/en-us/microsoft-365/excel"><img src="https://github.com/user-attachments/assets/39a64f64-724a-4fb0-b75e-26d644998cf5" alt = "Excel logo" width=46px /></a>
 <a href="https://www.microsoft.com/en/microsoft-teams/group-chat-software"><img src="https://img.icons8.com/color/344/microsoft-teams.png" alt = "MS Teams logo" width=46px /></a>
 </p>
 <hr>
@@ -63,14 +61,13 @@ Installation📥
 
 If you want to clone our repo locally you can paste the following command in your preferred terminal:
 
-<pre>https://github.com/VVValchanova23/AlertOne.git</pre>
+<pre>https://github.com/VVValchanova23/AlertUnity.git</pre>
 <hr>
  Documents 🗂<br>
-- <a href = "https://codingburgas-my.sharepoint.com/:p:/g/personal/ayaatanasov23_codingburgas_bg/IQA0Y-emWG2MSoex4YxSK_xwAYhV2flob6ZN46oWMbXmW-M?e=rlHOBd"> Presentation </a><br>
-- <a href = "https://codingburgas-my.sharepoint.com/:w:/g/personal/ayaatanasov23_codingburgas_bg/IQAdLyew9Wf1R4GMf6p3v_oNAS2DUhq4-lx2WWE8maN9sKU?e=PfrDeN"> Documentation </a><br>
-- <a href = "https://codingburgas-my.sharepoint.com/:x:/g/personal/ayaatanasov23_codingburgas_bg/IQCuW41tYSWVRK_n9x0RMb2RAWKMYTBQx-0I-haH4iyfR-A?e=3UK1rB"> QA </a><br>
+- <a href = "https://codingburgas-my.sharepoint.com/:w:/g/personal/ihnoneva24_codingburgas_bg/IQBSmx-QzVDmRK-piQQwRDBUAbE9By_pdrPNwBJZwD4QHfE?e=M5AeIg"> Presentation </a><br>
+- <a href = "https://codingburgas-my.sharepoint.com/:w:/g/personal/ihnoneva24_codingburgas_bg/IQBSmx-QzVDmRK-piQQwRDBUAbE9By_pdrPNwBJZwD4QHfE?e=FrbLZ5"> Documentation </a><br>'
 
 <hr>
- 👩🏽‍💻👩🏽‍💻Our Team👩🏽‍💻🧑🏽‍💻<br>
+ 👩🏽‍💻Our Team👩🏽‍💻<br>
 - <a href = "https://github.com/VVValchanova23"> Valeria Valchanova </a><br>
 - <a href = "https://github.com/IHNoneva24">Iveta Noneva</a><br>
