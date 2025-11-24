@@ -7,7 +7,7 @@ class Config:
     PORT = int(os.getenv('PORT', 5000))
     
     
-    FIREBASE_CREDENTIALS_PATH = os.path.join(os.path.dirname(__file__), "firebase.json")
+    FIREBASE_CREDENTIALS_PATH = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
     
     CACHE_ENABLED = True
     
