@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>AlertUnity</title>
@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
   
+  <script src="script/i18n.js"></script>
 </head>
 
 <body>
@@ -19,7 +20,7 @@
     
     <a href="pages/fire.html" class="photo">
       <div class="carousel-item item-1">
-        <h1 id="fire-text">FIRE</h1>
+        <h1 id="fire-text" data-i18n="carousel.fire">FIRE</h1>
         <a href="#item-4" class="arrow-prev arrow"></a>
         <a href="#item-2" class="arrow-next arrow"></a>
       </div>
@@ -27,7 +28,7 @@
 
     <a href="pages/flood.html" class="photo">
       <div class="carousel-item item-2">
-        <h1 id="flood-text">FLOOD</h1>
+        <h1 id="flood-text" data-i18n="carousel.flood">FLOOD</h1>
         <a href="#item-1" class="arrow-prev arrow"></a>
         <a href="#item-3" class="arrow-next arrow"></a>
       </div>
@@ -35,7 +36,7 @@
 
     <a href="pages/earthquake.html" class="photo">
       <div class="carousel-item item-3">
-        <h1 id="earthquake-text">EARTHQUAKE</h1>
+        <h1 id="earthquake-text" data-i18n="carousel.earthquake">EARTHQUAKE</h1>
         <a href="#item-2" class="arrow-prev arrow"></a>
         <a href="#item-4" class="arrow-next arrow"></a>
       </div>
@@ -43,13 +44,12 @@
     
     <a href="pages/hurricane.html" class="photo">
       <div class="carousel-item item-4">
-        <h1 id="hurricane-text">HURRICANE</h1>
+        <h1 id="hurricane-text" data-i18n="carousel.hurricane">HURRICANE</h1>
         <a href="#item-3" class="arrow-prev arrow"></a>
         <a href="#item-1" class="arrow-next arrow"></a>
       </div>
     </a>
-
   </div>
-  
+
 </body>
 </html>
