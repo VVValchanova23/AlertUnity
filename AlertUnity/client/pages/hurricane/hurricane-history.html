@@ -6,19 +6,18 @@
     <title>AlertUnity - Hurricane History</title>
     <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
     <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/dark/main.css">
-
     <link rel="stylesheet" href="../../styles/landing.css">
     <link rel="stylesheet" href="../../styles/hurricane/hurricane-history.css">
     <link rel="stylesheet" href="../../styles/global.css">
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.js"></script>
     <script src="https://js.arcgis.com/4.28/"></script>
-
     <script type="module" src="../../script/role-redirect.js"></script>
     <script src="../../script/hurricane/hurricane-history.js"></script>
     <script type="module" src="../../script/current-user.js"></script>
     <script src="../../script/hurricane/hurricane.js"></script>
-
+    
+    <!-- Translation System -->
+    <script src="../../script/i18n.js"></script>
 </head>
 <body>
     <div id="container">
@@ -28,55 +27,50 @@
                     <div class="logo-icon-nav"><img src="../../assets/logo-small-white.png" class="logo-icon"></div>
                     <div class="logo-text">AlertUnity</div>
                 </div>
-
                 <ul class="nav-links">
-                    <li><a href="../hurricane.html">Home</a></li>
-                    <li><a href="hurricane-report.html">Report</a></li>
-                    <li><a href="map.html">Live Map</a></li>
-                    <li><a href="#" class="active">History</a></li>
-                    <li><a href="ocean-map.html">Ocean Winds</a></li>
-                    <li><a href="wind-map.html">Wind Map</a></li>
-                    <li><a href="../disasters/contact.html">Contact</a></li>
+                    <li><a href="../hurricane.html" data-i18n="nav.home">Home</a></li>
+                    <li><a href="hurricane-report.html" data-i18n="nav.reportHurricane">Report</a></li>
+                    <li><a href="map.html" data-i18n="nav.liveMap">Live Map</a></li>
+                    <li><a href="#" class="active" data-i18n="nav.history">History</a></li>
+                    <li><a href="ocean-map.html" data-i18n="nav.oceanWinds">Ocean Winds</a></li>
+                    <li><a href="wind-map.html" data-i18n="nav.windMap">Wind Map</a></li>
+                    <li><a href="../disasters/contact.html" data-i18n="nav.contact">Contact</a></li>
                 </ul>
-
                 <div class="nav-cta">
-                    <a href="#" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-                    <a href="#" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                    <a href="#" class="btn-nav btn-secondary" style="visibility: hidden;" data-i18n="nav.signIn">Sign In</a>
+                    <a href="#" class="btn-nav btn-primary" style="visibility: hidden;" data-i18n="nav.joinNow">Join Now</a>
                 </div>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                     <span class="theme-icon"><i class="fa-solid fa-moon"></i></span>
                 </button>
-
                 <button class="mobile-toggle">☰</button>
             </div>
         </nav>
         
         <div id="viewDiv">            
             <div class="info-panel" id="infoPanel">
-                <h3>Hurricane Details</h3>
+                <h3 data-i18n="hurricane.history.hurricaneDetails">Hurricane Details</h3>
                 <div class="info-item">
-                    <div class="info-label">Name</div>
+                    <div class="info-label" data-i18n="hurricane.history.name">Name</div>
                     <div class="info-value" id="hurricaneName">-</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label">Season</div>
+                    <div class="info-label" data-i18n="hurricane.history.season">Season</div>
                     <div class="info-value" id="hurricaneSeason">-</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label">Max Wind Speed</div>
+                    <div class="info-label" data-i18n="hurricane.history.maxWind">Max Wind Speed</div>
                     <div class="info-value" id="hurricaneWind">-</div>
                 </div>
             </div>
-
             <div class="nav-buttons">
-                <button class="nav-btn" onclick="goToPacific()">Pacific</button>
-                <button class="nav-btn" onclick="goToAtlantic()">Atlantic</button>
+                <button class="nav-btn" onclick="goToPacific()" data-i18n="hurricane.history.pacific">Pacific</button>
+                <button class="nav-btn" onclick="goToAtlantic()" data-i18n="hurricane.history.atlantic">Atlantic</button>
                 <button class="nav-btn btn" id="exploreBtn" onclick="toggleExplore()" disabled>
-                    <span>🔍</span> Explore Hurricanes
+                    <span>🔍</span> <span data-i18n="hurricane.history.exploreHurricanes">Explore Hurricanes</span>
                 </button>
             </div>
         </div>
     </div>
-
 </body>
 </html>

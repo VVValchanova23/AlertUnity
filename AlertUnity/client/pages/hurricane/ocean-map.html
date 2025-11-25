@@ -18,6 +18,9 @@
     <script type="module" src="../../script/current-user.js"></script>
     <script type="module" src="../../script/role-redirect.js"></script>
     <script src="../../script/hurricane/hurricane.js"></script>
+    
+    <!-- Translation System -->
+    <script src="../../script/i18n.js"></script>
   </head>
 
   <body class="calcite-mode-dark">
@@ -30,18 +33,18 @@
           </div>
 
           <ul class="nav-links">
-              <li><a href="../hurricane.html">Home</a></li>
-              <li><a href="hurricane-report.html">Report</a></li>
-              <li><a href="map.html">Live Map</a></li>
-              <li><a href="hurricane-history.html">History</a></li>
-              <li><a href="#" class="active">Ocean Winds</a></li>
-              <li><a href="wind-map.html">Wind Map</a></li>
-              <li><a href="../disasters/contact.html">Contact</a></li>
+              <li><a href="../hurricane.html" data-i18n="nav.home">Home</a></li>
+              <li><a href="hurricane-report.html" data-i18n="nav.reportHurricane">Report</a></li>
+              <li><a href="map.html" data-i18n="nav.liveMap">Live Map</a></li>
+              <li><a href="hurricane-history.html" data-i18n="nav.history">History</a></li>
+              <li><a href="#" class="active" data-i18n="nav.oceanWinds">Ocean Winds</a></li>
+              <li><a href="wind-map.html" data-i18n="nav.windMap">Wind Map</a></li>
+              <li><a href="../disasters/contact.html" data-i18n="nav.contact">Contact</a></li>
           </ul>
 
           <div class="nav-cta">
-            <a href="#" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-            <a href="#" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+            <a href="#" class="btn-nav btn-secondary" style="visibility: hidden;" data-i18n="nav.signIn">Sign In</a>
+            <a href="#" class="btn-nav btn-primary" style="visibility: hidden;" data-i18n="nav.joinNow">Join Now</a>
           </div>
           <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
             <span class="theme-icon"><i class="fa-solid fa-moon"></i></span>
@@ -59,9 +62,9 @@
           </arcgis-expand>
           <arcgis-expand slot="top-right" expand-icon="sliders-horizontal">
             <calcite-card id="controls" class="calcite-mode-dark">
-              <div slot="title">Flow Controls</div>
+              <div slot="title" data-i18n="ocean.flowControls">Flow Controls</div>
               <calcite-label>
-                Trail width
+                <span data-i18n="ocean.trailWidth">Trail width</span>
                 <calcite-slider
                   id="trailWidth"
                   min="0.1"
@@ -71,7 +74,7 @@
                   label-handles></calcite-slider>
               </calcite-label>
               <calcite-label>
-                Trail length
+                <span data-i18n="ocean.trailLength">Trail length</span>
                 <calcite-slider
                   id="trailLength"
                   min="0.1"
@@ -80,7 +83,7 @@
                   label-handles></calcite-slider>
               </calcite-label>
               <calcite-label>
-                Density
+                <span data-i18n="ocean.density">Density</span>
                 <calcite-slider
                   id="density"
                   min="0.1"
@@ -90,7 +93,7 @@
                   label-handles></calcite-slider>
               </calcite-label>
               <calcite-label>
-                Flow speed
+                <span data-i18n="ocean.flowSpeed">Flow speed</span>
                 <calcite-slider
                   id="flowSpeed"
                   min="0.1"
@@ -100,7 +103,7 @@
                   label-handles></calcite-slider>
               </calcite-label>
               <calcite-label>
-                Maximum path length
+                <span data-i18n="ocean.maxPathLength">Maximum path length</span>
                 <calcite-slider
                   id="maxPathLength"
                   min="0.1"
@@ -109,21 +112,21 @@
                   label-handles></calcite-slider>
               </calcite-label>
               <calcite-label>
-                Flow representation
+                <span data-i18n="ocean.flowRepresentation">Flow representation</span>
                 <calcite-segmented-control id="flowRepresentation">
-                  <calcite-segmented-control-item value="flow-to">To</calcite-segmented-control-item>
-                  <calcite-segmented-control-item value="flow-from" checked>From</calcite-segmented-control-item>
+                  <calcite-segmented-control-item value="flow-to" data-i18n="ocean.to">To</calcite-segmented-control-item>
+                  <calcite-segmented-control-item value="flow-from" checked data-i18n="ocean.from">From</calcite-segmented-control-item>
                 </calcite-segmented-control>
               </calcite-label>
               <calcite-label>
-                Cap style
+                <span data-i18n="ocean.capStyle">Cap style</span>
                 <calcite-segmented-control id="trailCap">
-                  <calcite-segmented-control-item value="butt" checked>Butt</calcite-segmented-control-item>
-                  <calcite-segmented-control-item value="round">Round</calcite-segmented-control-item>
+                  <calcite-segmented-control-item value="butt" checked data-i18n="ocean.butt">Butt</calcite-segmented-control-item>
+                  <calcite-segmented-control-item value="round" data-i18n="ocean.round">Round</calcite-segmented-control-item>
                 </calcite-segmented-control>
               </calcite-label>
               <calcite-label>
-                Effects enabled
+                <span data-i18n="ocean.effectsEnabled">Effects enabled</span>
                 <calcite-checkbox id="effectsEnabled" checked></calcite-checkbox>
               </calcite-label>
             </calcite-card>

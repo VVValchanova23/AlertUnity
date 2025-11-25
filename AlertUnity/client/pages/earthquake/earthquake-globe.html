@@ -11,8 +11,11 @@
     <link rel="stylesheet" href="../../styles/landing.css">
     <link rel="stylesheet" href="../../styles/earthquake/earthquake-globe.css">
 
+    <script src="../../script/i18n.js"></script>
     <script type="module" src="../../script/current-user.js"></script>
     <script type="module" src="../../script/role-redirect.js"></script>
+    
+    
     <script src="../../script/earthquake/earthquake.js"></script>
 </head>
 <body>
@@ -25,16 +28,16 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="../earthquake.html">Home</a></li>
-                <li><a href="earthquake-report.html">Report an Earthquake</a></li>
-                <li><a href="map.html">Live Map</a></li>
-                <li><a href="#" class="active">History</a></li>
-                <li><a href="../disasters/contact.html">Contact</a></li>
+                <li><a href="../earthquake.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="earthquake-report.html" data-i18n="nav.reportEarthquake">Report an Earthquake</a></li>
+                <li><a href="map.html" data-i18n="nav.liveMap">Live Map</a></li>
+                <li><a href="#" class="active" data-i18n="nav.history">History</a></li>
+                <li><a href="../disasters/contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
 
             <div class="nav-cta">
-                <a href="../disasters/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-                <a href="../disasters/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                <a href="../disasters/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;" data-i18n="nav.signIn">Sign In</a>
+                <a href="../disasters/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;" data-i18n="nav.joinNow">Join Now</a>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <span class="theme-icon"><i class="fa-solid fa-moon"></i></span>
@@ -47,50 +50,47 @@
     <div id="viewDiv"></div>
     
     <div class="search-panel">
-        
         <form id="searchForm">
             <div class="form-group">
-                <label for="country">Country (optional)</label>
-                <input type="text" id="country" placeholder="e.g., Japan, Chile, USA">
+                <label for="country" data-i18n="earthquake.history.country">Country (optional)</label>
+                <input type="text" id="country" placeholder="e.g., Japan, Chile, USA" data-i18n-placeholder="earthquake.history.countryPlaceholder">
             </div>
         
             <div class="form-group">
-                <label for="minMagnitude">Minimum Magnitude</label>
+                <label for="minMagnitude" data-i18n="earthquake.history.minMagnitude">Minimum Magnitude</label>
                 <input type="number" id="minMagnitude" min="0" max="10" step="0.1" value="4.5">
             </div>
         
             <div class="form-group">
-                <label for="days">Time Range (days)</label>
-                
+                <label for="days" data-i18n="earthquake.history.timeRange">Time Range (days)</label>
                 <select id="days">
-                    <option value="1">Last 24 hours</option>
-                    <option value="7" selected>Last 7 days</option>
-                    <option value="30">Last 30 days</option>
+                    <option value="1" data-i18n="earthquake.history.last24hours">Last 24 hours</option>
+                    <option value="7" selected data-i18n="earthquake.history.last7days">Last 7 days</option>
+                    <option value="30" data-i18n="earthquake.history.last30days">Last 30 days</option>
                 </select>
             </div>
         
             <div class="form-group">
-                <label for="limit">Max Results</label>
+                <label for="limit" data-i18n="earthquake.history.maxResults">Max Results</label>
                 <input type="number" id="limit" min="10" max="1000" step="10" value="100">
             </div>
         
-            <button type="submit" class="btn">Search Earthquakes</button>
+            <button type="submit" class="btn" data-i18n="earthquake.history.searchEarthquakes">Search Earthquakes</button>
         </form>
     </div>
 
     <div class="info-panel" id="infoPanel" style="display: none;">
-        <h3 id="infoTitle">Earthquake Details</h3>
-
+        <h3 id="infoTitle" data-i18n="earthquake.history.earthquakeDetails">Earthquake Details</h3>
         <p id="infoMagnitude"></p>
         <p id="infoLocation"></p>
         <p id="infoTime"></p>
         <p id="infoDepth"></p>
     </div>
 
-    <div class="loading" id="loading">Loading earthquakes...</div>
+    <div class="loading" id="loading" data-i18n="earthquake.history.loading">Loading earthquakes...</div>
 
     <div class="biggest-earthquakes" id="biggestEarthquakes">
-        <h3>Biggest Earthquakes</h3>
+        <h3 data-i18n="earthquake.history.biggestEarthquakes">Biggest Earthquakes</h3>
         <div id="earthquakeList"></div>
     </div>
     

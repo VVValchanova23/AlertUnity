@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/disasters/auth.css">
 
+    <script src="../../script/i18n.js"></script>
     <script type="module" src="../../script/current-user.js"></script>
-    <script type="module" src="../../script/disasters/sign-up.js"></script> 
+    <script type="module" src="../../script/disasters/sign-up.js"></script>
+    
 </head>
 <body>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -28,59 +30,61 @@
         <form id="signUpForm">
             <div class="form-row">
                 <div class="form-group">
-                    <input type="text" id="firstName" placeholder="First Name" required>
+                    <input type="text" id="firstName" placeholder="First Name" required data-i18n-placeholder="auth.firstName">
                 </div>
                 <div class="form-group">
-                    <input type="text" id="lastName" placeholder="Last Name" required>
+                    <input type="text" id="lastName" placeholder="Last Name" required data-i18n-placeholder="auth.lastName">
                 </div>
             </div>
             
             <div class="form-row">
                 <div class="form-group">
-                    <input type="email" id="signupEmail" placeholder="Email Address" required>
+                    <input type="email" id="signupEmail" placeholder="Email Address" required data-i18n-placeholder="auth.emailAddress">
                 </div>
                 <div class="form-group">
-                    <input type="tel" id="phone" placeholder="Phone Number" required>
+                    <input type="tel" id="phone" placeholder="Phone Number" required data-i18n-placeholder="auth.phoneNumber">
                 </div>
             </div>
             
             <div class="form-group">
                 <select id="role" required>
-                    <option value="">Select Your Role</option>
-                    <option value="citizen">Citizen Reporter</option>
-                    <option value="firefighter">Firefighter</option>
+                    <option value="" data-i18n="auth.selectRole">Select Your Role</option>
+                    <option value="citizen" data-i18n="auth.citizenReporter">Citizen Reporter</option>
+                    <option value="firefighter" data-i18n="auth.firefighter">Firefighter</option>
                 </select>
             </div>
             <div class="form-group" id="regionGroup" style="display:none;">
-                <select id="region" >
-                    <option value="">Select Region</option>
-                    <option value="northwestern">Northwestern region</option>
-                    <option value="northern">Northern Region</option>
-                    <option value="northeastern">Northeastern Region</option>
-                    <option value="southwestern">Southwestern Region</option>
-                    <option value="southern">Southern Region</option>
-                    <option value="southeastern">Southeastern Region</option>
+                <select id="region">
+                    <option value="" data-i18n="auth.selectRegion">Select Region</option>
+                    <option value="northwestern" data-i18n="region.northwestern">Northwestern region</option>
+                    <option value="northern" data-i18n="region.northern">Northern Region</option>
+                    <option value="northeastern" data-i18n="region.northeastern">Northeastern Region</option>
+                    <option value="southwestern" data-i18n="region.southwestern">Southwestern Region</option>
+                    <option value="southern" data-i18n="region.southern">Southern Region</option>
+                    <option value="southeastern" data-i18n="region.southeastern">Southeastern Region</option>
                 </select>
             </div>
             
             <div class="form-row">
                 <div class="form-group password-group">
-                    <input type="password" id="password" placeholder="Create Password" required>
+                    <input type="password" id="password" placeholder="Create Password" required data-i18n-placeholder="auth.createPassword">
                 </div>
                 <div class="form-group password-group">
-                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required data-i18n-placeholder="auth.confirmPassword">
                 </div>
             </div>
             
-            <button type="submit" class="primary-btn">Create Account</button>
+            <button type="submit" class="primary-btn" data-i18n="auth.createAccount">Create Account</button>
             
         </form>
         <div class="auth-link">
-            Already have an account? <a href="sign-in.html">Sign in here</a>
+            <span data-i18n="auth.hasAccount">Already have an account?</span> <a href="sign-in.html" data-i18n="auth.signInHere">Sign in here</a>
         </div>
     </div>
     <div class="auth-footer">
-        <div>Join over <span class="highlight">2M</span> emergency responders worldwide</div>
+        <div>
+            <span data-i18n="auth.joinResponders">Join over</span> <span class="highlight">2M</span> <span data-i18n="auth.respondersWorldwide">emergency responders worldwide</span>
+        </div>
         <div class="user-avatars">
             <div class="avatar"></div>
             <div class="avatar"></div>

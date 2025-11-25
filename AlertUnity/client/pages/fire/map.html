@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="../../styles/fire/map.css">
     <link rel="stylesheet" href="../../styles/landing.css">
     
+    <script src="../../script/i18n.js"></script>
     <script type="module" src="../../script/current-user.js"></script>
     <script type="module" src="../../script/role-redirect.js"></script>
+    
 </head>
 <body>
     <nav class="navbar" id="navbar">
@@ -24,17 +26,17 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="../fire.html">Home</a></li>
-                <li><a href="fire-report.html">Report Fire</a></li>
-                <li><a href="#" class="active">Live Map</a></li>
-                <li><a href="fire-history.html">History</a></li>
-                <li><a href="report-history.html">Reports</a></li>
-                <li><a href="../disasters/contact.html">Contact</a></li>
+                <li><a href="../fire.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="fire-report.html" data-i18n="nav.reportFire">Report Fire</a></li>
+                <li><a href="#" class="active" data-i18n="nav.liveMap">Live Map</a></li>
+                <li><a href="fire-history.html" data-i18n="nav.history">History</a></li>
+                <li><a href="report-history.html" data-i18n="nav.reports">Reports</a></li>
+                <li><a href="../disasters/contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
 
             <div class="nav-cta">
-                <a href="../disasters/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-                <a href="../disasters/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                <a href="../disasters/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;" data-i18n="nav.signIn">Sign In</a>
+                <a href="../disasters/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;" data-i18n="nav.joinNow">Join Now</a>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <span class="theme-icon">🌙</span>
@@ -48,44 +50,44 @@
         <div id="map"></div>
         
         <div class="map-overlay">
-            <h2>🔥 Live Fire Activity</h2>
+            <h2 data-i18n="map.liveActivity.fire">🔥 Live Fire Activity</h2>
             <div class="fire-stats">
                 <div class="stat-item">
-                    <span class="stat-label">Active Fires</span>
+                    <span class="stat-label" data-i18n="map.activeFires">Active Fires</span>
                     <span class="stat-value" id="activeCount">0</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-label">High Priority</span>
+                    <span class="stat-label" data-i18n="map.highPriority">High Priority</span>
                     <span class="stat-value" id="highCount">0</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-label">Updated: </span>
+                    <span class="stat-label" data-i18n="map.updated">Updated: </span>
                     <span class="stat-value" id="lastUpdate">--:--</span>
                 </div>
             </div>
             
             <div class="legend">
-                <h3>Fire Severity</h3>
+                <h3 data-i18n="map.severity">Fire Severity</h3>
                 <div class="legend-item">
                     <div class="legend-dot high"></div>
-                    <span>High Risk</span>
+                    <span data-i18n="map.highRisk">High Risk</span>
                 </div>
                 <div class="legend-item">
                     <div class="legend-dot medium"></div>
-                    <span>Medium Risk</span>
+                    <span data-i18n="map.mediumRisk">Medium Risk</span>
                 </div>
                 <div class="legend-item">
                     <div class="legend-dot low"></div>
-                    <span>Low Risk</span>
+                    <span data-i18n="map.lowRisk">Low Risk</span>
                 </div>
             </div>
         </div>
 
         <div class="controls">
-            <button class="control-btn all-btn active">All Fires</button>
-            <button class="control-btn high-btn">High Risk Only</button>
-            <button class="control-btn recent-btn">Last 24h</button>
-            <button class="control-btn refresh-btn">🔄 Refresh</button>
+            <button class="control-btn all-btn active" data-i18n="map.allFires">All Fires</button>
+            <button class="control-btn high-btn" data-i18n="map.highRiskOnly">High Risk Only</button>
+            <button class="control-btn recent-btn" data-i18n="map.last24h">Last 24h</button>
+            <button class="control-btn refresh-btn">🔄 <span data-i18n="map.refresh">Refresh</span></button>
         </div>
 
     </div>

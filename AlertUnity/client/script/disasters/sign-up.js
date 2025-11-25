@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
     };
 
-    roleSelect.innerHTML = `<option value="">Select Your Role</option>`;
+    roleSelect.innerHTML = `<option value="" data-i18n="auth.selectRole">Select Your Role</option>`;
     DISASTER_ROLE_MAP[disaster].forEach(role => {
         const opt = document.createElement("option");
         opt.value = role.value;

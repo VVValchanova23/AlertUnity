@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="../../styles/disasters/auth.css">
     
     <script type="module" src="../../script/current-user.js"></script>
-    <script type="module" src="../../script/disasters/sign-in.js"></script>    
+    <script type="module" src="../../script/disasters/sign-in.js"></script>
+    
+    <!-- Translation System -->
+    <script src="../../script/i18n.js"></script>
 </head>
 <body>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -28,27 +31,29 @@
 
         <form id="signInForm">
             <div class="form-group">
-                <input type="email" id="email" placeholder="Email" required>
+                <input type="email" id="email" placeholder="Email" required data-i18n-placeholder="auth.email">
             </div>
 
             <div class="form-group password-group">
-                <input type="password" id="password" placeholder="Password" required>
+                <input type="password" id="password" placeholder="Password" required data-i18n-placeholder="auth.password">
             </div>
 
             
             <div class="password-links">
-                <a href="change-pass.html" class="change-link">Change Password</a>
+                <a href="change-pass.html" class="change-link" data-i18n="auth.changePassword">Change Password</a>
             </div>
-            <button type="submit" class="primary-btn">Sign In</button>
+            <button type="submit" class="primary-btn" data-i18n="auth.signIn">Sign In</button>
         </form>
 
         <div class="auth-link">
-            Don't have an account? <a href="sign-up.html">Register for emergency alerts!</a>
+            <span data-i18n="auth.noAccount">Don't have an account?</span> <a href="sign-up.html" data-i18n="auth.registerAlert">Register for emergency alerts!</a>
         </div>
     </div>
 
     <div class="auth-footer">
-        <div>Join over <span class="highlight">2M</span> emergency responders worldwide</div>
+        <div>
+            <span data-i18n="auth.joinResponders">Join over</span> <span class="highlight">2M</span> <span data-i18n="auth.respondersWorldwide">emergency responders worldwide</span>
+        </div>
         <div class="user-avatars">
             <div class="avatar"></div>
             <div class="avatar"></div>

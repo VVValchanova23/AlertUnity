@@ -1,4 +1,3 @@
-
 import { auth } from "../data/firebase-config.js";
 
 function animateText(element, text, delay = 60) {
@@ -38,6 +37,25 @@ function animateText(element, text, delay = 60) {
     });
 }
 
+function getTranslation(key) {
+    const currentLang = localStorage.getItem('language') || 'en';
+    return translations?.[currentLang]?.[key] || key;
+}
+
+function translateDynamicContent() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const translation = getTranslation(key);
+        if (translation) {
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.placeholder = translation;
+            } else {
+                el.textContent = translation;
+            }
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const navCta = document.querySelector('.nav-cta');
 
@@ -47,9 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (user) {
             const username = user.email.split('@')[0];
             
+            const logoutText = getTranslation('common.logout');
+            
             navCta.innerHTML = `
                 <span class="user-greeting" style="opacity: 0; margin-right: 1rem;"></span>
-                <a href="#" id="logoutBtn" class="btn-nav btn-secondary">Log out</a>
+                <a href="#" id="logoutBtn" class="btn-nav btn-secondary">${logoutText}</a>
             `;
             
             const greetingElement = navCta.querySelector('.user-greeting');
@@ -70,10 +90,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         else {
+            const signInText = getTranslation('nav.signIn');
+            const joinNowText = getTranslation('nav.joinNow');
+            
             navCta.innerHTML = `
-                <a href="/pages/disasters/sign-in.html" class="btn-nav btn-secondary">Sign In</a>
-                <a href="/pages/disasters/sign-up.html" class="btn-nav btn-primary">Join Now</a>
+                <a href="/pages/disasters/sign-in.html" class="btn-nav btn-secondary" data-i18n="nav.signIn">${signInText}</a>
+                <a href="/pages/disasters/sign-up.html" class="btn-nav btn-primary" data-i18n="nav.joinNow">${joinNowText}</a>
             `;
+        }
+    });
+    
+    window.addEventListener('languageChanged', () => {
+        translateDynamicContent();
+        
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.textContent = getTranslation('common.logout');
         }
     });
 });

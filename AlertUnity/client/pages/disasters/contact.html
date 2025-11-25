@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AleartUnity - Contact Us</title>
+    <title>AlertUnity - Contact Us</title>
     <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="../../styles/landing.css">
     <link rel="stylesheet" href="../../styles/disasters/contact.css">
 
+    <script src="../../script/i18n.js"></script>
     <script type="module" src="../../script/current-user.js"></script>
+    
 </head>
 <body>
     <div class="fire-particles" id="fireParticles"></div>
@@ -23,17 +25,17 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="../../index.html">Select a disaster</a></li>
-                <li><a href="../fire.html">Fire</a></li>
-                <li><a href="../flood.html">Flood</a></li>
-                <li><a href="../earthquake.html">Earthquake</a></li>
-                <li><a href="../hurricane.html">Hurricane</a></li>
-                <li><a href="#" class="active">Contact</a></li>
+                <li><a href="../../index.html" data-i18n="nav.selectDisaster">Select a disaster</a></li>
+                <li><a href="../fire.html" data-i18n="nav.fire">Fire</a></li>
+                <li><a href="../flood.html" data-i18n="nav.flood">Flood</a></li>
+                <li><a href="../earthquake.html" data-i18n="nav.earthquake">Earthquake</a></li>
+                <li><a href="../hurricane.html" data-i18n="nav.hurricane">Hurricane</a></li>
+                <li><a href="#" class="active" data-i18n="nav.contact">Contact</a></li>
             </ul>
 
             <div class="nav-cta">
-                <a href="sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-                <a href="sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                <a href="sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;" data-i18n="nav.signIn">Sign In</a>
+                <a href="sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;" data-i18n="nav.joinNow">Join Now</a>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <span class="theme-icon">🌙</span>
@@ -45,8 +47,8 @@
 
     <section class="hero-image">
         <div class="hero-text">
-            <h1 class="hero-title">CONTACT US</h1>
-            <p>Need help? You are welcome to contact us 24 hours a day and we will answer your questions</p>
+            <h1 class="hero-title" data-i18n="contact.title">CONTACT US</h1>
+            <p data-i18n="contact.subtitle">Need help? You are welcome to contact us 24 hours a day and we will answer your questions</p>
         </div>      
     </section>
 
@@ -54,22 +56,22 @@
     <div class="features-grid">
         <div class="feature-card">
             <div class="feature-icon"><i class="fa-solid fa-map-pin"></i></div>
-            <h3 class="feature-title">VISIT US</h3>
-            <p class="feature-description">Come see us or get in touch — we're here to provide assistance, information, and support whenever you need it.</p>
-            <h3 class="feature-info">Available 24/7 Worldwide</h3>
+            <h3 class="feature-title" data-i18n="contact.visitUs">VISIT US</h3>
+            <p class="feature-description" data-i18n="contact.visitDesc">Come see us or get in touch — we're here to provide assistance, information, and support whenever you need it.</p>
+            <h3 class="feature-info" data-i18n="footer.available247">Available 24/7 Worldwide</h3>
         </div>
                 
         <div class="feature-card">
             <div class="feature-icon"><i class="fa-solid fa-phone"></i></div>
-            <h3 class="feature-title">CALL US</h3>
-            <p class="feature-description">Reach out instantly from your smartphone — share photos, GPS coordinates, and critical details to help us respond fast.</p>
+            <h3 class="feature-title" data-i18n="contact.callUs">CALL US</h3>
+            <p class="feature-description" data-i18n="contact.callDesc">Reach out instantly from your smartphone — share photos, GPS coordinates, and critical details to help us respond fast.</p>
             <h3 class="feature-info">1-800-FIRE-911</h3>
         </div>
                 
         <div class="feature-card">
             <div class="feature-icon"><i class="fa-solid fa-envelope-circle-check"></i></div>
-            <h3 class="feature-title">EMAIL US</h3>
-            <p class="feature-description">Send us an email with your questions, fire reports, or feedback. Our team will provide the help and information you need.</p>
+            <h3 class="feature-title" data-i18n="contact.emailUs">EMAIL US</h3>
+            <p class="feature-description" data-i18n="contact.emailDesc">Send us an email with your questions, fire reports, or feedback. Our team will provide the help and information you need.</p>
             <h3 class="feature-info"><a class="contact-email" href="mailto:support@codingburgas.com">support@codingburgas.com</a></h3>
         </div>
     </div>

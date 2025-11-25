@@ -25,6 +25,43 @@ const severityStyles = {
   high: { class: 'severity-high', text: 'High', emoji: '🔴' }
 };
 
+let languageManager;
+
+function initLanguageManager() {
+  languageManager = new LanguageManager();
+  applyTranslationsToDynamicContent();
+}
+
+function applyTranslationsToDynamicContent() {
+  if (!languageManager) return;
+  
+  updateStatusAndSeverityText();
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const translation = languageManager.t(key);
+    if (translation) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = translation;
+      } else {
+        el.textContent = translation;
+      }
+    }
+  });
+}
+
+function updateStatusAndSeverityText() {
+  if (!languageManager) return;
+  
+  statusStyles.active.text = languageManager.t('history.active') || 'Active';
+  statusStyles.inactive.text = languageManager.t('history.inactive') || 'Inactive';
+  statusStyles['false-alarm'].text = languageManager.t('history.falseAlarm') || 'False Alarm';
+  
+  severityStyles.low.text = languageManager.t('history.low') || 'Low';
+  severityStyles.medium.text = languageManager.t('history.medium') || 'Medium';
+  severityStyles.high.text = languageManager.t('history.high') || 'High';
+}
+
 function formatDate(timestamp) {
   if (!timestamp) return 'N/A';
   
@@ -56,7 +93,7 @@ function createTableRow(id, data) {
   row.innerHTML = `
     <td>${formatDate(data.timestamp)}</td>
     <td>${truncateText(data.location || data.address, 30)}</td>
-    <td>${data.phone || 'Anonymous'}</td>
+    <td>${data.phone || (languageManager ? languageManager.t('common.anonymous') : 'Anonymous')}</td>
     <td>
       <span class="severity-badge ${severityInfo.class}">
         ${severityInfo.emoji} ${severityInfo.text}
@@ -70,9 +107,9 @@ function createTableRow(id, data) {
     <td>${truncateText(data.description, 40)}</td>
     <td>
       <div class="action-buttons">
-        <button class="view-btn" onclick="openViewModal('${id}', ${JSON.stringify(data).replace(/"/g, '&quot;')})">👁️ View</button>
-        <button class="edit-btn" onclick="openUpdateModal('${id}', '${data.status || 'active'}')">📝 Update</button>
-        <button class="delete-btn" onclick="openDeleteModal('${id}')">🗑️ Delete</button>
+        <button class="view-btn" onclick="openViewModal('${id}', ${JSON.stringify(data).replace(/"/g, '&quot;')})" data-i18n="common.view">👁️ ${languageManager ? languageManager.t('common.view') : 'View'}</button>
+        <button class="edit-btn" onclick="openUpdateModal('${id}', '${data.status || 'active'}')" data-i18n="common.edit">📝 ${languageManager ? languageManager.t('common.edit') : 'Update'}</button>
+        <button class="delete-btn" onclick="openDeleteModal('${id}')" data-i18n="common.delete">🗑️ ${languageManager ? languageManager.t('common.delete') : 'Delete'}</button>
       </div>
     </td>
   `;
@@ -116,12 +153,12 @@ function filterReports() {
 
 async function getFeedbackFromAI() {
   if (allReports.length === 0) {
-    alert("No fire reports available for analysis.");
+    alert(languageManager ? languageManager.t('error.dataNotFound') : "No fire reports available for analysis.");
     return;
   }
 
   try {
-    feedbackBtn.textContent = "Getting AI Analysis...";
+    feedbackBtn.innerHTML = `<i class="fa-solid fa-robot"></i> ${languageManager ? languageManager.t('loading.processing') : 'Getting AI Analysis...'}`;
     feedbackBtn.disabled = true;
 
     const reportsData = allReports.map(({ data }) => {
@@ -138,12 +175,12 @@ async function getFeedbackFromAI() {
 
       return {
         timestamp: timestamp,
-        location: data.location || data.address || 'Unknown',
+        location: data.location || data.address || (languageManager ? languageManager.t('common.unknown') : 'Unknown'),
         severity: data.severity || 'low',
         status: data.status || 'active',
-        description: data.description || 'No description',
+        description: data.description || (languageManager ? languageManager.t('common.noDescription') : 'No description'),
         coords: data.coords || [null, null],
-        phone: data.phone || data.reporterPhone || 'Anonymous'
+        phone: data.phone || data.reporterPhone || (languageManager ? languageManager.t('common.anonymous') : 'Anonymous')
       };
     });
 
@@ -172,7 +209,7 @@ async function getFeedbackFromAI() {
     document.getElementById("feedbackContent").innerHTML = feedback.replace(/\n/g, '<br>');
     
     if (result.fallback) {
-      const notice = '<p style="margin-top: 20px; padding: 10px; background: #fff3cd; border-radius: 5px; font-size: 0.9em;">⚠️ <strong>Note:</strong> AI service is currently unavailable. Showing basic analysis.</p>';
+      const notice = `<p style="margin-top: 20px; padding: 10px; background: #fff3cd; border-radius: 5px; font-size: 0.9em;">⚠️ <strong>${languageManager ? languageManager.t('common.note') : 'Note'}:</strong> ${languageManager ? languageManager.t('notification.aiUnavailable') : 'AI service is currently unavailable. Showing basic analysis.'}</p>`;
       document.getElementById("feedbackContent").innerHTML += notice;
     }
     
@@ -185,102 +222,165 @@ async function getFeedbackFromAI() {
     document.getElementById("feedbackContent").innerHTML = fallbackFeedback;
     openModal("feedbackModal");
     
-    alert(`Error: ${error.message}. Showing basic analysis instead.`);
+    alert(`${languageManager ? languageManager.t('error.tryAgain') : 'Error'}: ${error.message}. ${languageManager ? languageManager.t('notification.showingBasic') : 'Showing basic analysis instead.'}`);
   } finally {
-    feedbackBtn.textContent = "🤖 Get AI Feedback";
+    feedbackBtn.innerHTML = `<i class="fa-solid fa-robot"></i> ${languageManager ? languageManager.t('fireReport.getAIFeedback') : 'Get AI Feedback'}`;
     feedbackBtn.disabled = false;
   }
 }
 
-onAuthStateChanged(auth, async () => {
-  try {
-    const reportsSnapshot = await getDocs(collection(db, "fires"));
-    allReports = [];
-    
-    reportsSnapshot.forEach(docSnap => {
-      allReports.push({
-        id: docSnap.id,
-        data: docSnap.data()
-      });
-    });
+function generateLocalFallbackFeedback() {
+  const totalReports = allReports.length;
+  const highSeverity = allReports.filter(r => r.data.severity === 'high').length;
+  const activeReports = allReports.filter(r => r.data.status === 'active').length;
+  
+  return `
+    <h3>${languageManager ? languageManager.t('history.aiFeedback') : 'AI Fire Prediction Analysis'}</h3>
+    <p><strong>${languageManager ? languageManager.t('common.summary') : 'Summary'}:</strong></p>
+    <ul>
+      <li>${languageManager ? languageManager.t('common.totalReports') : 'Total Reports'}: ${totalReports}</li>
+      <li>${languageManager ? languageManager.t('common.highSeverity') : 'High Severity Reports'}: ${highSeverity}</li>
+      <li>${languageManager ? languageManager.t('common.activeReports') : 'Active Reports'}: ${activeReports}</li>
+    </ul>
+    <p><strong>${languageManager ? languageManager.t('common.recommendations') : 'Recommendations'}:</strong></p>
+    <p>${languageManager ? languageManager.t('ai.fallbackMessage') : 'Based on the current data, consider monitoring high-severity reports closely and ensure emergency services are prepared for rapid response.'}</p>
+  `;
+}
 
-    allReports.sort((a, b) => {
-      const dateA = a.data.timestamp?.toDate?.() || new Date(a.data.timestamp) || new Date(0);
-      const dateB = b.data.timestamp?.toDate?.() || new Date(b.data.timestamp) || new Date(0);
-      return dateB - dateA;
-    });
-
-    loadReports();
-
-  } catch (error) {
-    console.error("Error loading fire reports:", error);
-    alert("Error loading fire report data. Please refresh the page.");
-  }
-});
-
-searchInput.addEventListener("input", filterReports);
-statusFilter.addEventListener("change", filterReports);
-severityFilter.addEventListener("change", filterReports);
-feedbackBtn.addEventListener("click", getFeedbackFromAI);
-
-exportBtn.addEventListener("click", () => {
-  try {
-    const doc = new window.jspdf.jsPDF();
-    
-    const visibleRows = Array.from(table.querySelectorAll("tbody tr"))
-      .filter(row => row.style.display !== "none")
-      .map(tr => {
-        const cells = Array.from(tr.children).slice(0, -1);
-        return cells.map((td, index) => {
-          let text = td.innerText || td.textContent;
-          // Remove all emojis from text
-          text = text.replace(/[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F7E2}]|[\u{1F7E1}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]|[\u{1F900}-\u{1F9FF}]|[\u{1FA70}-\u{1FAFF}]|[\u{FE00}-\u{FE0F}]|[\u{1F000}-\u{1F02F}]|[\u{1F0A0}-\u{1F0FF}]|[\u{1F100}-\u{1F64F}]|[\u{1F910}-\u{1F96B}]|[\u{1F980}-\u{1F9E0}]/gu, '').trim();
-          return text.trim();
+document.addEventListener("DOMContentLoaded", () => {
+  initLanguageManager();
+  
+  onAuthStateChanged(auth, async () => {
+    try {
+      const reportsSnapshot = await getDocs(collection(db, "fires"));
+      allReports = [];
+      
+      reportsSnapshot.forEach(docSnap => {
+        allReports.push({
+          id: docSnap.id,
+          data: docSnap.data()
         });
       });
-    
-    const headers = Array.from(table.querySelectorAll("thead th"))
-      .slice(0, -1).map(th => th.innerText);
-    
-    doc.setFontSize(18);
-    doc.text('AlertUnity - Fire Reports History', 14, 15);
-    
-    doc.setFontSize(10);
-    doc.text(`Generated on: ${new Date().toLocaleString()}`, 14, 25);
-    doc.text(`Total Reports: ${visibleRows.length}`, 14, 30);
-    
-    doc.autoTable({ 
-      head: [headers], 
-      body: visibleRows,
-      startY: 40,
-      theme: 'grid',
-      headStyles: { 
-        fillColor: [220, 20, 60],
-        textColor: [255, 255, 255],
-        fontStyle: 'bold'
-      },
-      styles: { 
-        fontSize: 8,
-        cellPadding: 2
-      },
-      alternateRowStyles: {
-        fillColor: [245, 245, 245]
-      },
-      columnStyles: {
-        0: { cellWidth: 25 },
-        1: { cellWidth: 30 },
-        2: { cellWidth: 25 },
-        3: { cellWidth: 20 },
-        4: { cellWidth: 20 },
-        5: { cellWidth: 40 }
+
+      allReports.sort((a, b) => {
+        const dateA = a.data.timestamp?.toDate?.() || new Date(a.data.timestamp) || new Date(0);
+        const dateB = b.data.timestamp?.toDate?.() || new Date(b.data.timestamp) || new Date(0);
+        return dateB - dateA;
+      });
+
+      loadReports();
+
+    } catch (error) {
+      console.error("Error loading fire reports:", error);
+      alert(languageManager ? languageManager.t('error.dataNotFound') : "Error loading fire report data. Please refresh the page.");
+    }
+  });
+
+  searchInput.addEventListener("input", filterReports);
+  statusFilter.addEventListener("change", filterReports);
+  severityFilter.addEventListener("change", filterReports);
+  feedbackBtn.addEventListener("click", getFeedbackFromAI);
+
+  exportBtn.addEventListener("click", () => {
+    try {
+      const doc = new window.jspdf.jsPDF();
+      
+      const visibleRows = Array.from(table.querySelectorAll("tbody tr"))
+        .filter(row => row.style.display !== "none")
+        .map(tr => {
+          const cells = Array.from(tr.children).slice(0, -1);
+          return cells.map((td, index) => {
+            let text = td.innerText || td.textContent;
+            // Remove all emojis from text
+            text = text.replace(/[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F7E2}]|[\u{1F7E1}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]|[\u{1F900}-\u{1F9FF}]|[\u{1FA70}-\u{1FAFF}]|[\u{FE00}-\u{FE0F}]|[\u{1F000}-\u{1F02F}]|[\u{1F0A0}-\u{1F0FF}]|[\u{1F100}-\u{1F64F}]|[\u{1F910}-\u{1F96B}]|[\u{1F980}-\u{1F9E0}]/gu, '').trim();
+            return text.trim();
+          });
+        });
+      
+      const headers = Array.from(table.querySelectorAll("thead th"))
+        .slice(0, -1).map(th => th.innerText);
+      
+      doc.setFontSize(18);
+      doc.text('AlertUnity - Fire Reports History', 14, 15);
+      
+      doc.setFontSize(10);
+      doc.text(`${languageManager ? languageManager.t('common.generatedOn') : 'Generated on'}: ${new Date().toLocaleString()}`, 14, 25);
+      doc.text(`${languageManager ? languageManager.t('common.totalReports') : 'Total Reports'}: ${visibleRows.length}`, 14, 30);
+      
+      doc.autoTable({ 
+        head: [headers], 
+        body: visibleRows,
+        startY: 40,
+        theme: 'grid',
+        headStyles: { 
+          fillColor: [220, 20, 60],
+          textColor: [255, 255, 255],
+          fontStyle: 'bold'
+        },
+        styles: { 
+          fontSize: 8,
+          cellPadding: 2
+        },
+        alternateRowStyles: {
+          fillColor: [245, 245, 245]
+        },
+        columnStyles: {
+          0: { cellWidth: 25 },
+          1: { cellWidth: 30 },
+          2: { cellWidth: 25 },
+          3: { cellWidth: 20 },
+          4: { cellWidth: 20 },
+          5: { cellWidth: 40 }
+        }
+      });
+      
+      doc.save(`alertunity-fire-reports-${new Date().toISOString().split('T')[0]}.pdf`);
+    } catch (error) {
+      console.error("Error exporting PDF:", error);
+      alert(languageManager ? languageManager.t('error.tryAgain') : "Error exporting PDF. Please try again.");
+    }
+  });
+
+  window.addEventListener("click", (event) => {
+    if (event.target.classList.contains("modal")) {
+      closeModal("viewModal");
+      closeModal("updateModal");
+      closeModal("deleteModal");
+      closeModal("feedbackModal");
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeModal("viewModal");
+      closeModal("updateModal");
+      closeModal("deleteModal");
+      closeModal("feedbackModal");
+    }
+  });
+
+  document.querySelectorAll('.close').forEach(closeBtn => {
+    closeBtn.addEventListener('click', (e) => {
+      const modal = e.target.closest('.modal');
+      if (modal) {
+        closeModal(modal.id);
       }
     });
-    
-    doc.save(`alertunity-fire-reports-${new Date().toISOString().split('T')[0]}.pdf`);
-  } catch (error) {
-    console.error("Error exporting PDF:", error);
-    alert("Error exporting PDF. Please try again.");
-  }
+  });
+
+  document.querySelectorAll('.modal-btn.cancel').forEach(cancelBtn => {
+    cancelBtn.addEventListener('click', (e) => {
+      const modal = e.target.closest('.modal');
+      if (modal) {
+        closeModal(modal.id);
+      }
+    });
+  });
+
+  document.querySelector('.mobile-toggle').addEventListener('click', function() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+  });
 });
 
 function openModal(modalId) {
@@ -317,7 +417,7 @@ window.openViewModal = function(reportId, reportData) {
   statusElement.textContent = statusInfo.text;
   statusElement.className = `status-badge ${statusInfo.class}`;
   
-  document.getElementById("viewDescription").textContent = reportData.description || 'No description provided';
+  document.getElementById("viewDescription").textContent = reportData.description || (languageManager ? languageManager.t('common.noDescription') : 'No description provided');
   
   const imageGroup = document.getElementById("viewImageGroup");
   const imageElement = document.getElementById("viewImage");
@@ -348,7 +448,7 @@ document.getElementById("updateForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   
   if (!currentUpdateReportId) {
-    alert("Error: No report selected for update.");
+    alert(languageManager ? languageManager.t('error.dataNotFound') : "Error: No report selected for update.");
     return;
   }
 
@@ -356,7 +456,7 @@ document.getElementById("updateForm").addEventListener("submit", async (e) => {
 
   try {
     const submitBtn = document.querySelector("#updateForm .modal-btn.confirm");
-    submitBtn.textContent = "Updating...";
+    submitBtn.textContent = languageManager ? languageManager.t('loading.processing') : "Updating...";
     submitBtn.disabled = true;
 
     const updateData = {
@@ -366,45 +466,45 @@ document.getElementById("updateForm").addEventListener("submit", async (e) => {
 
     await updateDoc(doc(db, "fires", currentUpdateReportId), updateData);
     
-    alert("Report status updated successfully!");
+    alert(languageManager ? languageManager.t('notification.reportUpdated') : "Report status updated successfully!");
     closeModal("updateModal");
     
     location.reload();
     
   } catch (error) {
     console.error("Error updating report:", error);
-    alert("Error updating report. Please try again.");
+    alert(languageManager ? languageManager.t('error.tryAgain') : "Error updating report. Please try again.");
     
     const submitBtn = document.querySelector("#updateForm .modal-btn.confirm");
-    submitBtn.textContent = "Update Status";
+    submitBtn.textContent = languageManager ? languageManager.t('history.updateBtn') : "Update Status";
     submitBtn.disabled = false;
   }
 });
 
 window.confirmDelete = async function() {
   if (!currentDeleteReportId) {
-    alert("Error: No report selected for deletion.");
+    alert(languageManager ? languageManager.t('error.dataNotFound') : "Error: No report selected for deletion.");
     return;
   }
 
   try {
     const deleteBtn = document.querySelector("#deleteModal .modal-btn.danger");
-    deleteBtn.textContent = "Deleting...";
+    deleteBtn.textContent = languageManager ? languageManager.t('loading.processing') : "Deleting...";
     deleteBtn.disabled = true;
 
     await deleteDoc(doc(db, "fires", currentDeleteReportId));
     
-    alert("Fire report deleted successfully!");
+    alert(languageManager ? languageManager.t('notification.reportDeleted') : "Fire report deleted successfully!");
     closeModal("deleteModal");
     
     location.reload();
     
   } catch (error) {
     console.error("Error deleting report:", error);
-    alert("Error deleting report. Please try again.");
+    alert(languageManager ? languageManager.t('error.tryAgain') : "Error deleting report. Please try again.");
     
     const deleteBtn = document.querySelector("#deleteModal .modal-btn.danger");
-    deleteBtn.textContent = "Delete Report";
+    deleteBtn.textContent = languageManager ? languageManager.t('history.deleteReport') : "Delete Report";
     deleteBtn.disabled = false;
   }
 };

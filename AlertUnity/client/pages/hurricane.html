@@ -12,9 +12,11 @@
     <link rel="stylesheet" href="../styles/global.css">
     <link rel="stylesheet" href="../styles/landing.css">
     
+    <script src="../script/i18n.js"></script>
     <script type="module" src="../script/current-user.js"></script>
     <script type="module" src="../script/role-redirect.js"></script>
-    <script src="../script/hurricane/hurricane.js"></script>    
+    <script src="../script/hurricane/hurricane.js"></script>
+    
 </head>
 <body>
     <nav class="navbar" id="navbar">
@@ -25,18 +27,18 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="hurricane/hurricane-report.html">Report</a></li>
-                <li><a href="hurricane/map.html">Live Map</a></li>
-                <li><a href="hurricane/hurricane-history.html">History</a></li>
-                <li><a href="hurricane/ocean-map.html">Ocean Winds</a></li>
-                <li><a href="hurricane/wind-map.html">Wind Map</a></li>
-                <li><a href="disasters/contact.html">Contact</a></li>
+                <li><a href="#" class="active" data-i18n="nav.home">Home</a></li>
+                <li><a href="hurricane/hurricane-report.html" data-i18n="nav.reportHurricane">Report</a></li>
+                <li><a href="hurricane/map.html" data-i18n="nav.liveMap">Live Map</a></li>
+                <li><a href="hurricane/hurricane-history.html" data-i18n="nav.history">History</a></li>
+                <li><a href="hurricane/ocean-map.html" data-i18n="nav.oceanWinds">Ocean Winds</a></li>
+                <li><a href="hurricane/wind-map.html" data-i18n="nav.windMap">Wind Map</a></li>
+                <li><a href="disasters/contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
 
             <div class="nav-cta">
-                <a href="disasters/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-                <a href="disasters/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                <a href="disasters/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;" data-i18n="nav.signIn">Sign In</a>
+                <a href="disasters/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;" data-i18n="nav.joinNow">Join Now</a>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <span class="theme-icon"><i class="fa-solid fa-moon"></i></span>
@@ -48,15 +50,15 @@
 
 <section class="hero" id="home">
     <div class="hero-content">
-        <h1 class="hero-title">Protecting Communities Through Early Hurricane Warnings</h1>
-        <p class="hero-subtitle">Join thousands of responders and citizens in the world's most advanced hurricane alert network. Track storms, receive warnings, and stay safe.</p>
+        <h1 class="hero-title" data-i18n="hero.hurricane.title">Protecting Communities Through Early Hurricane Warnings</h1>
+        <p class="hero-subtitle" data-i18n="hero.hurricane.subtitle">Join thousands of responders and citizens in the world's most advanced hurricane alert network. Track storms, receive warnings, and stay safe.</p>
         <div class="hero-cta">
             <a href="hurricane/map.html" class="btn-hero btn-hero-primary">
-                Current hurricane status  
+                <span data-i18n="btn.currentStatus">Current hurricane status</span>
                 <span><i class="fa-solid fa-wind"></i></span>
             </a>
             <a href="hurricane/ocean-map.html" class="btn-hero btn-hero-secondary">
-                Ocean winds
+                <span data-i18n="btn.oceanWinds">Ocean winds</span>
                 <span><i class="fa-solid fa-people-group"></i></span>
             </a>
         </div>
@@ -67,63 +69,63 @@
     <div class="stats-container">
         <div class="stat-item">
             <div class="stat-number">500K+</div>
-            <div class="stat-label">Active Users</div>
+            <div class="stat-label" data-i18n="stats.activeUsers">Active Users</div>
         </div>
         <div class="stat-item">
             <div class="stat-number">10K+</div>
-            <div class="stat-label">Evacuations Assisted</div>
+            <div class="stat-label" data-i18n="stats.evacuationsAssisted">Evacuations Assisted</div>
         </div>
         <div class="stat-item">
             <div class="stat-number">5min</div>
-            <div class="stat-label">Average Warning Lead Time</div>
+            <div class="stat-label" data-i18n="stats.avgWarningLeadTime">Average Warning Lead Time</div>
         </div>
         <div class="stat-item">
             <div class="stat-number">99.7%</div>
-            <div class="stat-label">System Reliability</div>
+            <div class="stat-label" data-i18n="stats.systemReliability">System Reliability</div>
         </div>
     </div>
 </section>
 
 <section class="features" id="features">
     <div class="features-container">
-        <h2 class="section-title">Powerful Features for Hurricane Safety</h2>
-        <p class="section-subtitle">Our platform helps communities prepare for incoming storms with precise tracking and alerts.</p>
+        <h2 class="section-title" data-i18n="features.title.hurricane">Powerful Features for Hurricane Safety</h2>
+        <p class="section-subtitle" data-i18n="features.subtitle.hurricane">Our platform helps communities prepare for incoming storms with precise tracking and alerts.</p>
         
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon"><i class="fa-solid fa-bell"></i></div>
-                <h3 class="feature-title">Live Storm Alerts</h3>
-                <p class="feature-description">Receive instant warnings about approaching hurricanes, wind speeds, and threat levels.</p>
+                <h3 class="feature-title" data-i18n="features.realTimeAlerts">Live Storm Alerts</h3>
+                <p class="feature-description" data-i18n="features.realTimeAlerts.hurricane">Receive instant warnings about approaching hurricanes, wind speeds, and threat levels.</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                <h3 class="feature-title">Mobile Reporting</h3>
-                <p class="feature-description">Report storm damage, flooding, and strong wind incidents in real time.</p>
+                <h3 class="feature-title" data-i18n="features.mobileReporting">Mobile Reporting</h3>
+                <p class="feature-description" data-i18n="features.mobileReporting.hurricane">Report storm damage, flooding, and strong wind incidents in real time.</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon"><i class="fa-solid fa-map-location-dot"></i></div>
-                <h3 class="feature-title">Storm Tracking Maps</h3>
-                <p class="feature-description">Track hurricane paths, wind fields, and evacuation zones using interactive maps.</p>
+                <h3 class="feature-title" data-i18n="features.interactiveMaps">Storm Tracking Maps</h3>
+                <p class="feature-description" data-i18n="features.interactiveMaps.hurricane">Track hurricane paths, wind fields, and evacuation zones using interactive maps.</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon"><i class="fa-solid fa-people-group"></i></div>
-                <h3 class="feature-title">Community Network</h3>
-                <p class="feature-description">Connect with storm responders, volunteers, and local authorities during hurricanes.</p>
+                <h3 class="feature-title" data-i18n="features.communityNetwork">Community Network</h3>
+                <p class="feature-description" data-i18n="features.communityNetwork.hurricane">Connect with storm responders, volunteers, and local authorities during hurricanes.</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-                <h3 class="feature-title">AI Storm Prediction</h3>
-                <p class="feature-description">AI models analyze meteorological data to predict hurricane intensity and path.</p>
+                <h3 class="feature-title" data-i18n="features.aiDetection">AI Storm Prediction</h3>
+                <p class="feature-description" data-i18n="features.aiDetection.hurricane">AI models analyze meteorological data to predict hurricane intensity and path.</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon"><i class="fa-solid fa-chart-column"></i></div>
-                <h3 class="feature-title">Impact Analytics</h3>
-                <p class="feature-description">View storm history, forecast accuracy, and community preparedness metrics.</p>
+                <h3 class="feature-title" data-i18n="features.analyticsDashboard">Impact Analytics</h3>
+                <p class="feature-description" data-i18n="features.analyticsDashboard.hurricane">View storm history, forecast accuracy, and community preparedness metrics.</p>
             </div>
         </div>
     </div>
@@ -131,55 +133,55 @@
 
 <section class="gallery" id="gallery">
     <div class="gallery-container">
-        <h2 class="section-title">Hurricane Response in Action</h2>
-        <p class="section-subtitle">See how our platform supports communities during major storms.</p>
+        <h2 class="section-title" data-i18n="gallery.title.hurricane">Hurricane Response in Action</h2>
+        <p class="section-subtitle" data-i18n="gallery.subtitle.hurricane">See how our platform supports communities during major storms.</p>
         
         <div class="gallery-grid">
             <div class="gallery-item">
                 <div class="gallery-icon"><i class="fa-solid fa-wind"></i></div>
                 <div class="gallery-overlay">
-                    <h3 class="gallery-title">Storm Tracking</h3>
-                    <p class="gallery-description">Real-time monitoring of hurricane movement and wind intensity.</p>
+                    <h3 class="gallery-title" data-i18n="gallery.detection.hurricane">Storm Tracking</h3>
+                    <p class="gallery-description" data-i18n="gallery.detection.hurricane.desc">Real-time monitoring of hurricane movement and wind intensity.</p>
                 </div>
             </div>
             
             <div class="gallery-item">
                 <div class="gallery-icon"><i class="fa-solid fa-truck-moving"></i></div>
                 <div class="gallery-overlay">
-                    <h3 class="gallery-title">Emergency Response</h3>
-                    <p class="gallery-description">Rescue teams deployed immediately after severe storm impact.</p>
+                    <h3 class="gallery-title" data-i18n="gallery.response">Emergency Response</h3>
+                    <p class="gallery-description" data-i18n="gallery.response.hurricane">Rescue teams deployed immediately after severe storm impact.</p>
                 </div>
             </div>
             
             <div class="gallery-item">
                 <div class="gallery-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
                 <div class="gallery-overlay">
-                    <h3 class="gallery-title">Mobile Alerts</h3>
-                    <p class="gallery-description">Instant notifications reaching every person in the affected area.</p>
+                    <h3 class="gallery-title" data-i18n="gallery.alerts">Mobile Alerts</h3>
+                    <p class="gallery-description" data-i18n="gallery.alerts.hurricane">Instant notifications reaching every person in the affected area.</p>
                 </div>
             </div>
             
             <div class="gallery-item">
                 <div class="gallery-icon"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div class="gallery-overlay">
-                    <h3 class="gallery-title">Interactive Maps</h3>
-                    <p class="gallery-description">Live wind maps, storm paths, and evacuation guidance.</p>
+                    <h3 class="gallery-title" data-i18n="gallery.maps">Interactive Maps</h3>
+                    <p class="gallery-description" data-i18n="gallery.maps.hurricane">Live wind maps, storm paths, and evacuation guidance.</p>
                 </div>
             </div>
             
             <div class="gallery-item">
                 <div class="gallery-icon"><i class="fa-solid fa-people-group"></i></div>
                 <div class="gallery-overlay">
-                    <h3 class="gallery-title">Community Support</h3>
-                    <p class="gallery-description">Local communities coordinating storm readiness and support.</p>
+                    <h3 class="gallery-title" data-i18n="gallery.community">Community Support</h3>
+                    <p class="gallery-description" data-i18n="gallery.community.hurricane">Local communities coordinating storm readiness and support.</p>
                 </div>
             </div>
             
             <div class="gallery-item">
                 <div class="gallery-icon"><i class="fa-solid fa-trophy"></i></div>
                 <div class="gallery-overlay">
-                    <h3 class="gallery-title">Success Stories</h3>
-                    <p class="gallery-description">Thousands of families protected thanks to early warnings.</p>
+                    <h3 class="gallery-title" data-i18n="gallery.success">Success Stories</h3>
+                    <p class="gallery-description" data-i18n="gallery.success.hurricane">Thousands of families protected thanks to early warnings.</p>
                 </div>
             </div>
         </div>
@@ -188,15 +190,15 @@
 
 <section class="cta-section">
     <div class="cta-container">
-        <h2 class="cta-title">Stay Safe, Stay Prepared</h2>
-        <p class="cta-description">Join the Hurricane Alert Network and help protect communities from severe storms. Early preparation saves lives.</p>
+        <h2 class="cta-title" data-i18n="cta.title.hurricane">Stay Safe, Stay Prepared</h2>
+        <p class="cta-description" data-i18n="cta.description.hurricane">Join the Hurricane Alert Network and help protect communities from severe storms. Early preparation saves lives.</p>
         <div class="hero-cta">
             <a href="hurricane/sign-up.html" class="btn-hero btn-hero-primary">
-                Sign Up Now
+                <span data-i18n="btn.signUpNow">Sign Up Now</span>
                 <span><i class="fa-solid fa-rocket"></i></span>
             </a>
             <a href="disasters/features.html" class="btn-hero btn-hero-secondary">
-                Learn More
+                <span data-i18n="btn.learnMore">Learn More</span>
                 <span><i class="fa-solid fa-book"></i></span>
             </a>
         </div>
@@ -206,32 +208,32 @@
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-section">
-            <h3>Hurricane Alert Portal</h3>
-            <p>Protecting communities through early hurricane detection and rapid storm response coordination.</p>
+            <h3 data-i18n="footer.hurricane.title">Hurricane Alert Portal</h3>
+            <p data-i18n="footer.hurricane.desc">Protecting communities through early hurricane detection and rapid storm response coordination.</p>
         </div>
         
         <div class="footer-section">
-            <h3>Quick Links</h3>
-            <p><a href="#">Home</a></p>
-            <p><a href="hurricane/hurricane-history.html">Hurricane history</a></p>
-            <p><a href="hurricane/map.html">Live map</a></p>
-            <p><a href="hurricane/ocean-map.html">Ocean map</a></p>
-            <p><a href="hurricane/wind-map.html">Wind map</a></p> 
+            <h3 data-i18n="footer.quickLinks">Quick Links</h3>
+            <p><a href="#" data-i18n="footer.home">Home</a></p>
+            <p><a href="hurricane/hurricane-history.html" data-i18n="footer.hurricaneHistory">Hurricane history</a></p>
+            <p><a href="hurricane/map.html" data-i18n="footer.liveMap">Live map</a></p>
+            <p><a href="hurricane/ocean-map.html" data-i18n="footer.oceanMap">Ocean map</a></p>
+            <p><a href="hurricane/wind-map.html" data-i18n="footer.windMap">Wind map</a></p> 
         </div>
         
         <div class="footer-section">
-            <h3>Resources</h3>
-            <p><a href="disasters/statistics.html">Statistics</a></p>
-            <p><a href="disasters/contact.html">Contact</a></p>
-            <p><a href="disasters/admin-panel.html">Admin Panel</a></p> 
+            <h3 data-i18n="footer.resources">Resources</h3>
+            <p><a href="disasters/statistics.html" data-i18n="footer.statistics">Statistics</a></p>
+            <p><a href="disasters/contact.html" data-i18n="footer.contact">Contact</a></p>
+            <p><a href="disasters/admin-panel.html" data-i18n="footer.adminPanel">Admin Panel</a></p> 
         </div>
         
         <div class="footer-section">
-            <h3>Contact Info</h3>
+            <h3 data-i18n="footer.contactInfo">Contact Info</h3>
             <p><i class="fa-solid fa-envelope"></i> support@codingburgas.com</p>
             <p><i class="fa-solid fa-phone"></i> 1-800-STORM-911</p>
-            <p><i class="fa-solid fa-city"></i> Emergency Response Center</p>
-            <p><i class="fa-solid fa-map-pin"></i> Available 24/7 Worldwide</p>
+            <p><i class="fa-solid fa-city"></i> <span data-i18n="footer.emergencyCenter">Emergency Response Center</span></p>
+            <p><i class="fa-solid fa-map-pin"></i> <span data-i18n="footer.available247">Available 24/7 Worldwide</span></p>
         </div>
     </div>
 </footer>

@@ -348,7 +348,6 @@ function updateCharts(disaster) {
   charts.bar.update();
 
   const disasterNames = { fire: 'Fire', flood: 'Flood', hurricane: 'Hurricane', earthquake: 'Earthquake' };
-  if (DOM.pieChartTitle) DOM.pieChartTitle.textContent = `${disasterNames[disaster] || disaster} Severity Distribution`;
 }
 
 const lastTheme = { textColor: null, accentPrimary: null };

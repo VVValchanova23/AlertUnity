@@ -10,8 +10,11 @@
     <link rel="stylesheet" href="../../styles/landing.css" />
     <link rel="stylesheet" href="../../styles/disasters/statistics.css" />
 
+    <script src="../../script/i18n.js"></script>
     <script type="module" src="../../script/disasters/statistics.js"></script>
     <script type="module" src="../../script/current-user.js"></script>
+    
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -23,17 +26,17 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="../../index.html">Select a disaster</a></li>
-                <li><a href="../fire.html">Fire</a></li>
-                <li><a href="../flood.html">Flood</a></li>
-                <li><a href="../earthquake.html">Earthquake</a></li>
-                <li><a href="../hurricane.html">Hurricane</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="../../index.html" data-i18n="nav.selectDisaster">Select a disaster</a></li>
+                <li><a href="../fire.html" data-i18n="nav.fire">Fire</a></li>
+                <li><a href="../flood.html" data-i18n="nav.flood">Flood</a></li>
+                <li><a href="../earthquake.html" data-i18n="nav.earthquake">Earthquake</a></li>
+                <li><a href="../hurricane.html" data-i18n="nav.hurricane">Hurricane</a></li>
+                <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
 
             <div class="nav-cta">
-                <a href="sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-                <a href="sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                <a href="sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;" data-i18n="nav.signIn">Sign In</a>
+                <a href="sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;" data-i18n="nav.joinNow">Join Now</a>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <span class="theme-icon">🌙</span>
@@ -48,9 +51,9 @@
             <div class="stat-card fire active" data-disaster="fire" onclick="switchDisaster('fire')">
                 <div class="stat-content">
                     <div class="stat-icon">🔥</div>
-                    <p class="stat-title">Fire</p>
+                    <p class="stat-title" data-i18n="statistics.fire">Fire</p>
                     <p class="stat-value" id="fireValue">0</p>
-                    <p class="stat-subtitle">Active Incidents</p>
+                    <p class="stat-subtitle" data-i18n="statistics.activeIncidents">Active Incidents</p>
                 </div>
                 <svg class="stat-bg" width="100" height="60" viewBox="0 0 100 60">
                     <path d="M0 40 Q25 20 50 30 T100 20 L100 60 L0 60 Z" fill="currentColor"/>
@@ -60,9 +63,9 @@
             <div class="stat-card flood" data-disaster="flood" onclick="switchDisaster('flood')">
                 <div class="stat-content">
                     <div class="stat-icon">🌊</div>
-                    <p class="stat-title">Flood</p>
+                    <p class="stat-title" data-i18n="statistics.flood">Flood</p>
                     <p class="stat-value" id="floodValue">0</p>
-                    <p class="stat-subtitle">Active Incidents</p>
+                    <p class="stat-subtitle" data-i18n="statistics.activeIncidents">Active Incidents</p>
                 </div>
                 <svg class="stat-bg" width="100" height="60" viewBox="0 0 100 60">
                     <path d="M0 40 Q25 20 50 30 T100 20 L100 60 L0 60 Z" fill="currentColor"/>
@@ -72,9 +75,9 @@
             <div class="stat-card hurricane" data-disaster="hurricane" onclick="switchDisaster('hurricane')">
                 <div class="stat-content">
                     <div class="stat-icon">🌀</div>
-                    <p class="stat-title">Hurricane</p>
+                    <p class="stat-title" data-i18n="statistics.hurricane">Hurricane</p>
                     <p class="stat-value" id="hurricaneValue">0</p>
-                    <p class="stat-subtitle">Active Incidents</p>
+                    <p class="stat-subtitle" data-i18n="statistics.activeIncidents">Active Incidents</p>
                 </div>
                 <svg class="stat-bg" width="100" height="60" viewBox="0 0 100 60">
                     <path d="M0 40 Q25 20 50 30 T100 20 L100 60 L0 60 Z" fill="currentColor"/>
@@ -84,9 +87,9 @@
             <div class="stat-card earthquake" data-disaster="earthquake" onclick="switchDisaster('earthquake')">
                 <div class="stat-content">
                     <div class="stat-icon">⚠️</div>
-                    <p class="stat-title">Earthquake</p>
+                    <p class="stat-title" data-i18n="statistics.earthquake">Earthquake</p>
                     <p class="stat-value" id="earthquakeValue">0</p>
-                    <p class="stat-subtitle">Active Incidents</p>
+                    <p class="stat-subtitle" data-i18n="statistics.activeIncidents">Active Incidents</p>
                 </div>
                 <svg class="stat-bg" width="100" height="60" viewBox="0 0 100 60">
                     <path d="M0 40 Q25 20 50 30 T100 20 L100 60 L0 60 Z" fill="currentColor"/>
@@ -96,15 +99,14 @@
 
         <div class="charts-grid">
             <div class="chart-card">
-                <h2 class="chart-title" id="pieChartTitle">Fire Statistics</h2>
+                <h2 class="chart-title" id="pieChartTitle" data-i18n="statistics.severity">Severity Distribution</h2>
                 <div class="chart-container">
                     <canvas id="pieChart"></canvas>
                 </div>
-                
             </div>
 
             <div class="chart-card">
-                <h2 class="chart-title" id="lineChartTitle">Monthly Incidents By Severity</h2>
+                <h2 class="chart-title" id="lineChartTitle" data-i18n="statistics.monthlyIncidents">Monthly Incidents By Severity</h2>
                 <div class="chart-container">
                     <canvas id="lineChart"></canvas>
                 </div>
@@ -113,14 +115,14 @@
 
         <div class="charts-grid">
             <div class="chart-card">
-                <h2 class="chart-title" id="areaChartTitle">Total Reports</h2>
+                <h2 class="chart-title" id="areaChartTitle" data-i18n="statistics.totalReports">Total Reports</h2>
                 <div class="chart-container" style="height: 250px;">
                     <canvas id="areaChart"></canvas>
                 </div>
             </div>
 
             <div class="chart-card">
-                <h2 class="chart-title" id="barChartTitle">Hourly Incidents</h2>
+                <h2 class="chart-title" id="barChartTitle" data-i18n="statistics.hourlyIncidents">Hourly Incidents</h2>
                 <div class="chart-container" style="height: 250px;">
                     <canvas id="barChart"></canvas>
                 </div>

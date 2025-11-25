@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="fire">
+<html data-theme="fire" lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="../../styles/landing.css">
     <link rel="stylesheet" href="../../styles/fire/fire-history.css">
 
+    <script src="../../script/i18n.js"></script>
     <script type="module" src="../../script/current-user.js"></script>
     <script type="module" src="../../script/role-redirect.js"></script>
+    
     
     <script src="https://js.arcgis.com/4.28/"></script>
 </head>
@@ -26,17 +28,17 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="../fire.html">Home</a></li>
-                <li><a href="fire-report.html">Report Fire</a></li>
-                <li><a href="map.html">Live Map</a></li>
-                <li><a href="#" class="active">History</a></li>
-                <li><a href="report-history.html">Reports</a></li>
-                <li><a href="../disasters/contact.html">Contact</a></li>
+                <li><a href="../fire.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="fire-report.html" data-i18n="nav.reportFire">Report Fire</a></li>
+                <li><a href="map.html" data-i18n="nav.liveMap">Live Map</a></li>
+                <li><a href="#" class="active" data-i18n="nav.history">History</a></li>
+                <li><a href="report-history.html" data-i18n="nav.reports">Reports</a></li>
+                <li><a href="../disasters/contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
 
             <div class="nav-cta">
-                <a href="../disasters/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-                <a href="../disasters/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                <a href="../disasters/sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;" data-i18n="nav.signIn">Sign In</a>
+                <a href="../disasters/sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;" data-i18n="nav.joinNow">Join Now</a>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <span class="theme-icon">🌙</span>
@@ -48,66 +50,66 @@
 
     <div id="viewDiv"></div>
     <div id="control-panel">
-    <h2>🌍 Global Wildfire Map</h2>
+        <h2 data-i18n="history.globalWildfire">🌍 Global Wildfire Map</h2>
 
-    <div class="region-select">
-        <label>Select Region:</label>
-        <select id="region-select">
-        <option value="global">Global View</option>
-        <option value="northAmerica">North America</option>
-        <option value="southAmerica">South America</option>
-        <option value="europe">Europe</option>
-        <option value="africa">Africa</option>
-        <option value="asia">Asia</option>
-        <option value="australia">Australia</option>
-        <option value="russia">Russia</option>
-        <option value="middleEast">Middle East</option>
-        </select>
-    </div>
-
-    <div class="time-range">
-        <label>Time Range:</label>
-        <select id="time-range">
-        <option value="1">Last 24 Hours</option>
-        <option value="3">Last 3 Days</option>
-        <option value="7" selected>Last 7 Days</option>
-        <option value="14">Last 14 Days</option>
-        <option value="30">Last 30 Days</option>
-        </select>
-    </div>
-
-    <div class="stat-box">
-        <strong id="fire-count">---</strong>
-        <span>Active Fire Detections</span>
-    </div>
-
-    <div class="stat-box">
-        <strong id="avg-intensity">---</strong>
-        <span>Average Fire Power (MW)</span>
-    </div>
-
-    <div class="legend">
-        <strong>Fire Intensity</strong>
-        <div class="legend-item">
-        <div class="legend-bar low-confidence"></div>
-        <span>Low Intensity</span>
+        <div class="region-select">
+            <label data-i18n="history.selectRegion">Select Region:</label>
+            <select id="region-select">
+                <option value="global" data-i18n="history.globalView">Global View</option>
+                <option value="northAmerica" data-i18n="region.northAmerica">North America</option>
+                <option value="southAmerica" data-i18n="region.southAmerica">South America</option>
+                <option value="europe" data-i18n="region.europe">Europe</option>
+                <option value="africa" data-i18n="region.africa">Africa</option>
+                <option value="asia" data-i18n="region.asia">Asia</option>
+                <option value="australia" data-i18n="region.australia">Australia</option>
+                <option value="russia" data-i18n="region.russia">Russia</option>
+                <option value="middleEast" data-i18n="region.middleEast">Middle East</option>
+            </select>
         </div>
-        <div class="legend-item">
-        <div class="legend-bar medium-confidence"></div>
-        <span>Medium Intensity</span>
+
+        <div class="time-range">
+            <label data-i18n="history.timeRange">Time Range:</label>
+            <select id="time-range">
+                <option value="1" data-i18n="history.last24hours">Last 24 Hours</option>
+                <option value="3" data-i18n="history.last3days">Last 3 Days</option>
+                <option value="7" selected data-i18n="history.last7days">Last 7 Days</option>
+                <option value="14" data-i18n="history.last14days">Last 14 Days</option>
+                <option value="30" data-i18n="history.last30days">Last 30 Days</option>
+            </select>
         </div>
-        <div class="legend-item">
-        <div class="legend-bar high-confidence"></div>
-        <span>High Intensity</span>
+
+        <div class="stat-box">
+            <strong id="fire-count">---</strong>
+            <span data-i18n="history.activeFireDetections">Active Fire Detections</span>
         </div>
+
+        <div class="stat-box">
+            <strong id="avg-intensity">---</strong>
+            <span data-i18n="history.avgFirePower">Average Fire Power (MW)</span>
+        </div>
+
+        <div class="legend">
+            <strong data-i18n="history.fireIntensity">Fire Intensity</strong>
+            <div class="legend-item">
+                <div class="legend-bar low-confidence"></div>
+                <span data-i18n="history.lowIntensity">Low Intensity</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-bar medium-confidence"></div>
+                <span data-i18n="history.mediumIntensity">Medium Intensity</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-bar high-confidence"></div>
+                <span data-i18n="history.highIntensity">High Intensity</span>
+            </div>
+        </div>
+
+        <p class="data-source" data-i18n="history.dataSource">
+            Data from NASA FIRMS (MODIS)<br>Height = Fire Radiative Power
+        </p>
     </div>
 
-    <p class="data-source">
-        Data from NASA FIRMS (MODIS)<br>Height = Fire Radiative Power
-    </p>
-    </div>
-
-    <div id="loading">🌍 Loading Global Fire Data...</div>
+    <div id="loading" data-i18n="history.loading">🌍 Loading Global Fire Data...</div>
 
     <script src="../../script/fire/fire-history.js"></script>
     <script src="../../script/fire/fire.js"></script>

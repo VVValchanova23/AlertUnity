@@ -12,9 +12,11 @@
     <link rel="stylesheet" href="../../styles/global.css">
     <link rel="stylesheet" href="../../styles/landing.css">
     <link rel="stylesheet" href="../../styles/flood/flood-main.css">
-
+    
+    <script src="../../script/i18n.js"></script>
     <script type="module" src="../../script/current-user.js"></script>
     <script type="module" src="../../script/role-redirect.js"></script>
+    
 </head>
 <body>
 
@@ -32,15 +34,15 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="../flood.html">Home</a></li>
-                <li><a href="#" class="active">Report Flood</a></li>
-                <li><a href="map.html">Live Map</a></li>
-                <li><a href="../disasters/contact.html">Contact</a></li>
+                <li><a href="../flood.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="#" class="active" data-i18n="nav.reportFlood">Report Flood</a></li>
+                <li><a href="map.html" data-i18n="nav.liveMap">Live Map</a></li>
+                <li><a href="../disasters/contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
 
             <div class="nav-cta">
-                <a href="sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-                <a href="sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                <a href="sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;" data-i18n="nav.signIn">Sign In</a>
+                <a href="sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;" data-i18n="nav.joinNow">Join Now</a>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <span class="theme-icon">🌙</span>
@@ -52,8 +54,8 @@
 
     <main class="main-content">
         <div class="page-header">
-            <h1 class="hero-title"> Report a Flood</h1>
-            <p class="page-subtitle">
+            <h1 class="hero-title" data-i18n="report.title.flood">Report a Flood</h1>
+            <p class="page-subtitle" data-i18n="report.subtitle.flood">
                 Help keep your community safe by reporting flood incidents quickly and accurately. 
                 Your report will be immediately forwarded to local emergency services.
             </p>
@@ -61,102 +63,113 @@
 
         <div class="form-container">
             <div class="form-section">
-                <h2><i class="fa-solid fa-water"></i> Flood Report Details</h2>
+                <h2><i class="fa-solid fa-water"></i> <span data-i18n="report.details.flood">Flood Report Details</span></h2>
                 
                 <form id="disasterReportForm">
                     
                     <div class="form-group">
-                        <label class="form-label required">Flood Severity</label>
+                        <label class="form-label required" data-i18n="report.severity.flood">Flood Severity</label>
                         <div class="severity-options">
                             <div class="severity-option high">
                                 <input type="radio" id="severityHigh" name="severity" value="high" required>
-                                <label for="severityHigh">🔴 High<br><br><small>Severe flooding, strong currents</small></label>
+                                <label for="severityHigh">
+                                    <span data-i18n="report.severity.high">🔴 High</span><br><br>
+                                    <small data-i18n="report.severity.high.flood">Severe flooding, strong currents</small>
+                                </label>
                             </div>
                             <div class="severity-option medium">
                                 <input type="radio" id="severityMedium" name="severity" value="medium" required>
-                                <label for="severityMedium">🟡 Medium<br><br><small>Roads flooded, moderate depth</small></label>
+                                <label for="severityMedium">
+                                    <span data-i18n="report.severity.medium">🟡 Medium</span><br><br>
+                                    <small data-i18n="report.severity.medium.flood">Roads flooded, moderate depth</small>
+                                </label>
                             </div>
                             <div class="severity-option low">
                                 <input type="radio" id="severityLow" name="severity" value="low" required>
-                                <label for="severityLow">🟢 Low<br><br><small>Light water accumulation in streets and yards</small></label>
+                                <label for="severityLow">
+                                    <span data-i18n="report.severity.low">🟢 Low</span><br><br>
+                                    <small data-i18n="report.severity.low.flood">Light water accumulation in streets and yards</small>
+                                </label>
                             </div>
                         </div>
                     </div>
 
                     <div class="location-section">
-                        <label class="form-label required">Flood Location</label>
+                        <label class="form-label required" data-i18n="report.location.flood">Flood Location</label>
                         <div class="location-inputs">
-                            <input type="text" id="latitude" class="form-input" placeholder="Latitude" readonly>
-                            <input type="text" id="longitude" class="form-input" placeholder="Longitude" readonly>
+                            <input type="text" id="latitude" class="form-input" placeholder="Latitude" readonly data-i18n-placeholder="report.latitude">
+                            <input type="text" id="longitude" class="form-input" placeholder="Longitude" readonly data-i18n-placeholder="report.longitude">
                         </div>
-                        <button type="button" class="location-btn" id="getLocationBtn"><i class="fa-solid fa-location-dot"></i> Get My Current Location</button>
+                        <button type="button" class="location-btn" id="getLocationBtn">
+                            <i class="fa-solid fa-location-dot"></i> <span data-i18n="report.getCurrentLocation">Get My Current Location</span>
+                        </button>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label required" for="phone">Phone Number</label>
+                        <label class="form-label required" for="phone" data-i18n="report.phone">Phone Number</label>
                         <input type="text" id="phone" class="form-input" placeholder="+359 87 888 8888" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label required" for="address">Street Address or Description</label>
-                        <input type="text" id="address" class="form-input" placeholder="Street, area, or nearest landmark" required>
+                        <label class="form-label required" for="address" data-i18n="report.address">Street Address or Description</label>
+                        <input type="text" id="address" class="form-input" placeholder="Street, area, or nearest landmark" required data-i18n-placeholder="report.addressPlaceholder.generic">
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label required" for="description">Flood Description</label>
-                        <textarea id="description" class="form-textarea" placeholder="Water depth, flow speed, blocked roads, trapped people, property damage, etc." required></textarea>
+                        <label class="form-label required" for="description" data-i18n="report.description.flood">Flood Description</label>
+                        <textarea id="description" class="form-textarea" placeholder="Water depth, flow speed, blocked roads, trapped people, property damage, etc." required data-i18n-placeholder="report.descriptionPlaceholder.flood"></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Upload Photos/Videos</label>
+                        <label class="form-label" data-i18n="report.uploadPhotos">Upload Photos/Videos</label>
                         <div class="file-upload" id="fileUpload">
                             <input type="file" id="fileInput" multiple accept="image/*,video/*">
-                            <div class="file-upload-text"><i class="fa-regular fa-camera"></i> Click to upload or drag files here</div>
-                            <div class="file-upload-subtext">Images and videos help emergency responders assess the situation</div>
+                            <div class="file-upload-text"><i class="fa-regular fa-camera"></i> <span data-i18n="report.uploadText">Click to upload or drag files here</span></div>
+                            <div class="file-upload-subtext" data-i18n="report.uploadSubtext">Images and videos help emergency responders assess the situation</div>
                         </div>
                         <div class="uploaded-files" id="uploadedFiles"></div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="additionalInfo">Additional Information</label>
-                        <textarea id="additionalInfo" class="form-textarea" placeholder="Any other details that might be helpful (people nearby, vehicles involved, etc.)"></textarea>
+                        <label class="form-label" for="additionalInfo" data-i18n="report.additionalInfo">Additional Information</label>
+                        <textarea id="additionalInfo" class="form-textarea" placeholder="Any other details that might be helpful (people nearby, vehicles involved, etc.)" data-i18n-placeholder="report.additionalInfoPlaceholder"></textarea>
                     </div>
 
                     <div class="submit-section">
-                        <button type="submit" class="submit-btn" id="submitBtn"> Submit Flood Report</button>
-                        <button type="button" class="cancel-btn" onclick="clearForm()">Clear Form</button>
+                        <button type="submit" class="submit-btn" id="submitBtn" data-i18n="report.submit.flood">Submit Flood Report</button>
+                        <button type="button" class="cancel-btn" onclick="clearForm()" data-i18n="report.clearForm">Clear Form</button>
                     </div>
                 </form>
             </div>
 
             <div class="info-panel">
-                <h3><i class="fa-solid fa-shield-halved"></i> Flood Safety Tips</h3>
+                <h3><i class="fa-solid fa-shield-halved"></i> <span data-i18n="safety.title.flood">Flood Safety Tips</span></h3>
                 
                 <div class="info-item">
-                    <h4><i class="fa-solid fa-person-running"></i> Evacuation</h4>
-                    <p>Move to higher ground immediately if water levels rise quickly. Follow official evacuation instructions.</p>
+                    <h4><i class="fa-solid fa-person-running"></i> <span data-i18n="safety.evacuation">Evacuation</span></h4>
+                    <p data-i18n="safety.evacuation.flood">Move to higher ground immediately if water levels rise quickly. Follow official evacuation instructions.</p>
                 </div>
 
                 <div class="info-item">
-                    <h4><i class="fa-solid fa-road"></i> Road Safety</h4>
-                    <p>Do not attempt to drive through flooded roads. Even shallow water can sweep a vehicle away.</p>
+                    <h4><i class="fa-solid fa-road"></i> <span data-i18n="safety.roadSafety">Road Safety</span></h4>
+                    <p data-i18n="safety.roadSafety.desc">Do not attempt to drive through flooded roads. Even shallow water can sweep a vehicle away.</p>
                 </div>
 
                 <div class="info-item">
-                    <h4><i class="fa-solid fa-house"></i> Home Safety</h4>
-                    <p>Turn off electricity and gas if safe to do so. Avoid walking or wading through floodwater indoors.</p>
+                    <h4><i class="fa-solid fa-house"></i> <span data-i18n="safety.homeSafety">Home Safety</span></h4>
+                    <p data-i18n="safety.homeSafety.flood">Turn off electricity and gas if safe to do so. Avoid walking or wading through floodwater indoors.</p>
                 </div>
 
                 <div class="info-item">
-                    <h4><i class="fa-solid fa-triangle-exclamation"></i> Health & Hygiene</h4>
-                    <p>Floodwater may be contaminated. Avoid contact and clean wounds immediately if exposed.</p>
+                    <h4><i class="fa-solid fa-triangle-exclamation"></i> <span data-i18n="safety.healthHygiene">Health & Hygiene</span></h4>
+                    <p data-i18n="safety.healthHygiene.desc">Floodwater may be contaminated. Avoid contact and clean wounds immediately if exposed.</p>
                 </div>
 
                 <div class="contact-info">
-                    <h4><i class="fa-solid fa-phone-volume"></i> Emergency Contacts</h4>
-                    <p><strong>Flood Emergency:</strong> 112</p>
-                    <p><strong>Non-Emergency:</strong> +359 2 123 4567</p>
-                    <p><strong>Report Status:</strong> support@floodalert.com</p>
+                    <h4><i class="fa-solid fa-phone-volume"></i> <span data-i18n="safety.emergencyContacts">Emergency Contacts</span></h4>
+                    <p><strong data-i18n="safety.emergency112">Flood Emergency:</strong> 112</p>
+                    <p><strong data-i18n="safety.nonEmergency">Non-Emergency:</strong> +359 2 123 4567</p>
+                    <p><strong data-i18n="safety.reportStatus">Report Status:</strong> support@floodalert.com</p>
                 </div>
             </div>
         </div>
@@ -165,30 +178,30 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
-                <h3>Flood Alert Portal</h3>
-                <p>Keeping communities safe through early flood detection and fast emergency response.</p>
+                <h3 data-i18n="footer.flood.title">Flood Alert Portal</h3>
+                <p data-i18n="footer.flood.desc">Keeping communities safe through early flood detection and fast emergency response.</p>
             </div>
             
             <div class="footer-section">
-                <h3>Quick Links</h3>
-                <p><a href="../flood.html">Home</a></p>
-                <p><a href="map.html">Live map</a></p>
-                <p><a href="../disasters/admin-panel.html">Admin Panel</a></p>
+                <h3 data-i18n="footer.quickLinks">Quick Links</h3>
+                <p><a href="../flood.html" data-i18n="footer.home">Home</a></p>
+                <p><a href="map.html" data-i18n="footer.liveMap">Live map</a></p>
+                <p><a href="../disasters/admin-panel.html" data-i18n="footer.adminPanel">Admin Panel</a></p>
             </div>
             
             <div class="footer-section">
-                <h3>Resources</h3>
-                <p><a href="../disasters/statistics.html">Statistics</a></p>
-                <p><a href="../disasters/contact.html">Contact</a></p>
-                <p><a href="../disasters/features.html">Features</a></p>
+                <h3 data-i18n="footer.resources">Resources</h3>
+                <p><a href="../disasters/statistics.html" data-i18n="footer.statistics">Statistics</a></p>
+                <p><a href="../disasters/contact.html" data-i18n="footer.contact">Contact</a></p>
+                <p><a href="../disasters/features.html" data-i18n="footer.features">Features</a></p>
             </div>
             
             <div class="footer-section">
-                <h3>Contact Info</h3>
+                <h3 data-i18n="footer.contactInfo">Contact Info</h3>
                 <p><i class="fa-solid fa-envelope"></i> support@codingburgas.com</p>
                 <p><i class="fa-solid fa-phone"></i> 1-800-FLOOD-911</p>
-                <p><i class="fa-solid fa-city"></i> Emergency Response Center</p>
-                <p><i class="fa-solid fa-map-pin"></i> Available 24/7 Worldwide</p>
+                <p><i class="fa-solid fa-city"></i> <span data-i18n="footer.emergencyCenter">Emergency Response Center</span></p>
+                <p><i class="fa-solid fa-map-pin"></i> <span data-i18n="footer.available247">Available 24/7 Worldwide</span></p>
             </div>
         </div>
     </footer>

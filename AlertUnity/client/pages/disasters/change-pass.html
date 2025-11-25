@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/disasters/auth.css">
     
+    <script src="../../script/i18n.js"></script>
     <script type="module" src="../../script/current-user.js"></script>
     <script type="module" src="../../script/disasters/change-pass.js"></script>
 </head>
@@ -31,30 +32,27 @@
 
         <form id="signInForm">
             <div class="form-group">
-                <input type="email" id="email" placeholder="Email" required>
+                <input type="email" id="email" placeholder="Email" required data-i18n-placeholder="auth.email">
             </div>
 
             <div class="form-group">
-                <input type="password" id="oldPassword" placeholder="Old Password" required>
+                <input type="password" id="oldPassword" placeholder="Old Password" required data-i18n-placeholder="auth.oldPassword">
             </div>
 
             <div class="form-group password-group">
-                <input type="password" id="newPassword" placeholder="New Password" required>
+                <input type="password" id="newPassword" placeholder="New Password" required data-i18n-placeholder="auth.newPassword">
             </div>
 
             <div class="form-group password-group">
-                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required data-i18n-placeholder="auth.confirmPassword">
             </div>
 
-            <button type="submit" class="primary-btn">Change Password</button>
+            <button type="submit" class="primary-btn" data-i18n="auth.changePassword">Change Password</button>
 
             <div class="password-links">
-                <a href="sign-in.html" class="change-link">Back to Sign In</a>
+                <a href="sign-in.html" class="change-link" data-i18n="auth.backToSignIn">Back to Sign In</a>
             </div>
         </form>
-
-
     </div>
-
 </body>
 </html>

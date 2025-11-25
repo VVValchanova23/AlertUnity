@@ -15,6 +15,9 @@
   <script type="module" src="../../script/disasters/admin-panel.js"></script>
   <script type="module" src="../../data/firebase-config.js"></script>
 
+  <!-- Translation System -->
+  <script src="../../script/i18n.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </head>
@@ -28,18 +31,17 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="../../index.html">Select a disaster</a></li>
-                <li><a href="../fire.html">Fire</a></li>
-                <li><a href="../flood.html">Flood</a></li>
-                <li><a href="../earthquake.html">Earthquake</a></li>
-                <li><a href="../hurricane.html">Hurricane</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="../../index.html" data-i18n="nav.selectDisaster">Select a disaster</a></li>
+                <li><a href="../fire.html" data-i18n="nav.fire">Fire</a></li>
+                <li><a href="../flood.html" data-i18n="nav.flood">Flood</a></li>
+                <li><a href="../earthquake.html" data-i18n="nav.earthquake">Earthquake</a></li>
+                <li><a href="../hurricane.html" data-i18n="nav.hurricane">Hurricane</a></li>
+                <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
 
             <div class="nav-cta">
-    
-                <a href="sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;">Sign In</a>
-                <a href="sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;">Join Now</a>
+                <a href="sign-in.html" class="btn-nav btn-secondary" style="visibility: hidden;" data-i18n="nav.signIn">Sign In</a>
+                <a href="sign-up.html" class="btn-nav btn-primary" style="visibility: hidden;" data-i18n="nav.joinNow">Join Now</a>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <span class="theme-icon">🌙</span>
@@ -51,26 +53,26 @@
 
   <div class="main-content">
     <div class="title">
-      <h3 class="hero-title">Admin Panel</h3>
+      <h3 class="hero-title" data-i18n="admin.title">Admin Panel</h3>
     </div> 
 
     <div class="controls">
       <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search users...">
+        <input type="text" id="searchInput" placeholder="Search users..." data-i18n-placeholder="admin.search">
       </div>
-      <button id="exportBtn">Export to PDF</button>
+      <button id="exportBtn" data-i18n="admin.exportPDF">Export to PDF</button>
     </div>
 
     <div class="info">
       <table id="userTable">
         <thead>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Role</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Actions</th>
+            <th data-i18n="admin.firstName">First Name</th>
+            <th data-i18n="admin.lastName">Last Name</th>
+            <th data-i18n="admin.role">Role</th>
+            <th data-i18n="admin.phone">Phone</th>
+            <th data-i18n="admin.email">Email</th>
+            <th data-i18n="admin.actions">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -83,38 +85,38 @@
   <div id="editModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>Edit User</h2>
+        <h2 data-i18n="admin.editUser">Edit User</h2>
         <span class="close" onclick="closeModal('editModal')">&times;</span>
       </div>
       <div class="modal-body">
         <form id="editForm">
           <div class="form-group">
-            <label for="editFirstName">First Name</label>
+            <label for="editFirstName" data-i18n="admin.firstName">First Name</label>
             <input type="text" id="editFirstName" required>
           </div>
           <div class="form-group">
-            <label for="editLastName">Last Name</label>
+            <label for="editLastName" data-i18n="admin.lastName">Last Name</label>
             <input type="text" id="editLastName" required>
           </div>
           <div class="form-group">
-            <label for="editRole">Role</label>
+            <label for="editRole" data-i18n="admin.role">Role</label>
             <select id="editRole" required>
-              <option value="citizen">Citizen</option>
-              <option value="firefighter">Firefighter</option>
-              <option value="admin">Admin</option>
+              <option value="citizen" data-i18n="admin.citizen">Citizen</option>
+              <option value="firefighter" data-i18n="admin.firefighter">Firefighter</option>
+              <option value="admin" data-i18n="admin.admin">Admin</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="editPhone">Phone</label>
+            <label for="editPhone" data-i18n="admin.phone">Phone</label>
             <input type="tel" id="editPhone" required>
           </div>
           <div class="form-group">
-            <label for="editEmail">Email</label>
+            <label for="editEmail" data-i18n="admin.email">Email</label>
             <input type="email" id="editEmail" required>
           </div>
           <div class="modal-actions">
-            <button type="button" class="modal-btn cancel" onclick="closeModal('editModal')">Cancel</button>
-            <button type="submit" class="modal-btn confirm">Save Changes</button>
+            <button type="button" class="modal-btn cancel" onclick="closeModal('editModal')" data-i18n="modal.cancel">Cancel</button>
+            <button type="submit" class="modal-btn confirm" data-i18n="admin.saveChanges">Save Changes</button>
           </div>
         </form>
       </div>
@@ -124,17 +126,17 @@
   <div id="deleteModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>Confirm Deletion</h2>
+        <h2 data-i18n="admin.confirmDeletion">Confirm Deletion</h2>
         <span class="close" onclick="closeModal('deleteModal')">&times;</span>
       </div>
       <div class="modal-body">
-        <div class="delete-warning">
+        <div class="delete-warning" data-i18n="admin.deleteWarning">
           ⚠️ This action cannot be undone. The user will be permanently removed from the system.
         </div>
-        <p>Are you sure you want to delete <strong id="deleteUserName"></strong>?</p>
+        <p data-i18n="admin.deleteQuestion">Are you sure you want to delete <strong id="deleteUserName"></strong>?</p>
         <div class="modal-actions">
-          <button type="button" class="modal-btn cancel" onclick="closeModal('deleteModal')">Cancel</button>
-          <button type="button" class="modal-btn danger" onclick="confirmDelete()">Delete User</button>
+          <button type="button" class="modal-btn cancel" onclick="closeModal('deleteModal')" data-i18n="modal.cancel">Cancel</button>
+          <button type="button" class="modal-btn danger" onclick="confirmDelete()" data-i18n="admin.deleteUser">Delete User</button>
         </div>
       </div>
     </div>
